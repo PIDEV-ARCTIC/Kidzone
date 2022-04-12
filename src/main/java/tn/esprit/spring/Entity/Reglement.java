@@ -7,11 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table (name= "Reglement")
 public class Reglement {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idreglement;
@@ -23,17 +25,11 @@ public class Reglement {
 	private String sensoperation;
 	@Column(name="Montant")
 	private int montant;
-	@Column(name="IdTier")
-	private long idtier;
+	
 	public Long getIdreglement() {
 		return idreglement;
 	}
-	public long getIdTier() {
-		return idtier;
-	}
-	public void setIdTier(long idtier) {
-		this.idtier = idtier;
-	}
+	
 	public String getMode() {
 		return mode;
 	}
@@ -73,5 +69,32 @@ public class Reglement {
 		super();
 		this.idreglement = idreglement;
 	}
+	
+
+	public Fournisseur getFournisseurs() {
+		return fournisseurs;
+	}
+
+	public void setFournisseurs(Fournisseur fournisseurs) {
+		this.fournisseurs = fournisseurs;
+	}
+
+	public void setIdreglement(Long idreglement) {
+		this.idreglement = idreglement;
+	}
+
+	public Reglement(Long idreglement, String mode, String dateoperation, String sensoperation, int montant,
+			Fournisseur fournisseurs) {
+		super();
+		this.idreglement = idreglement;
+		this.mode = mode;
+		this.dateoperation = dateoperation;
+		this.sensoperation = sensoperation;
+		this.montant = montant;
+		
+	}
+	@ManyToOne
+	Fournisseur fournisseurs;
+	
 	
 }

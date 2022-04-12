@@ -43,10 +43,10 @@ public class FournisseurService  {
 		existingFournisseu.setTelfournissuer(f.getTelfournissuer());
 		return fournisseurRepository.save(f);
 	}
-	/*public Fournisseur GetFournByName(String NomFournisseur) {
-		return fournisseurRepository.findByNomFourn(NomFournisseur);
+	public Fournisseur GetFournByName(String NomFournisseur) {
+		return fournisseurRepository.findByNomfournisseur(NomFournisseur);
 	
-	}*/
+	}
 	
 	
 	

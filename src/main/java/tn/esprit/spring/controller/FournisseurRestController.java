@@ -30,7 +30,7 @@ public class FournisseurRestController {
 		return f;
 	}
 	@DeleteMapping("/supprimf/{id}")
-	public void deleteCompte (@PathVariable long id) {
+	public void deleteFournisseur (@PathVariable long id) {
 		fournisseurService.deleteFournisseur(id);
 	}
 	
@@ -42,27 +42,19 @@ public class FournisseurRestController {
 
 @GetMapping("/Findfournisseur/{id}")
 public Fournisseur FindfournisseurById(@PathVariable long id){
+
 return fournisseurService.FindFournisseur(id);
+
 }
 @PutMapping("/UpdateFournisseur")
-public Fournisseur Updaterfournisseur(@RequestBody Fournisseur f){
+public Fournisseur Updaterfournisseur(@RequestBody Fournisseur f) {
+	
 	return fournisseurService.UpdateFournisseur(f);
 }
-/*@GetMapping("/GetByNom/{NomFournisseur}")
-public Fournisseur FindJardinByName(@PathVariable String NomFournisseur){
+@GetMapping("/GetByNom/{NomFournisseur}")
+public Fournisseur FindFournisseurByName( @PathVariable String NomFournisseur){
 	return fournisseurService.GetFournByName(NomFournisseur);
-}*/
-	/*@PostMapping(value="/modifc")
-	public Compte updateCompte(Compte c) {
-		compteRepository.save(c);
-		return c;
-	}
+}
 	
-	@PostMapping(value="/rechc")
-	public Compte findById(long id) {
-	
-		
-		return compteRepository.findById(id).get();
-	}*/
 	
 }

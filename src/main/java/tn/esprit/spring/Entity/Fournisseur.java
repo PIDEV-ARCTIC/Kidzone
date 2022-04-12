@@ -1,15 +1,22 @@
 package tn.esprit.spring.Entity;
 
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table (name= "Fournisseur")
 public class Fournisseur {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idfournisseur;
@@ -73,5 +80,21 @@ public class Fournisseur {
 		super();
 		this.idfournisseur = idfournisseur;
 	}
+	
+	public Fournisseur(Long idfournisseur, String nomfournisseur, String prenomfournisseur, String mailfournisseur,
+			String telfournisseur, String domaine, Set<Reglement> reglements) {
+		super();
+		this.idfournisseur = idfournisseur;
+		this.nomfournisseur = nomfournisseur;
+		this.prenomfournisseur = prenomfournisseur;
+		this.mailfournisseur = mailfournisseur;
+		this.telfournisseur = telfournisseur;
+		this.domaine = domaine;
+		this.reglements = reglements;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="fournisseurs")
+	private Set<Reglement> reglements;
+	
 	
 }
