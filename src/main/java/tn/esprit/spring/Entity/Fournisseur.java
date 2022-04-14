@@ -51,11 +51,11 @@ public class Fournisseur {
 	public void setMailfournisseur(String mailfournisseur) {
 		this.mailfournisseur = mailfournisseur;
 	}
-	public String getTelfournissuer() {
+	public String getTelfournisseur() {
 		return telfournisseur;
 	}
-	public void setTelfournissuer(String telfournissuer) {
-		this.telfournisseur = telfournissuer;
+	public void setTelfournisseur(String telfournisseur) {
+		this.telfournisseur = telfournisseur;
 	}
 	public String getDomaine() {
 		return domaine;
@@ -64,13 +64,13 @@ public class Fournisseur {
 		this.domaine = domaine;
 	}
 	public Fournisseur(Long idfournisseur, String nomfournisseur, String prenomfournisseur, String mailfournisseur,
-			String telfournissuer, String domaine) {
+			String telfournisseur, String domaine) {
 		super();
 		this.idfournisseur = idfournisseur;
 		this.nomfournisseur = nomfournisseur;
 		this.prenomfournisseur = prenomfournisseur;
 		this.mailfournisseur = mailfournisseur;
-		this.telfournisseur = telfournissuer;
+		this.telfournisseur = telfournisseur;
 		this.domaine = domaine;
 	}
 	public Fournisseur() {

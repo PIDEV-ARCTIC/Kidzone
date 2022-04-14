@@ -40,7 +40,7 @@ public class FournisseurService  {
 		Fournisseur existingFournisseu = fournisseurRepository.findById(f.getIdfournisseur()).orElse(null);
 		existingFournisseu.setDomaine(f.getDomaine());existingFournisseu.setMailfournisseur(f.getMailfournisseur());
 		existingFournisseu.setNomfournisseur(f.getNomfournisseur());existingFournisseu.setPrenomfournisseur(f.getPrenomfournisseur());
-		existingFournisseu.setTelfournissuer(f.getTelfournissuer());
+		existingFournisseu.setTelfournisseur(f.getTelfournisseur());
 		return fournisseurRepository.save(f);
 	}
 	public Fournisseur GetFournByName(String NomFournisseur) {

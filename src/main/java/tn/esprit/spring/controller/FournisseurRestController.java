@@ -17,7 +17,7 @@ import tn.esprit.spring.Entity.Fournisseur;
 import tn.esprit.spring.repository.FournisseurRepository;
 import tn.esprit.spring.service.FournisseurService;
 
-@RestController
+@RestController //permet de convertir des reponse en json ou xml
 @RequestMapping("/fournisseur")
 public class FournisseurRestController {
 
@@ -25,7 +25,7 @@ public class FournisseurRestController {
    private FournisseurService fournisseurService;
 	//ajouter compte
 	@PostMapping("/ajouterf")
-	public Fournisseur addFournisseur(@RequestBody Fournisseur f) {
+	public Fournisseur addFournisseur(@RequestBody/* plusieur paramettre a ajouter*/ Fournisseur f) {
 		fournisseurService.addFournisseur(f);
 		return f;
 	}
