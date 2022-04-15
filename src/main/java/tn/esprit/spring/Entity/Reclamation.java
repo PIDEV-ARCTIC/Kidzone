@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -33,6 +34,7 @@ public class Reclamation {
 	private String description;
 	@Column(name="Nom")
 	private String nom;
-	
+	@ManyToOne
+	Utilisateur user ;
 	//idutilisateur clé étrangère à ajouter 
 }

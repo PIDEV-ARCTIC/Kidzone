@@ -59,9 +59,9 @@ public class CoursController {
 		
 	@DeleteMapping("/SupprimerCours/{idcours}")
 	@ResponseBody
-	public void deleteCours(@PathVariable(" idcours") long  idc )
+	public void deleteCours(@PathVariable(" idcours") long  idcours )
 		{
-		this.cou.deletCours( idc);
+		this.cou.deletCours( idcours);
 		}
 
 }

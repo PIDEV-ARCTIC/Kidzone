@@ -1,13 +1,15 @@
 package tn.esprit.spring.Entity;
 
 import java.util.Date;
+import java.util.Set;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -34,5 +36,8 @@ public class Cours {
 	private String Description;
 	@Column(name="file")
 	private String file;
+	
+	@ManyToMany(mappedBy="cours", cascade = CascadeType.ALL)
+	private Set<Employee> Employees;
 	
 }

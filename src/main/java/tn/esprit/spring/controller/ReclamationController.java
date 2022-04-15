@@ -2,6 +2,7 @@ package tn.esprit.spring.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import tn.esprit.spring.Entity.Reclamation;
+
 import tn.esprit.spring.service.*;
 
 @RestController
@@ -61,5 +64,16 @@ public class ReclamationController {
 		{
 		this.SER.deletReclamation( idrec);
 		}
+	
+	
+	
+	
+			
+				@PostMapping("/addreclamationn/{idUtilisateur}")
+				@ResponseBody
+				public Reclamation addReclamationUser(@RequestBody Reclamation r, @PathVariable("idUtilisateur") Long idUtilisateur)
+				{		
+					return SER.addReclamation(r, idUtilisateur);
+				}
 	
 }

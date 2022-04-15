@@ -23,4 +23,6 @@ public class Reglement {
 	private String sensoperation;
 	@Column(name="Montant")
 	private int montant;
+	
+	
 }
