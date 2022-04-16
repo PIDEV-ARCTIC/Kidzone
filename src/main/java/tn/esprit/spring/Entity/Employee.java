@@ -1,10 +1,15 @@
 package tn.esprit.spring.Entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +26,14 @@ public class Employee {
 	private String mail;
 	@Column(name="TelEmployee")
 	private String telEmployee;
+	@OneToMany(mappedBy="employee")
+	List<Absence> abscence;
+	@ManyToMany
+List<Cours> cours;
+	@ManyToOne
+	Jardin jardin;
+	@OneToMany(mappedBy="employee")
+	List<Reglement> reglement;
 	///////////////getters and setters//////
 	public Long getIdEmployee() {
 		return idEmployee;
@@ -52,20 +65,47 @@ public class Employee {
 	public void setTelEmployee(String telEmployee) {
 		this.telEmployee = telEmployee;
 	}
-
-	////////////////////////////////////////
-	///////////////constructors////////////
-	public Employee(Long idEmployee, String nomEmployee, String prenomEmployee, String mail, String telEmployee) {
+	public List<Absence> getAbscence() {
+		return abscence;
+	}
+	public void setAbscence(List<Absence> abscence) {
+		this.abscence = abscence;
+	}
+	public List<Cours> getCours() {
+		return cours;
+	}
+	public void setCours(List<Cours> cours) {
+		this.cours = cours;
+	}
+	public Jardin getJardin() {
+		return jardin;
+	}
+	public void setJardin(Jardin jardin) {
+		this.jardin = jardin;
+	}
+	public List<Reglement> getReglement() {
+		return reglement;
+	}
+	public void setReglement(List<Reglement> reglement) {
+		this.reglement = reglement;
+	}
+	//////////////////////////////
+	///////constructors//////////
+	public Employee(Long idEmployee, String nomEmployee, String prenomEmployee, String mail, String telEmployee,
+			List<Absence> abscence, List<Cours> cours, Jardin jardin, List<Reglement> reglement) {
 		super();
 		this.idEmployee = idEmployee;
 		this.nomEmployee = nomEmployee;
 		this.prenomEmployee = prenomEmployee;
 		this.mail = mail;
 		this.telEmployee = telEmployee;
+		this.abscence = abscence;
+		this.cours = cours;
+		this.jardin = jardin;
+		this.reglement = reglement;
 	}
 	public Employee() {
 		super();
 	}
-
-	///////////////////////////////////////
+	
 }

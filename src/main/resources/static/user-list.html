@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Contact List</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    </head>
+    <body>
+        <h1>Contact List</h1>
+ 
+        <br/><br/>
+        <div>
+            <table border="1">
+                <tr>
+                    <th>login</th>
+<!--                     <th>Name</th> -->
+<!--                     <th>Phone</th> -->
+<!--                     <th>Email</th> -->
+<!--                     <th>Edit</th> -->
+                </tr>
+                <tr th:each ="x : ${utilisateurs}">
+                    <td th:utext="${x.login}">...</td>
+                </tr>
+            </table>          
+        </div>
+        <br/><br/>
+  
+    </body>
+</html>

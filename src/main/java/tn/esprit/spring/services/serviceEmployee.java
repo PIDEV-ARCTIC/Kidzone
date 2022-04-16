@@ -30,10 +30,7 @@ public class serviceEmployee implements DAOservices<Employee>{
 		return employeeExist;
 	}
 
-	@Override
-	public List<Employee> getall() {
-		return re.findAll();
-	}
+
 
 	@Override
 	public Employee getByid(Long id) {
@@ -44,6 +41,11 @@ public class serviceEmployee implements DAOservices<Employee>{
 	public Employee delete(Long id) {
 		re.deleteById(id);
 		return null;
+	}
+
+	@Override
+	public List<Employee> getall() {
+		return re.findAll();
 	}
 
 }

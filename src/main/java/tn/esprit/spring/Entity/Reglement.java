@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,4 +24,59 @@ public class Reglement {
 	private String sensoperation;
 	@Column(name="Montant")
 	private int montant;
+	@ManyToOne
+	Employee employee;
+	///////////getters and setters ////////////
+	public Long getIdreglement() {
+		return idreglement;
+	}
+	public void setIdreglement(Long idreglement) {
+		this.idreglement = idreglement;
+	}
+	public String getMode() {
+		return mode;
+	}
+	public void setMode(String mode) {
+		this.mode = mode;
+	}
+	public Date getDateoperation() {
+		return dateoperation;
+	}
+	public void setDateoperation(Date dateoperation) {
+		this.dateoperation = dateoperation;
+	}
+	public String getSensoperation() {
+		return sensoperation;
+	}
+	public void setSensoperation(String sensoperation) {
+		this.sensoperation = sensoperation;
+	}
+	public int getMontant() {
+		return montant;
+	}
+	public void setMontant(int montant) {
+		this.montant = montant;
+	}
+	public Employee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+	//////////////////////////////////
+	/////////constructos///////////////
+	public Reglement(Long idreglement, String mode, Date dateoperation, String sensoperation, int montant,
+			Employee employee) {
+		super();
+		this.idreglement = idreglement;
+		this.mode = mode;
+		this.dateoperation = dateoperation;
+		this.sensoperation = sensoperation;
+		this.montant = montant;
+		this.employee = employee;
+	}
+	public Reglement() {
+		super();
+	}
+	
 }

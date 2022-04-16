@@ -15,25 +15,31 @@ import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.spring.Entity.Utilisateur;
 import tn.esprit.spring.services.serviceUtilisateur;
 
-@RestController
+	@RestController
 @RequestMapping("/api/utilisateur")
 public class controllerUtilisateur {
+
 	@Autowired
 	serviceUtilisateur serviceUtilisateur;
-	@PostMapping
-	private Utilisateur addUtilisateur(@RequestBody Utilisateur s)
+	
+		
+	@PostMapping("/addUser")
+	private Utilisateur addUtilisateur(Utilisateur utililisateur)
 	{
-		return serviceUtilisateur.add(s);
-	}
+		
+		return serviceUtilisateur.add(utililisateur);
+
+}
 	@GetMapping("{id}")
 	private Utilisateur getUtilisateurById(@PathVariable Long id)
 	{
 		return serviceUtilisateur.getByid(id);
 	}
-	@GetMapping
+	@GetMapping("/users")
 	private List<Utilisateur> getAllUtilisateur()
 	{
-		return serviceUtilisateur.getall();
+	    List<Utilisateur> utilisateurs = serviceUtilisateur.getall();
+        return utilisateurs;
 	}
 	@DeleteMapping("{id}")
 	private void deleteUtilisateur(@PathVariable Long id)
@@ -45,4 +51,5 @@ public class controllerUtilisateur {
 	{
 		return serviceUtilisateur.update(s, id);
 	}
+
 }

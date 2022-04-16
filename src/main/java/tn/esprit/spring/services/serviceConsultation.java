@@ -28,10 +28,10 @@ public class serviceConsultation implements DAOservices<Consultation>{
 		return consultationExist;
 	}
 
-	@Override
-	public List<Consultation> getall() {
-		return rc.findAll();
-	}
+//	@Override
+//	public List<Consultation> getall() {
+//		return rc.findAll();
+//	}
 
 	@Override
 	public  Consultation getByid(Long id) {
@@ -44,5 +44,11 @@ public class serviceConsultation implements DAOservices<Consultation>{
 		rc.deleteById(id);
 		return null;
 	}
+
+	@Override
+	public List<Consultation> getall() {
+		return rc.findAll();	}
+
+
 
 }
