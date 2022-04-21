@@ -48,7 +48,9 @@ public class FournisseurService  {
 	
 	}
 	
-	
+	public String FindMailF(long id){
+		 return fournisseurRepository.findById(id).get().getMailfournisseur();
+	}
 	
 
 }

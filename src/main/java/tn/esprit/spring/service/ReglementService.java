@@ -33,6 +33,15 @@ public class ReglementService  {
 	public Reglement FindReglement(long id){
 		return reglementRepository.findById(id).get();
 	}
+	/*public String FindMailF(long id){
+		 return reglementRepository.findById(id).get().getFournisseurs().getMailfournisseur();
+	}
+	public String FindMailE(long id){
+		 return reglementRepository.findById(id).get();
+	}
+	public String FindMailENF(long id){
+		 return reglementRepository.findById(id).get().getEnfants().getMail();
+	}*/
 	public Reglement UpdateReglement(Reglement r){
 		Reglement existingReglement = reglementRepository.findById(r.getIdreglement()).orElse(null);
 		

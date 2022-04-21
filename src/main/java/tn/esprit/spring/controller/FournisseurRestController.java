@@ -46,6 +46,12 @@ public Fournisseur FindfournisseurById(@PathVariable long id){
 return fournisseurService.FindFournisseur(id);
 
 }
+@GetMapping("/Findfournisseurmail/{id}")
+public String FindfournisseurmailById(@PathVariable long id){
+
+return fournisseurService.FindMailF(id);
+
+}
 @PutMapping("/UpdateFournisseur")
 public Fournisseur Updaterfournisseur(@RequestBody Fournisseur f) {
 	
