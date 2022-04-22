@@ -1,7 +1,7 @@
 package tn.esprit.spring.entity;
 
 import java.io.Serializable;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 //import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 //import javax.persistence.JoinColumn;
+
 
 @Entity
 @Table (name= "Enfant")
@@ -33,6 +34,11 @@ public class Enfant implements Serializable{
 	private String nomprenomparent;
 	@Column(name="NumTel")
 	private String numtel;
+	@Column(name="MailParent")
+	private String mail;
+	@JsonIgnore
+	@Column(name = "qrCodeImage")
+	private String qrCodeImageEnfant;
 	
 	@ManyToOne
 	//@JoinTable(name = "enfant_Jardin",joinColumns = @JoinColumn(name = "idenfant_enfant"),inverseJoinColumns = @JoinColumn(name = "idjardin_jardin"))
@@ -41,10 +47,45 @@ public class Enfant implements Serializable{
 	public Enfant() {
 		super();
 	}
+    
 	
-	
+
+
+
+
+	public Enfant(String nomprenomenfant, String age, String classe, String photo) {
+		super();
+		this.nomprenomenfant = nomprenomenfant;
+		this.age = age;
+		this.classe = classe;
+		this.photo = photo;
+	}
+
+
+
+
+
+	public Enfant(String nomprenomenfant, String age, String classe, String photo, String nomprenomparent,
+			String numtel, String mail, String qrCodeImageEnfant, tn.esprit.spring.entity.Jardin jardin) {
+		super();
+		this.nomprenomenfant = nomprenomenfant;
+		this.age = age;
+		this.classe = classe;
+		this.photo = photo;
+		this.nomprenomparent = nomprenomparent;
+		this.numtel = numtel;
+		this.mail = mail;
+		this.qrCodeImageEnfant = qrCodeImageEnfant;
+		Jardin = jardin;
+	}
+
+
+
+
+
+
 	public Enfant(Long idenfant, String nomprenomenfant, String age, String classe, String photo,
-			String nomprenomparent, String numtel, tn.esprit.spring.entity.Jardin jardin) {
+			String nomprenomparent, String numtel, String mail, tn.esprit.spring.entity.Jardin jardin) {
 		super();
 		this.idenfant = idenfant;
 		this.nomprenomenfant = nomprenomenfant;
@@ -53,8 +94,52 @@ public class Enfant implements Serializable{
 		this.photo = photo;
 		this.nomprenomparent = nomprenomparent;
 		this.numtel = numtel;
+		this.mail = mail;
 		Jardin = jardin;
 	}
+
+
+
+
+
+
+	public String getMail() {
+		return mail;
+	}
+
+
+
+
+
+
+	public Enfant(Long idenfant, String nomprenomenfant, String age, String classe, String photo,
+			String nomprenomparent, String numtel, String mail, String qrCodeImageEnfant,
+			tn.esprit.spring.entity.Jardin jardin) {
+		super();
+		this.idenfant = idenfant;
+		this.nomprenomenfant = nomprenomenfant;
+		this.age = age;
+		this.classe = classe;
+		this.photo = photo;
+		this.nomprenomparent = nomprenomparent;
+		this.numtel = numtel;
+		this.mail = mail;
+		this.qrCodeImageEnfant = qrCodeImageEnfant;
+		Jardin = jardin;
+	}
+
+
+
+
+
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+
+
+
 
 
 	public Long getIdenfant() {
@@ -116,6 +201,30 @@ public class Enfant implements Serializable{
 	public void setJardin(Jardin jardin) {
 		Jardin = jardin;
 	}
+
+
+
+
+
+
+	public String getQrCodeImageEnfant() {
+		return qrCodeImageEnfant;
+	}
+
+
+
+
+
+
+	public void setQrCodeImageEnfant(String qrCodeImageEnfant) {
+		this.qrCodeImageEnfant = qrCodeImageEnfant;
+	}
+
+
+
+
+
+	
 	
 	
 }

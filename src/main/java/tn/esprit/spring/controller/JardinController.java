@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entity.Jardin;
+import tn.esprit.spring.service.EmailSenderService;
 //import tn.esprit.spring.repository.JardinRepository;
 import tn.esprit.spring.service.JardinService;
 //import tn.esprit.spring.service.exception.*;
@@ -28,6 +29,8 @@ public class JardinController {
      
 	@Autowired
 	private JardinService jardinService;
+	@Autowired
+	private EmailSenderService senderService;
 	
 	@GetMapping("/JardinEnfantAffich")
 	public List<Jardin> afficherJardin(){
@@ -52,5 +55,9 @@ public class JardinController {
 	@PutMapping("/JardinUpp")
 	public Jardin UpdateJardin(@RequestBody Jardin jardinEnfant){
 		return jardinService.UpdateJardin(jardinEnfant);
+	}
+	@PostMapping("/Reclamation")
+	public void RecJardinEnfant(@RequestBody Jardin jardinEnfant){
+	 this.senderService.sendEmail("farah.benmahmoud@esprit.tn","Reclamation2","problemefarah "+"amal");;
 	}
 }
