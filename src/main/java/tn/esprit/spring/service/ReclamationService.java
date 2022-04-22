@@ -58,6 +58,17 @@ public class ReclamationService implements Ireclamation {
 		
 		return repo.save(r);
 	}
+
+
+
+	@Override
+	public Reclamation retrieveReclamation(Long idreclamation) {
+		// TODO Auto-generated method stub
+		return repo.findById(idreclamation).get();
+	}
+
+
+
 	
 
 }

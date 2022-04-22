@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,19 +38,21 @@ public class CoursController {
 	public   Cours addCours(@RequestBody Cours c  ){
 		return this.cou.ajouterCours(c);
 	}
+		
+		
 	
-	/*
-	@PutMapping("/UpdateReclamation/{idreclamation}/{Nom}/{description}/{Typereclamation}")
-	@ResponseBody
-	public void UpdateReclamation (@PathVariable ("idreclamation") int idreclamation,@PathVariable("Nom") String Nom,@PathVariable ("description") String description,@PathVariable ("typereclamation") TypeReclamation typereclamation)
-	{
-		ReclamationService.UpdateReclamation(idreclamation, Nom , description, typereclamation);
-	}
+		@GetMapping(value = "/search/{keyword}")
+	    public List<Cours> dynamicSearch(@PathVariable String keyword){
+			return cou.search(keyword);
+	   	 
+	    }
+		
+		
+		
+		
+		
+		
 	
-	
-	
-	
-	*/
 
 		@PutMapping("/modifyCours")
 		@ResponseBody
@@ -64,4 +67,51 @@ public class CoursController {
 		this.cou.deletCours( idcours);
 		}
 
-}
+	
+	/*
+	
+	@PostMapping("/uploadfile")
+	public ResponseEntity<FileUploadResponse> uploadFile(
+			@RequestParam("file") MultipartFile multipartFile )
+					throws IOException
+	{
+			String fileName= StringUtils.cleanPath(multipartFile.getOriginalFilename());
+			long size = multipartFile.getSize();
+			String fileCode =serviceEmployee.saveFile(fileName,multipartFile);
+			FileUploadResponse response  = new FileUploadResponse();
+			response.setFileName(fileName);
+			response.setSize(size);
+			response.setDownloadUri("/downloadfile/" + fileCode );
+			return new ResponseEntity<>(response , HttpStatus.OK);
+	}
+
+
+
+
+		@GetMapping("/downloadfile/{filecode}")
+		public ResponseEntity<?> downloadFile(@PathVariable ("filecode") String filecode)
+		{
+			Resource resource = null;
+			
+			try {
+				 resource = serviceEmployee.getFile(filecode);
+			} catch (IOException e) {
+	return ResponseEntity.internalServerError().build();
+
+			}
+			if( resource == null)
+			{
+				return new ResponseEntity<>("File not found", HttpStatus.NOT_FOUND);
+			}
+			String contentType="application/octet-stream";
+			String headerValue="attachment; filename=\"" + resource.getFilename() + "\"";
+			return ResponseEntity.ok()
+					.contentType(MediaType.parseMediaType(contentType))
+					.header(HttpHeaders.CONTENT_DISPOSITION , headerValue)
+					.body(resource);
+		}
+		
+*/
+	}
+
+

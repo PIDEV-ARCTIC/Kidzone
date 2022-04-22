@@ -15,5 +15,7 @@ public interface Ireclamation {
 	List<Reclamation>getallReclamation();
 	public Reclamation updateReclamation(Reclamation r);
 	public Reclamation addReclamation(Reclamation r, Long idutilisateur) ;
+	Reclamation retrieveReclamation(Long  idreclamation);
+	
 	
 }

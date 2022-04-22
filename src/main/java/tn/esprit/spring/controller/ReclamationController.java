@@ -1,6 +1,8 @@
 package tn.esprit.spring.controller;
 
+import java.util.Date;
 import java.util.List;
+
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +18,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import tn.esprit.spring.Entity.Reclamation;
-
+//import tn.esprit.spring.controller.EmailSenderService;
 import tn.esprit.spring.service.*;
+import java.util.Date;
+import java.util.List;
+
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 
 @RestController
 @RequestMapping("/rec")
+@CrossOrigin(origins="*")
 public class ReclamationController {
 	@Autowired
 
 	 ReclamationService SER ;
+	@Autowired
+	EmailSenderService emailSenderService ;
+	//------------------------------------------------------------------------------------------------//
 	
 	@GetMapping("/Reclamations")
 	@ResponseBody
@@ -33,30 +45,37 @@ public class ReclamationController {
 		List <Reclamation> list = SER.getallReclamation();
 		return this.SER.getallReclamation();
 	}
+	
+	
+	
+	//------------------------------------------------------------------------------------------------//
+	
 		@PostMapping("/add-Reclamation")
 	
 	public   Reclamation addReclamation(@RequestBody  Reclamation r  ){
 		return this.SER.ajouterReclamation(r);
 	}
 	
-	/*
-	@PutMapping("/UpdateReclamation/{idreclamation}/{Nom}/{description}/{Typereclamation}")
-	@ResponseBody
-	public void UpdateReclamation (@PathVariable ("idreclamation") int idreclamation,@PathVariable("Nom") String Nom,@PathVariable ("description") String description,@PathVariable ("typereclamation") TypeReclamation typereclamation)
-	{
-		ReclamationService.UpdateReclamation(idreclamation, Nom , description, typereclamation);
-	}
+		//------------------------------------("routrouver une reclamation")------------------------------------------------------------//
 	
-	
-	
-	
-	*/
+		@GetMapping("/retrieve-reclamation/{idreclamation}")
+		@ResponseBody
+		public Reclamation retrieveClient(@PathVariable("idreclamation") Long idreclamation) {
+		return SER.retrieveReclamation(idreclamation);
+		}
+		
+		
+		//------------------------------------------------------------------------------------------------//
 
 		@PutMapping("/modifyReclamation")
 		@ResponseBody
 		public Reclamation modifyDepartement(@RequestBody Reclamation r) {
 			return this.SER.updateReclamation(r);
 		}
+		
+		
+		//------------------------------------------------------------------------------------------------//
+		
 		
 	@DeleteMapping("/SupprimerReclamation/{idreclamation}")
 	@ResponseBody
@@ -66,14 +85,20 @@ public class ReclamationController {
 		}
 	
 	
+	//------------------------------------------ avec user ------------------------------------------------------//
 	
 	
 			
 				@PostMapping("/addreclamationn/{idUtilisateur}")
 				@ResponseBody
 				public Reclamation addReclamationUser(@RequestBody Reclamation r, @PathVariable("idUtilisateur") Long idUtilisateur)
-				{		
-					return SER.addReclamation(r, idUtilisateur);
+				{	
+					Date date = new Date(System.currentTimeMillis()); 
+						//r.setDate(date);
+					Reclamation reclamation = SER.addReclamation(r, idUtilisateur);
+					emailSenderService.SendEmail("nourelhouda.fdhila@esprit.tn", "Reclamation", "votre reclamation est bien recu");
+				
+					return  reclamation ;
 				}
 	
 }
