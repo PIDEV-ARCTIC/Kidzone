@@ -1,5 +1,7 @@
 package tn.esprit.spring.services;
 
+import java.util.List;
+
 public interface DAOservices <T>
 {	
 	T add(T s) ;
@@ -7,5 +9,6 @@ public interface DAOservices <T>
 	java.util.List<T> getall() ;
 	T getByid(Long id) ;
 	T delete(Long id);
+	List<T> getall(String keyword);
 
 }

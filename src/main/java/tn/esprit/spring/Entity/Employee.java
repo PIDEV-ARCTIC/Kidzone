@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table (name= "Employee")
 public class Employee {
@@ -20,6 +21,9 @@ public class Employee {
 	private Long idEmployee;
 	@Column(name="Nom")
 	private String nomEmployee;
+	@JsonIgnore
+	@Column(name="password")
+	private String passEmployee;
 	@Column(name="Prenom")
 	private String prenomEmployee;
 	@Column(name="Mail")
@@ -29,12 +33,18 @@ public class Employee {
 	@OneToMany(mappedBy="employee")
 	List<Absence> abscence;
 	@ManyToMany
-List<Cours> cours;
+	List<Cours> cours;
 	@ManyToOne
 	Jardin jardin;
 	@OneToMany(mappedBy="employee")
 	List<Reglement> reglement;
 	///////////////getters and setters//////
+	public String getPassEmployee() {
+		return passEmployee;
+	}
+	public void setPassEmployee(String passEmployee) {
+		this.passEmployee = passEmployee;
+	}
 	public Long getIdEmployee() {
 		return idEmployee;
 	}
@@ -91,11 +101,16 @@ List<Cours> cours;
 	}
 	//////////////////////////////
 	///////constructors//////////
-	public Employee(Long idEmployee, String nomEmployee, String prenomEmployee, String mail, String telEmployee,
-			List<Absence> abscence, List<Cours> cours, Jardin jardin, List<Reglement> reglement) {
+
+	public Employee() {
+		super();
+	}
+	public Employee(Long idEmployee, String nomEmployee, String passEmployee, String prenomEmployee, String mail,
+			String telEmployee, List<Absence> abscence, List<Cours> cours, Jardin jardin, List<Reglement> reglement) {
 		super();
 		this.idEmployee = idEmployee;
 		this.nomEmployee = nomEmployee;
+		this.passEmployee = passEmployee;
 		this.prenomEmployee = prenomEmployee;
 		this.mail = mail;
 		this.telEmployee = telEmployee;
@@ -104,8 +119,5 @@ List<Cours> cours;
 		this.jardin = jardin;
 		this.reglement = reglement;
 	}
-	public Employee() {
-		super();
-	}
-	
+
 }

@@ -48,4 +48,11 @@ public class serviceUtilisateur implements DAOservices<Utilisateur>{
 		return ru.getById(id);
 	}
 
+	@Override
+	public List<Utilisateur> getall(String keyword) {
+		return null;
+////
+	}
 }
+
+

@@ -49,6 +49,12 @@ public class serviceConsultation implements DAOservices<Consultation>{
 	public List<Consultation> getall() {
 		return rc.findAll();	}
 
+	@Override
+	public List<Consultation> getall(String keyword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 }
