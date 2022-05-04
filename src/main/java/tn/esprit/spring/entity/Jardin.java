@@ -1,6 +1,7 @@
 package tn.esprit.spring.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 //import javax.persistence.JoinColumn;
 
 
@@ -37,10 +40,20 @@ public class Jardin implements Serializable{
 	private int tarif;
 	@Column(name="Description")
 	private String description;
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="Jardin",orphanRemoval=true)
+	private Set<Enfant> enfant  = new HashSet<>();
 	
-	//@OneToMany(cascade = CascadeType.ALL, mappedBy="Jardin", orphanRemoval = true)
-	@OneToMany(mappedBy = "Jardin", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<Enfant> enfant;
+	
+	
+	public Jardin(Long idjardin) {
+		super();
+		this.idjardin = idjardin;
+	}
+	public Jardin() {
+		super();
+	}
+	
 	
 	public Jardin(Long idjardin, String nomjardin, String adressejardin, String logo, String emailjardin, String numtel,
 			int tarif, String description, Set<Enfant> enfant) {
@@ -55,15 +68,6 @@ public class Jardin implements Serializable{
 		this.description = description;
 		this.enfant = enfant;
 	}
-	
-	public Jardin(Long idjardin) {
-		super();
-		this.idjardin = idjardin;
-	}
-	public Jardin() {
-		super();
-	}
-	
 	public Jardin(Long idjardin, String nomjardin, String adressejardin, String logo, String emailjardin, String numtel,
 			int tarif, String description) {
 		super();
@@ -138,5 +142,19 @@ public class Jardin implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public Set<Enfant> getEnfant() {
+		return enfant;
+	}
+
+	   public void setEnfant(Set<Enfant> enfant)
+	    {
+	        this.enfant.addAll(enfant);
+	    }
+
+	
+
+	
+	
 	
 }

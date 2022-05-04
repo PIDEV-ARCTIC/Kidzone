@@ -42,10 +42,10 @@ public class EnfantService  {
 	public List <Enfant> GetEnfant(){
 		return EnfantRepository.findAll();
 	}
-	public Enfant GetEnfantbyName(String nomprenomenfant) {
+	/*public Enfant GetEnfantbyName(String nomprenomenfant) {
 		return EnfantRepository.findByNomprenomenfant(nomprenomenfant);
 	
-	}
+	}*/
 	public Enfant GetEnfantbyID(Long idenfant) {
 		return EnfantRepository.findById(idenfant).get();
 	
@@ -63,7 +63,9 @@ public class EnfantService  {
 		existingEnfant.setAge(Enfant.getAge());
 		existingEnfant.setClasse(Enfant.getClasse());
 		existingEnfant.setJardin(Enfant.getJardin());
-		existingEnfant.setNomprenomenfant(Enfant.getNomprenomenfant());
+		existingEnfant.setNomenfant(Enfant.getNomenfant());
+		existingEnfant.setPrenomenfant(Enfant.getPrenomenfant());
+		existingEnfant.setAdresseEnfant(Enfant.getAdresseEnfant());
 		existingEnfant.setNomprenomparent(Enfant.getNomprenomparent());
 		existingEnfant.setNumtel(Enfant.getNumtel());
 		existingEnfant.setPhoto(Enfant.getPhoto());
@@ -72,7 +74,7 @@ public class EnfantService  {
 	public byte[] genrateAndDownloadQRCode(Enfant enfant, int width, int height, String filePath) throws Exception{
 
 		QRCodeWriter qrCodeWriter = new QRCodeWriter();
-		BitMatrix bitMatrix = qrCodeWriter.encode( enfant.getIdenfant()+"\n"+enfant.getNomprenomenfant()+"\n"+
+		BitMatrix bitMatrix = qrCodeWriter.encode( enfant.getIdenfant()+"\n"+enfant.getNomenfant()+"\n"+enfant.getPrenomenfant()+"\n"+enfant.getAdresseEnfant()+"\n"+
 				enfant.getAge() + "\n" + enfant.getClasse() + "\n"+enfant.getPhoto()+"\n"+enfant.getNomprenomparent()+"\n"+enfant.getMail()+"\n"+enfant.getNumtel()+"\n"
 				+ enfant.getJardin() + "\n", BarcodeFormat.QR_CODE, width, height);
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -100,18 +102,23 @@ public class EnfantService  {
 		return null;
 	}
 
-	public Enfant ajouterEnfant(String nomprenomenfant, 
+	public Enfant ajouterEnfant(String nomenfant,
+			String prenomenfant,
+			String adresseEnfant,
 			String age, 
 			String classe, 
 			String photo, 
 			String nomprenomparent,
 			String numtel,
+			String gender,
 			String mail,
 			String qrCodeImageEnfant,
 			tn.esprit.spring.entity.Jardin jardin){
 		
 		Enfant p = new Enfant();
-		p.setNomprenomenfant(nomprenomenfant);
+		p.setNomenfant(nomenfant);
+		p.setPrenomenfant(prenomenfant);
+		p.setAdresseEnfant(adresseEnfant);
 		p.setAge(age);
 		p.setClasse(classe);
 		p.setPhoto(photo);
@@ -120,6 +127,7 @@ public class EnfantService  {
 		p.setMail(mail);
 		p.setQrCodeImageEnfant(qrCodeImageEnfant);
 		p.setJardin(jardin);
+		p.setGender(gender);
 		
 		return EnfantRepository.save(p);
 	}

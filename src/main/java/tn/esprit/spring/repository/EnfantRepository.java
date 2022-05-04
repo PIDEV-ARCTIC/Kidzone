@@ -9,5 +9,5 @@ import tn.esprit.spring.entity.Enfant;
 @Repository
 public interface EnfantRepository extends JpaRepository<Enfant, Long>{
 
-	 Enfant findByNomprenomenfant(String nomprenomenfant);
+	// Enfant findByNomprenomenfant(String nomprenomenfant);
 }

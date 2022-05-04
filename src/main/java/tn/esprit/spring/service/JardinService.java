@@ -1,8 +1,10 @@
 package tn.esprit.spring.service;
+import java.util.ArrayList;
 import java.util.List;
-
+import tn.esprit.spring.service.EnfantService;
 import org.springframework.stereotype.Service;
-
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import tn.esprit.spring.entity.Enfant;
 import tn.esprit.spring.entity.Jardin;
 import tn.esprit.spring.repository.JardinRepository;
 //import tn.esprit.spring.service.*;
@@ -18,11 +20,46 @@ public class JardinService  {
 
 	@Autowired
 	JardinRepository jardinRepository;
+	@Autowired
+	EnfantService enfantService;
 	
 	public List <Jardin> GetJardin(){
 		return jardinRepository.findAll();
 	}
-	public Jardin GetJardinbyid(long idJardin){
+public List <Enfant> count (long idjardin){
+		
+		List<Enfant> inscriptions = enfantService.GetEnfant();
+		List<Enfant> inscriptionBus = new ArrayList<>();
+		
+		 for (Enfant inscri : inscriptions) {
+		        if (inscri.getJardin().getIdjardin()==idjardin) {
+		            inscriptionBus.add(inscri);
+		        }
+		 }
+		        return inscriptionBus;
+	}
+     public List <Enfant> GetEnfantsBus(Long idjardin){
+		
+		List<Jardin> jardins = this.GetJardin();
+		List<Enfant> enfant = new ArrayList<>();
+		
+		
+		 for (Enfant j : enfant) {
+		        if (j.getJardin().getIdjardin()== idjardin) {
+		        	
+		        	enfant.add(j);
+		        	/*IdenfantBus.add(inscri.getEnfant().getIdenfant());
+		        	PrenomEnfant.add(inscri.getEnfant().getNomenfant());
+		        	NomEnfant.add(inscri.getEnfant().getPrenomenfant();
+		            Collections.addAll(IdenfantBus, PrenomEnfant,NomEnfant);*/
+		            
+		        }
+		 }
+		 System.out.print(enfant);
+		        return enfant;
+		
+	}
+ 	public Jardin GetJardinbyid(long idJardin){
 		return jardinRepository.findById(idJardin).orElseThrow(null);
 	
 	}

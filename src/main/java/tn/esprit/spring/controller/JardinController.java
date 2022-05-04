@@ -5,6 +5,7 @@ import java.util.List;
 //import org.aspectj.lang.annotation.RequiredTypes;
 //import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 //import org.springframework.http.ResponseEntity;
 //import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,12 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.esprit.spring.entity.Enfant;
 import tn.esprit.spring.entity.Jardin;
 import tn.esprit.spring.service.EmailSenderService;
 //import tn.esprit.spring.repository.JardinRepository;
 import tn.esprit.spring.service.JardinService;
 //import tn.esprit.spring.service.exception.*;
-
+@CrossOrigin(origins = "*")
 @RestController  
 @RequestMapping("/JardinEnfant")
 public class JardinController {
@@ -35,6 +37,10 @@ public class JardinController {
 	@GetMapping("/JardinEnfantAffich")
 	public List<Jardin> afficherJardin(){
 		return jardinService.GetJardin();
+	}
+	@GetMapping("/JardinAffichEnfant/{idjardin}")
+	public List<Enfant> afficherJardinEnfant(@PathVariable long idjardin){
+		return jardinService.count(idjardin);
 	}
 	@GetMapping("/JardinEnfantAffichid/{idJardin}")
 	public Jardin FindJardinById(@PathVariable long idJardin){
@@ -56,7 +62,7 @@ public class JardinController {
 	public Jardin UpdateJardin(@RequestBody Jardin jardinEnfant){
 		return jardinService.UpdateJardin(jardinEnfant);
 	}
-	@PostMapping("/Reclamation")
+	@PostMapping("/Inscription")
 	public void RecJardinEnfant(@RequestBody Jardin jardinEnfant){
 	 this.senderService.sendEmail("farah.benmahmoud@esprit.tn","Reclamation2","problemefarah "+"amal");;
 	}
