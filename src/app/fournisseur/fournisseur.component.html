@@ -1,0 +1,85 @@
+<button mat-raised-button color="warn" (click)="openDialog()">Ajouter Fournisseur</button>
+<button mat-icon-button color="warn" (click)="getAllFournisseurs()"><mat-icon aria-hidden="false" aria-label="fa-refresh">fa-refresh</mat-icon></button>
+
+
+
+
+          <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class=" text-primary">
+                        <th>Nom </th>
+                        <th>Prénom</th>
+                        <th>Mail</th>
+                        <th>Téléphone</th>
+                        <th>Domaine</th>
+                        <th >Action</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let fournisseur of listFournisseur'>
+                            <td>{{fournisseur.nomfournisseur}}</td>
+                            <td>{{fournisseur.prenomfournisseur}}</td>
+                            <td>{{fournisseur.mailfournisseur}}</td>
+                            <td>{{fournisseur.telfournisseur}}</td>
+                            <td>{{fournisseur.domaine}}</td>
+                            <td><button  mat-icon-button type="button" color="primary"
+                                (click)="open(mymodal)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <ng-template #mymodal let-modal>
+                                <div class="modal-header">
+                                    <h1 mat-dialog-title>Modification d'un fournisseur</h1>
+                                    <button type="button" class="close" aria-label="Close"
+                                        (click)="modal.dismiss('Cross click')">
+                                        <span aria-hidden="true" (click)="cancel()">×</span>
+
+                                    </button>
+
+                                </div>
+                               
+
+                                <form >
+
+                                    <div mat-dialog-content>
+                                       
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Nom Fournisseur</mat-label>
+                                            <input  [(ngModel)]="fournisseur.nomfournisseur"  matInput placeholder="Placeholder" [ngModelOptions]="{standalone : true}">
+                                          </mat-form-field>
+                                          <mat-form-field appearance="outline">
+                                            <mat-label>Prenom Fournisseur</mat-label>
+                                            <input   [(ngModel)]="fournisseur.prenomfournisseur"  matInput placeholder="Placeholder" [ngModelOptions]="{standalone : true}">
+                                          </mat-form-field>
+                                          <mat-form-field appearance="outline">
+                                            <mat-label>EMail </mat-label>
+                                            <input type="email" [(ngModel)]="fournisseur.mailfournisseur"  matInput placeholder="Placeholder" [ngModelOptions]="{standalone : true}">
+                                          </mat-form-field>
+                                          <mat-form-field appearance="outline">
+                                            <mat-label>Téléphone </mat-label>
+                                            <input  type="number"  [(ngModel)]="fournisseur.telfournisseur"matInput placeholder="Placeholder" [ngModelOptions]="{standalone : true}">
+                                          </mat-form-field>
+                                          <mat-form-field appearance="outline">
+                                            <mat-label>Domaine</mat-label>
+                                            <input [(ngModel)]="fournisseur.domaine"  matInput placeholder="Placeholder" [ngModelOptions]="{standalone : true}">
+                                          </mat-form-field>
+                                    </div>
+                                </form>
+                                <div mat-dialog-action [aligne]="'end'">
+                                    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+                                    <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="editFournisseur(fournisseur) " mat-dialog-close>Save</button>
+                                </div>
+                            </ng-template>
+                            <button type="button"mat-icon-button color="warn"
+                                (click)="deleteFournisseur(fournisseur.idfournisseur)"><mat-icon>
+                                    delete
+                                </mat-icon></button>
+                        </td>
+                          </tr>
+                            </tbody>
+                            </table>
+                             <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select fournisseur of Fournisseur"></mat-paginator>
+
+          </div>
+      
+    </div>
+

@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Ajout d'un fournisseur</h1>
+  <form  >
+    <div mat-dialog-content>
+       
+        <mat-form-field appearance="outline">
+            <mat-label>Nom Fournisseur</mat-label>
+            <input     [(ngModel)]="fournisseur.nomfournisseur"  matInput placeholder="Placeholder" [ngModelOptions]="{standalone : true}">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Prenom Fournisseur</mat-label>
+            <input   [(ngModel)]="fournisseur.prenomfournisseur"  matInput placeholder="Placeholder" [ngModelOptions]="{standalone : true}">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>EMail </mat-label>
+            <input   type="email"  [(ngModel)]="fournisseur.mailfournisseur"  matInput placeholder="Placeholder" [ngModelOptions]="{standalone : true}">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Téléphone </mat-label>
+            <input required minlength="8" maxlength="8" class="form-Control" type="number"  [(ngModel)]="fournisseur.telfournisseur"matInput placeholder="Placeholder" [ngModelOptions]="{standalone : true}">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Domaine</mat-label>
+            <input [(ngModel)]="fournisseur.domaine"  matInput placeholder="Placeholder" [ngModelOptions]="{standalone : true}">
+          </mat-form-field>
+    </div>
+</form>
+<div mat-dialog-action [aligne]="'end'">
+    <button  mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addFournisseur(fournisseur)" mat-dialog-close>Save</button>
+</div>
