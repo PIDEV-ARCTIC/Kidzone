@@ -1,0 +1,57 @@
+
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                    Nom
+                </th>
+                <th>
+                    typereclamation
+                </th>
+                <th>
+                    Description
+                </th>
+                
+              </thead>
+              <tbody>
+                <tr *ngFor="let reclamation of listereclamation">
+            
+                    <td>
+                        {{reclamation.nom}}
+                      </td>
+                      <td>
+                        {{reclamation.typereclamation}}
+                      </td>
+                      <td>
+                        {{reclamation.description}}
+                      </td>
+                    
+                      <form >
+                      <div mat-dialog-content>
+   
+   
+    
+
+  </div>
+   </form>
+  
+
+               <div mat-dialog-action [align]="'end'">
+                  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+                   <button style="margin-left: 8px;" mat-raised-button color="primary">reponse</button>
+ 
+                </div>
+                   
+                 
+                  
+                </tr>
+               
+              </tbody>
+            </table>
+           
+          </div>
+        </div>
+  
+  
+  
