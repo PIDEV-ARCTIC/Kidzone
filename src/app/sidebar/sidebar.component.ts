@@ -18,6 +18,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/listeevent',         title: 'Event List',        icon:'nc-tile-56',    class: '' },
     { path: '/listeabsence',    title: 'liste Absence',        icon:'nc-bullet-list-67', class: '' },
     { path: '/chart',      title: 'Chart of event',    icon:'nc-paper',  class: '' },
+    { path: '/statabsence',      title: 'Chart of absence',    icon:'nc-paper',  class: '' },
 
 
 ];

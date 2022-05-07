@@ -24,6 +24,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { StatComponent } from './evenement/stat/stat.component';
 import { Ng2OrderModule } from 'ng2-order-pipe';
+import { StatabsenceComponent } from './absence/statabsence/statabsence.component';
 
 
 
@@ -39,6 +40,7 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
     UpdateabsenceComponent,
     ListeabsenceComponent,
     StatComponent,
+    StatabsenceComponent,
 
   ],
   imports: [

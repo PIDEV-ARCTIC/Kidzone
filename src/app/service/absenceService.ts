@@ -37,6 +37,10 @@ export class absenceService {
           sendMail() : Observable<string[]>{
             return this._http.get<string[]>(this.baseUrl+"/pdfgenerate");
         }  
+        getfindbyperiode() : Observable<string[]>{
+            return this._http.get<string[]>(this.baseUrl+"/getfindbyperiode");
+        }
+
     
         }
 

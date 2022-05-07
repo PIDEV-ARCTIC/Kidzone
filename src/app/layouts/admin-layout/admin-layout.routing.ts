@@ -15,6 +15,7 @@ import { AddabsenceComponent } from 'app/absence/addabsence/addabsence.component
 import { UpdateabsenceComponent } from 'app/absence/updateabsence/updateabsence.component';
 import { StatComponent } from 'app/evenement/stat/stat.component';
 import { ListeeventComponent } from 'app/evenement/listeevent/listeevent.component';
+import { StatabsenceComponent } from 'app/absence/statabsence/statabsence.component';
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -33,6 +34,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'updateabsence/:idabsence',    component: UpdateabsenceComponent },
     { path: 'chart',    component: StatComponent },
     { path: 'listeevent',    component: ListeeventComponent },
+    { path: 'statabsence',    component: StatabsenceComponent },
+
 
 
 
