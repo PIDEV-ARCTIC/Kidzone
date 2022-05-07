@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <input type="text" placeholder="Search event by description" class="form-control round" [(ngModel)]="description" (ngModelChange)="search()" />
+
+          <table class="table">
+            <thead  class=" text-primary">
+              <th (click)="sort('idevenement')">
+                Id <i class="fa fa-sort"></i>
+              </th>
+              <th (click)="sort('image')">
+                Image <i class="fa fa-sort"></i>
+              </th>
+              <th (click)="sort('type')">
+                type <i class="fa fa-sort"></i>
+              </th>
+              <th (click)="sort('description')" >
+                Description <i class="fa fa-sort"></i>
+              </th>
+              <th class="text-center">Action</th>
+            </thead>
+            <tbody>
+              
+              <tr *ngFor="let c of listEvent| paginate: { itemsPerPage: 4, currentPage: p}| orderBy : key : reverse">
+                <td>
+                  {{c.idevenement}}
+                </td>
+                <td>
+                  {{c.image}}
+                </td>
+                <td>
+                  {{c.type}}
+                </td>
+                <td>
+                  {{c.description}}
+                </td>
+                <td class="text-right">
+                  <button class="btn btn-warning" routerLink="/addevent">Add</button>
+
+                  <button class="btn btn-info" (click)="updateEvent(c.idevenement)">Update</button>
+                  <button class="btn btn-danger" (click)="deleteEvent(c.idevenement)">Delete</button>
+
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
