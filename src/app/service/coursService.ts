@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpParams} from '@angular/common/http'
 import {Observable} from "rxjs";
 import { Cours } from 'app/model/cours';
 @Injectable({
@@ -29,6 +29,14 @@ export class CoursService {
 updatecours(cours: any): Observable<Object> {
     return this._http.put(this.baseUrl+"/modifyCours", cours);
   }    
-
+  searchposts(keyword){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("t",keyword);
+   
+    
+    
+    return this._http.get(`${this.baseUrl}/search/`, {params:queryParams});
+  }
+  
 
 }

@@ -72,6 +72,18 @@ export class ListCoursComponent implements OnInit {
        
       }
     }
+    
+//ctor
+/*
+research(){
+    this.bs.searchposts(this.selectedChoice,this.search).subscribe(
+      data=>{
+        console.log(this.search)
+        this.listecours=data;
+      }
+    )
+  }
+  */
     applyFilter(event: Event) {
       const filterValue = (event.target as HTMLInputElement).value;
       this.listecours.filter = filterValue.trim().toLowerCase();
