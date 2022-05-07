@@ -1,0 +1,135 @@
+<div class="row">
+    <div class="col-md-12" >
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> Liste des Bus </h4>
+          <button mat-flat-button color="primary" (click)="openAddBusDialog()" >+ Nouveau bus</button>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <mat-form-field appearance="standard">
+              <mat-label>Rechercher</mat-label>
+              <input matInput (keyup)="applyFilter($event)"  #input>
+            </mat-form-field>
+            
+            <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSource" matSort align="center">
+            
+                
+                <ng-container matColumnDef="idbus">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Identifiant </th>
+                  <td mat-cell *matCellDef="let row"> {{row.idbus}} </td>
+                </ng-container>
+            
+                
+                <ng-container matColumnDef="heuredepart">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Heure de départ </th>
+                  <td mat-cell *matCellDef="let row"> {{row.heuredepart}} </td>
+                </ng-container>
+            
+               
+                <ng-container matColumnDef="destination">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Destination </th>
+                  <td mat-cell *matCellDef="let row"> {{row.destination}} </td>
+                </ng-container>
+                <ng-container matColumnDef="nbrplaces">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre de places </th>
+                  <td mat-cell *matCellDef="let row"> {{row.nbrplaces}} </td>
+                </ng-container>
+               
+               <ng-container matColumnDef="prenomChauffeur" hidden>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header hidden> Prenom Chauffeur </th>
+                  <td mat-cell *matCellDef="let row" hidden > {{row.prenomChauffeur}} </td>
+                </ng-container>
+                <ng-container matColumnDef="nomChauffeur">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header hidden> Nom Chauffeur </th>
+                  <td mat-cell *matCellDef="let row" hidden> {{row.nomChauffeur}} </td>
+                </ng-container>
+                <ng-container matColumnDef="photoChauffeur">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header hidden> Photo Chauffeur </th>
+                  <td mat-cell *matCellDef="let row" hidden> {{row.photoChauffeur}} </td>
+                </ng-container>
+                <ng-container matColumnDef="action" id="main-container">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                  <td mat-cell *matCellDef="let row">
+                    <button mat-icon-button color="primary"  (click)="editBus(row)">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="deleteBus(row.idbus)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="openInfoBusDialog(row.idbus,row.nomChauffeur,row.prenomChauffeur,row.photoChauffeur)">
+                      <mat-icon>info</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+              </table>
+            
+              
+            </div>            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" 
+            id="modal-basic-title">
+            Geeks of Geeks
+        </h4>
+        <button type="button" class="close"
+                aria-label="Close" (click)=
+                "modal.dismiss('Cross click')">
+  
+            <span aria-hidden="true">
+                ×
+            </span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label for="dateOfBirth">
+                    Date of birth
+                </label>
+                <div class="input-group">
+                    <input id="dateOfBirth" 
+                        class="form-control" 
+                        placeholder="yyyy-mm-dd" 
+                        name="dp" ngbDatepicker
+                        #dp="ngbDatepicker">
+  
+                    <div class="input-group-append">
+                        <button class="btn 
+                            btn-outline-secondary calendar"
+                            (click)="dp.toggle()"
+                            type="button">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" 
+            class="btn btn-outline-dark" 
+            (click)="modal.close('Save click')">
+            Save
+        </button>
+    </div>
+
+
+    
+</ng-template>
+  
+
+  
+  

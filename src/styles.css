@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+form.normal-form{
+    margin: 10px;
+}
+.controles-container > * {
+    width: 100%;
+    padding: 5%;
+}
