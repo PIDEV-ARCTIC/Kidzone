@@ -24,3 +24,40 @@
     <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="editcours(cours)">Update</button>
 
 </div>
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit</h4>
+        <button type="button" class="close" aria-label="Close"
+            (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true" (click)="cancel()">×</span>
+
+        </button>
+
+    </div>
+    <div>
+    <form>
+        <div class="modal-body">
+            <input type="text" [(ngModel)]="i.idC" [ngModelOptions]="{standalone : true}" hidden/>
+
+            <div class="row" class="col-md-5">
+                <label>NameC</label>
+                <input type="text" [(ngModel)]="i.nameC" [ngModelOptions]="{standalone : true}" />
+            </div>
+            <div class="row" class="col-md-5">
+                <label>Description</label>
+                <input type="text" [(ngModel)]="i.description" [ngModelOptions]="{standalone : true}" />
+            </div>
+           
+           
+           
+        </div>
+
+        <div class="modal-footer">
+
+            <button type="button" class="btn btn-info"
+                (click)="modal.close('Save click')" (click)="cancel()">Cancel</button>
+            <button class="btn btn-success"(click)="editComplaint(i)" (click)="modal.close('Save click')">Validate</button>
+        </div>
+    </form>
+</div>
+</ng-template>

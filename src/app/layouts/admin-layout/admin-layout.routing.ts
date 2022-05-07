@@ -15,7 +15,7 @@ import { ListReclamationComponent } from 'app/list-reclamation/list-reclamation.
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'jardin',         component: JardinComponent },
-    { path: 'ListReclamation',      component: ListReclamationComponent },
+    { path: 'ListReclamation', component: ListReclamationComponent },
     { path: 'ListCours',      component: ListCoursComponent },
     { path: 'user',           component: UserComponent },
     { path: 'table',          component: TableComponent },
