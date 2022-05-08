@@ -36,7 +36,11 @@ import { MatSort, MatSortModule } from "@angular/material/sort";
 import { DialogEditBusComponent } from './dialog-edit-bus/dialog-edit-bus.component';
 import { DialoginfoBusComponent } from './dialoginfo-bus/dialoginfo-bus.component';
 import { InscriptionComponent } from "./inscription/inscription.component";
-import { FrontInscriptionComponent } from './front-inscription/front-inscription.component';
+import { InscriptionFrontComponent } from './inscription-front/inscription-front.component';
+import { DashboardComponent } from "./pages/dashboard/dashboard.component";
+import { FrontNavBarComponent } from './front-nav-bar/front-nav-bar.component';
+import { HomeComponent } from './home/home.component';
+
 
 
 
@@ -50,14 +54,37 @@ import { FrontInscriptionComponent } from './front-inscription/front-inscription
     DialogAddBusComponent,
     DialogEditBusComponent,
     DialoginfoBusComponent,
-    FrontInscriptionComponent,
-    
+    InscriptionFrontComponent,
+    FrontNavBarComponent,
+    HomeComponent,
+ 
   ],
   imports: [
     BrowserAnimationsModule,
-    RouterModule.forRoot(AppRoutes,{
+    /*RouterModule.forRoot(AppRoutes,{
       useHash: true
-    }),
+    }),*/
+    RouterModule.forRoot([
+      {path: 'inscription-front', component: InscriptionFrontComponent},
+      {path: 'home', component: HomeComponent},    
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  }, {
+    path: '',
+    component: AdminLayoutComponent,
+    children: [
+        {
+      path: '',
+      loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+}]},
+  {
+    path: '**',
+    redirectTo: 'dashboard'
+  },
+
+    ]),
     SidebarModule,
     NavbarModule,
     ToastrModule.forRoot(),
@@ -76,6 +103,7 @@ import { FrontInscriptionComponent } from './front-inscription/front-inscription
     MatTableModule,
     MatIconModule,
     MatSortModule,
+    
   ],
   providers: [BusService],
   //providers: [{provide: APP_BASE_HREF , useValue: '/'}],
