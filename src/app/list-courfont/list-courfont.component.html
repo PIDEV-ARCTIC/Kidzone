@@ -1,0 +1,127 @@
+<header>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+  
+    <link rel="stylesheet" href="/assets/assets1/fonts1/icomoon/style.css">
+  
+    <link rel="stylesheet" href="/assets/assets1/css1/owl.carousel.min.css">
+  
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/assets1/css1/bootstrap.min.css">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="/assets/assets1/css1/style.css">
+    <!-- Navbar -->
+    
+        <header class="site-navbar" role="banner">
+  
+            <div class="container">
+              <div class="row align-items-center">
+                
+                <div class="col-11 col-xl-2">
+                  <h1 class="mb-0 site-logo"><a href="home" class="text-white mb-0">KidZone</a></h1>
+                </div>
+                <div class="col-12 col-md-10 d-none d-xl-block">
+                  <nav class="site-navigation position-relative text-right" role="navigation">
+      
+                    <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+                      <li class="active"><a href="home"><span>Acceuil</span></a></li>
+                      <li><a href="home"><span>Fil d'actualité</span></a></li>
+                      <li><a  [routerLink]="['/Jardin']"><span>Jardin d'enfants</span></a></li>
+                      <li><a [routerLink]="['/inscription-front']"><span>Inscription</span></a></li>
+                      <li><a [routerLink]="['/inscription']"><span>Réclamation</span></a></li>
+                      <li><a [routerLink]="['/ListCourfont']"><span>cours</span></a></li>
+                      <li><a href="contact.html"><span>Contact</span></a></li>
+                    </ul>
+                  </nav>
+                </div>
+                <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+              </div>
+            </div>  
+          </header>
+          <script src="/assets/assets1/js1/jquery-3.3.1.min.js"></script>
+          <script src="/assets/assets1/js1/popper.min.js"></script>
+          <script src="/assets/assets1/js1/bootstrap.min.js"></script>
+          <script src="/assets/assets1/js1/jquery.sticky.js"></script>
+          <script src="/assets/assets1/js1/main.js"></script>
+  </header>
+
+
+
+<main>
+    <img src="/assets/assets1/images/img_14.jpg" class="responsive">
+    
+    <div class="position-relative">
+      
+    
+      
+      <!-- shape Hero -->
+     
+      <!-- 1st Hero Variation -->
+  
+    
+      
+    <section class="section section-lg pt-lg-0 mt--200">
+      <form>
+        <div class="form-group">
+            <div class="icon-field">
+                <i class="vl-search"></i>
+                <input type="search" (ngModelChange)="searchC(key.value)" #key="ngModel" ngModel
+                name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search cour..." required>
+            </div>
+        </div>
+    </form>
+  
+      <div class="container" >
+        <div class="row justify-content-center">
+          <div class="col-lg-12">
+            <div class="row row-grid">
+              <div class="col-lg-4"  *ngFor='let cours of listecours | paginate: { itemsPerPage: 2, currentPage:page,totalItems:totallength}'>
+                <div class="card card-lift--hover shadow border-0" >
+                  <img class="card-img-top" src="/assets/assets1/images/book.jpg"  alt="Card image cap">
+                  
+                  <div class="card-body py-5">
+                    
+                      <div class="package text-center bg-white">
+                       
+                        <h3 class="text-teal">{{cours.matiere}}</h3>
+                        <p>{{cours.description}} Lorem ipsum dolor sit amet. Consequatur aliquam, fuga maiores amet quo corporis distinctio soluta recusandae?</p>
+                        <span class="btn btn-warning mt-4">file : {{cours.file}}</span><br>
+                     
+                       
+                      </div>
+                    
+                  </div>
+                </div>
+           
+              </div>
+              
+  
+              
+                  
+                  </div>
+                </div>
+             
+              </div>
+            </div>
+            <div *ngIf="listecours?.length == 0" class="col-lg-12 col-md-12 col-xl-12" >
+              <div class="alert alert-warning"  role="alert">
+                <h4 class="alert-heading">NO Cours!</h4>
+                <p>No Cour were found.</p>
+              </div>
+              </div>   
+    </section>
+  <div align="center">
+    <pagination-controls 
+    previousLabel="Prev"
+    nextLabel="Next"
+   
+    
+    (pageChange)="page = $event"></pagination-controls> </div>
+    
+  </div>
+  </main>
+  

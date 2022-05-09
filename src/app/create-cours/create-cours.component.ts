@@ -40,13 +40,14 @@ export class CreateCoursComponent implements OnInit {
          
         })
       }
+  
    createcours(){
   
     if(this.toastr.success){
       this.bs.createcours(this.cours).subscribe(()=>{
         this.getCours();
         this.form = false;
-         alert("cours added successfully");
+        this.toastr.success("cours a été enregistrée avec succès !!", "cours");
         this.dialogRef.close('save');
         },
          )

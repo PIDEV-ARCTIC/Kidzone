@@ -18,6 +18,10 @@ export class reclamationService {
     return this._http.get<string[]>(this.baseUrl+"/Reclamations");
   }
 
-  _
+  
+  addreclamation(reclamation: reclamation) {
+    
+    return this._http.post<reclamation>(this.baseUrl+"/add-Cours",reclamation);
+  }
 
 }

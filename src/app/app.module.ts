@@ -19,15 +19,27 @@ import { JdialogComponent } from './jdialog/jdialog.component';
 import { ListCoursComponent } from './list-cours/list-cours.component';
 import { CreateCoursComponent } from './create-cours/create-cours.component';
 import { UpdatecoursComponent } from './updatecours/updatecours.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 import { ListReclamationComponent } from './list-reclamation/list-reclamation.component';
+import { FrontNavBarComponent } from "./front-nav-bar/front-nav-bar.component";
+import { HomeComponent } from "./home/home.component";
+import { ListCourfontComponent } from './list-courfont/list-courfont.component';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AddCoursfrontComponent } from './add-coursfront/add-coursfront.component';
+import { StatReclamationComponent } from './stat-reclamation/stat-reclamation.component';
 //import { JardinComponent } from './services/jardin/jardin.component';
-
+import {GoogleChartsModule} from "angular-google-charts";
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    FrontNavBarComponent ,
+    HomeComponent,
+    ListCourfontComponent,
+    AddCoursfrontComponent,
+    StatReclamationComponent
     //ListReclamationComponent,
     //ListCoursComponent,
     //CreateCoursComponent,
@@ -40,9 +52,36 @@ import { ListReclamationComponent } from './list-reclamation/list-reclamation.co
   ],
   imports: [
     BrowserAnimationsModule,
+    NgbModule,
+    GoogleChartsModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(AppRoutes,{
       useHash: true
     }),
+    RouterModule.forRoot([
+      //{path: 'inscription-front', component: InscriptionFrontComponent},
+      {path: 'ListCourfont', component: ListCourfontComponent},
+      
+      {path: 'home', component: HomeComponent},    
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  }, {
+    path: '',
+    component: AdminLayoutComponent,
+    children: [
+        {
+      path: '',
+      loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+}]},
+  {
+    path: '**',
+    redirectTo: 'dashboard'
+  },
+
+    ]),
     AppRoutingModule,
     HttpClientModule,
     SidebarModule,
@@ -50,8 +89,18 @@ import { ListReclamationComponent } from './list-reclamation/list-reclamation.co
     ToastrModule.forRoot(),
     FooterModule,
     FixedPluginModule,
-    MatButtonModule
-  //  MatDialogModule
+    MatButtonModule,
+    NgxPaginationModule ,
+    ToastrModule.forRoot(
+      {timeOut:10000000,
+        progressBar:true,
+        progressAnimation: 'increasing',
+        preventDuplicates: true
+
+
+      }
+    ),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

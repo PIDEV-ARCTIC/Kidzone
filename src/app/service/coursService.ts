@@ -29,6 +29,9 @@ export class CoursService {
 updatecours(cours: any): Observable<Object> {
     return this._http.put(this.baseUrl+"/modifyCours", cours);
   }    
+
+
+  
   searchposts(keyword){
     let queryParams = new HttpParams();
     queryParams = queryParams.append("t",keyword);

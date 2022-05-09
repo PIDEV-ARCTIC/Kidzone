@@ -1,5 +1,12 @@
 
+
+
+
+
+
+
 <button style="margin-left: 85%;" mat-raised-button color="warn" (click)="openDialog()">Add courses</button>
+
 <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
 
 
@@ -16,7 +23,7 @@
                     Description
                 </th>
                 <th>
-                file
+                classe
                 </th>
                 <th>
                   Edit
@@ -63,7 +70,7 @@
                                 <input type="text" [(ngModel)]="cours.idcours" [ngModelOptions]="{standalone : true}" hidden/>
 
                                 <div class="row" class="col-md-5">
-                                    <label>NameC</label>
+                                    <label>nom matiere</label>
                                     <input type="text" [(ngModel)]="cours.matiere" [ngModelOptions]="{standalone : true}" />
                                 </div>
                                 <div class="row" class="col-md-5">

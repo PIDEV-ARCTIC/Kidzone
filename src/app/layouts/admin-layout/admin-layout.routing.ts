@@ -11,11 +11,13 @@ import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
 import { JardinComponent }           from '../../jardin/jardin.component';
 import { ListCoursComponent } from 'app/list-cours/list-cours.component';
 import { ListReclamationComponent } from 'app/list-reclamation/list-reclamation.component';
+import { StatReclamationComponent } from 'app/stat-reclamation/stat-reclamation.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'jardin',         component: JardinComponent },
     { path: 'ListReclamation', component: ListReclamationComponent },
+    { path: 'StatReclamation', component: StatReclamationComponent },
     { path: 'ListCours',      component: ListCoursComponent },
     { path: 'user',           component: UserComponent },
     { path: 'table',          component: TableComponent },

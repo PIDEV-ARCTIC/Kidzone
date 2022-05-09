@@ -20,7 +20,7 @@ export class ListCoursComponent implements OnInit {
   cours!: Cours;
   form : boolean = false;
   closeResult! : string;
- 
+
 
   constructor(private toastr:ToastrService,private ref: ChangeDetectorRef,private bs : CoursService, private modalService: NgbModal,private dialog: MatDialog,private dialogRef : MatDialogRef<CreateCoursComponent>,private dialogRef2 : MatDialogRef<UpdatecoursComponent>) { }
   openDialog() {
@@ -37,6 +37,8 @@ export class ListCoursComponent implements OnInit {
        
       })
     }
+   
+    
 
     ngAfterContentChecked(){
       this.ref.detectChanges();
@@ -45,7 +47,8 @@ export class ListCoursComponent implements OnInit {
       
     updatecours(cours : Cours){
       this.bs.updatecours(cours).subscribe();
-      this.toastr.success("editcours");
+      this.toastr.info("votre cours a été enregistrée avec succès !!", "Cour");
+
     }
    
       addcours(cours: any){
@@ -59,6 +62,7 @@ export class ListCoursComponent implements OnInit {
     deletecours(idcours: any) {
       this.bs.deletecours(idcours).subscribe(res => {
         this.getCours()
+        this.toastr.error("votre Cours a été enregistrée avec succès !!", "Cours");
       });
     }
     
@@ -115,6 +119,12 @@ research(){
       cancel(){
         this.form = false;
       }
+
+
+      
+
+
+
     
 
 }
