@@ -9,6 +9,7 @@ import { JdialogComponent } from '../../jdialog/jdialog.component';
 import { DashboardComponent }       from '../../pages/dashboard/dashboard.component';
 import { UserComponent }            from '../../pages/user/user.component';
 import { JardinComponent }           from '../../jardin/jardin.component';
+import { EnfantComponent }           from '../../enfant/enfant.component';
 import { TypographyComponent }      from '../../pages/typography/typography.component';
 import { IconsComponent }           from '../../pages/icons/icons.component';
 import { MapsComponent }            from '../../pages/maps/maps.component';
@@ -54,6 +55,7 @@ import { JdialoguppComponent } from '../../jdialogupp/jdialogupp.component';
     DashboardComponent,
     UserComponent,
     JardinComponent,
+    EnfantComponent,
     UpgradeComponent,
     TypographyComponent,
     IconsComponent,

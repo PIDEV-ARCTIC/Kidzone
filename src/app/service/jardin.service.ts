@@ -29,6 +29,9 @@ export class JardinService {
   findByenfanr(idJardin : any){
     return  this.httpClient.get(`${this.API_URL}/JardinAffichEnfant/${idJardin}`)
   }
+  
+
+  
  /* FindNameF(nomjardin : any){
     return  this.httpClient.get(`${this.API_URL}/GetJardinbyName/${nomjardin}`)
   }*/

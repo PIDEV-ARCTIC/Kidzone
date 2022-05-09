@@ -1,0 +1,61 @@
+<h1 mat-dialog-title>Ajouter Votre Enfant </h1>
+<form>
+  <div mat-dialog-content>
+     
+    <mat-form-field appearance="outline">
+        <mat-label>Nom Enfant</mat-label>
+        <input [(ngModel)]="Enfant.nomenfant" matInput   [ngModelOptions]="{standalone : true}" > 
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Prenom Enfant</mat-label>
+        <input [(ngModel)]="Enfant.prenomenfant" matInput   [ngModelOptions]="{standalone : true}" > 
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Adresse Enfant</mat-label>
+        <input [(ngModel)]="Enfant.adresseEnfant" matInput  [ngModelOptions]="{standalone : true}" > 
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Age Enfant</mat-label>
+        <input type="number" [(ngModel)]="Enfant.age" matInput  [ngModelOptions]="{standalone : true}" > 
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Classe Enfant</mat-label>
+        <input [(ngModel)]="Enfant.classe" matInput   [ngModelOptions]="{standalone : true}" > 
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Photo Enfant</mat-label>
+        <input matInput [(ngModel)]="Enfant.photo" [ngModelOptions]="{standalone : true}" > 
+      
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Parent Enfant</mat-label>
+        <input matInput [(ngModel)]="Enfant.nomprenomparent" [ngModelOptions]="{standalone : true}" > 
+      
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Telephone Enfant</mat-label>
+        <input matInput type="number" [(ngModel)]="Enfant.numtel" [ngModelOptions]="{standalone : true}" > 
+      
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Mail Parent</mat-label>
+        <input matInput [(ngModel)]="Enfant.mail" [ngModelOptions]="{standalone : true}" > 
+      
+    </mat-form-field>
+    <label id="example-radio-group-label">Mode</label>
+    <mat-radio-group
+      aria-labelledby="example-radio-group-label"
+      class="example-radio-group"
+      [(ngModel)]="Enfant.gender"  [ngModelOptions]="{standalone : true}">
+      <mat-radio-button class="example-radio-button" *ngFor="let gender of reglementlist" [value]="gender">
+        {{gender}}
+      </mat-radio-button>
+    </mat-radio-group>
+          
+  </div>
+</form>
+
+<div mat-dialog-action >
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addEnfant(Enfant)" mat-dialog-close>Save</button>
+</div>

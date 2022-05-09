@@ -14,31 +14,17 @@ export class EnfantComponent implements OnInit {
  constructor(private bs : EnfantService) { }
 
   ngOnInit(): void {
-    this.Enfant={
-      idenfant : null,
-      nomenfant : null,
-      prenomenfant : null,
-      adresseEnfant : null,
-      age: null,
-      classe : null,
-      photo : null,
-      nomprenomparent: null,
-      numtel: null,
-      mail: null,
-      qrCodeImageEnfant: null,
-      gender: null,
-      Jardin: null
-    }
+   
   }
     getAllEnfant(){
       this.bs.getAllEnfant().subscribe(res => this.listEnfant= res)
     }
-    addEnfant(Enfant: any){
+   /* addEnfant(Enfant: any){
       this.bs.addEnfant(Enfant).subscribe(() => {
         this.getAllEnfant();
         this.form = false;
       });
-    }
+    }*/
     editEnfant(Enfant : enfant){
       this.bs.editEnfant(Enfant).subscribe();
     }

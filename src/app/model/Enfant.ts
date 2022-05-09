@@ -11,6 +11,10 @@ export class enfant  {
     mail:any;
     gender:any
     qrCodeImageEnfant:any;
-    Jardin:any;    
+    Jardin:any;
+    
+    public setJardin(Jardin : any) {
+        return Jardin;
+      }
     
 }
