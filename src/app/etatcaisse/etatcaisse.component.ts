@@ -1,35 +1,54 @@
 import { Component, OnInit } from '@angular/core';
 import { Reglement} from '../model/reglement'
 import { ReglementService } from '../service/reglement.service';
-import { EtatcaisseComponent } from '../etatcaisse/etatcaisse.component';
+//import { EtatcaisseComponent } from '../etatcaisse/etatcaisse.component';
+import { Chart, BarElement, BarController, CategoryScale, Decimation, Filler, Legend, Title, Tooltip, registerables } from 'chart.js';
 
 import { RdialogComponent } from '../rdialog/rdialog.component';
 import { ToastrService } from 'ngx-toastr';
 import {MatDialog} from '@angular/material/dialog';
 import {ModalDismissReasons,  NgbModal, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { EncaissementcComponent } from '../encaissementc/encaissementc.component';
-import { EncaissementfComponent } from '../encaissementf/encaissementf.component';
-
-
 @Component({
-  selector: 'app-reglement',
-  templateUrl: './reglement.component.html',
-  styleUrls: ['./reglement.component.css']
+  selector: 'app-etatcaisse',
+  templateUrl: './etatcaisse.component.html',
+  styleUrls: ['./etatcaisse.component.css']
 })
-export class ReglementComponent implements OnInit {
-
+export class EtatcaisseComponent implements OnInit {
+  liststat1:any;
+  liststat2:any;
+  listReglementc : any;
   listReglement : any; 
+   totalm : any;
+   totalmch:any;
+   totalmcart:any;
+   totalmt:any;
+   totalme:any;
+ // totalm="1425";
   form : boolean = false;
    reglement!: Reglement;
    closeResult! : string;
    reglementlist= ["Chec","Essepesse","Carte Bancaire"]
-senslist= ["Debit","Credit"]
-typelist= ["Fournisseur","Enfant","Employée"]
-  constructor(private dialogr : MatDialog,private  bs : ReglementService , private toastr: ToastrService ,private modalService: NgbModal) { }
+senslist= ["Débit","Crédit"]
+typelist= ["fournisseur","enfant","employées"]
+  constructor(private dialogr : MatDialog,private  bs : ReglementService , private toastr: ToastrService ,private modalService: NgbModal) {
+   
+   }
 
   ngOnInit(): void {
-    this.getAllReglements();
+    this.EtatCaisse();
+    this.EtatCaisseDet();
+    this.EtatCaisseDetchec();
+    this.EtatCaisseDetcarte();
+    this.EtatCaisseDetTraite();
+    this.EtatCaisseDetEss();
+   this.Stat1();
+   this.Stat2();
+
+              
+          
+            
+    
     this.reglement={
       idreglement : null,
       mode : null,
@@ -53,20 +72,40 @@ typelist= ["Fournisseur","Enfant","Employée"]
      
     });
   }
-  openDialogclient() {
-    this.dialogr.open(EncaissementcComponent, {
-     
-    });
+  Stat1(){
+    this.bs.Stat1().subscribe(res => this.liststat1 = res)
   }
-  openDialogfourn() {
-    this.dialogr.open(EncaissementfComponent, {
-     
-    });
+  Stat2(){
+    this.bs.Stat2().subscribe(res => this.liststat2 = res)
   }
   getAllReglements(){
     this.bs.getAllReglements().subscribe(res => this.listReglement = res)
   }
- 
+  EtatCaisse(){
+    this.bs.EtatCaisse().subscribe(res => this.listReglementc = res)
+    
+  }
+  EtatCaisseDet(){
+    this.bs.EtatCaisseDet().subscribe(res => this.totalm = res);
+  }
+  EtatCaisseDetchec(){
+    this.bs.EtatCaisseDetchec().subscribe(res => this.totalmch = res);
+  }
+  EtatCaisseDetcarte(){
+    this.bs.EtatCaisseDetcarte().subscribe(res => this.totalmcart = res);
+  }
+  EtatCaisseDetTraite(){
+    this.bs.EtatCaisseDetTraite().subscribe(res => this.totalmt = res);
+  }
+  EtatCaisseDetEss(){
+    this.bs.EtatCaisseDetEss().subscribe(res => this.totalme = res);
+  }
+
+  
+
+  
+
+
   editReglement(reglement : Reglement){
     this.bs.editReglement(reglement).subscribe();
     this.toastr.success("Réglement modifiée avec succes")
@@ -96,5 +135,4 @@ typelist= ["Fournisseur","Enfant","Employée"]
     cancel(){
       this.form = false;
     }
-
-}
+  }

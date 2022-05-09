@@ -11,11 +11,13 @@ import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
 import { FournisseurComponent } from '../../fournisseur/fournisseur.component';
 import { ReglementComponent } from '../../reglement/reglement.component';
 import { PaiementComponent } from 'app/paiement/paiement.component';
+import { StatarwaComponent } from 'app/statarwa/statarwa.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user',           component: UserComponent },
     { path: 'fournisseur',          component: FournisseurComponent },
+    { path: 'statarwa',          component: StatarwaComponent },
     { path: 'reglement',          component: ReglementComponent },
     { path: 'paiement',          component: PaiementComponent },
     { path: 'typography',     component: TypographyComponent },

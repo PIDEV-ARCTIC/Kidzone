@@ -13,9 +13,9 @@ export class RdialogComponent implements OnInit {
   reglement!: Reglement;
   form : boolean = false;
   constructor(private  bs : ReglementService , private toastr: ToastrService ) { }
-reglementlist= ["Chec","Essepesse","Carte Bancaire"]
-senslist= ["Débit","Crédit"]
-typelist= ["fournisseur","enfant","employées"]
+reglementlist= ["Chec","Essepesse","Carte Bancaire","Traite"]
+senslist= ["Debit","Credit"]
+typelist= ["Fournisseur","Enfant","Employées"]
   ngOnInit(): void {
     this.reglement = {
       idreglement : null,
@@ -26,6 +26,7 @@ typelist= ["fournisseur","enfant","employées"]
       montant : null,
       type:null,
       idtier:null,
+      nomtier:null,
       mail:null
 
   }

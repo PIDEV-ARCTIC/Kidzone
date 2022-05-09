@@ -14,9 +14,11 @@ export const ROUTES: RouteInfo[] = [
    // { path: '/maps',          title: 'Maps',              icon:'nc-pin-3',      class: '' },
    // { path: '/notifications', title: 'Notifications',     icon:'nc-bell-55',    class: '' },
    // { path: '/user',          title: 'User Profile',      icon:'nc-single-02',  class: '' },
+   { path: '/statarwa',       title: 'Reglement dashboard',   icon:'nc-bank',  class: '' },
     { path: '/fournisseur',         title: 'Fournisseur',        icon:'nc-single-02',    class: '' },
     { path: '/reglement',    title: 'Reglement',        icon:'nc-tile-56', class: '' },
-{ path: '/paiement',       title: 'Paiement',    icon:'nc-spaceship',  class: '' },
+
+
 ];
 
 @Component({

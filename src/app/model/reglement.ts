@@ -7,6 +7,7 @@ export class Reglement  {
     montant : any;
     type:any;
     idtier:any;
+    nomtier:any;
     mail:any
     
     

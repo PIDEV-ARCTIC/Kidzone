@@ -17,6 +17,9 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 //import { AppRoutingModule } from './app.routing';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RdialogComponent } from './rdialog/rdialog.component';
+import { EtatcaisseComponent } from './etatcaisse/etatcaisse.component';
+import { EncaissementcComponent } from './encaissementc/encaissementc.component';
+import { EncaissementfComponent } from './encaissementf/encaissementf.component';
 //import { PaiementComponent } from './paiement/paiement.component';
 
 //import { FdialogComponent } from './fdialog/fdialog.component';
@@ -26,6 +29,10 @@ import { RdialogComponent } from './rdialog/rdialog.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    //StatarwaComponent,
+   // EtatcaisseComponent,
+   // EncaissementcComponent,
+   // EncaissementfComponent,
    // PaiementComponent,
    // RdialogComponent,
    // ReglementComponent,

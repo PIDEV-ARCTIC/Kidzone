@@ -1,0 +1,40 @@
+<b><h1 mat-dialog-title style="color: rgb(66, 30, 228);" >Etat de caisse </h1></b>
+<div class="card-body">
+    <div class=table-responsive>
+      
+        <table class="table">
+            <thead class=" text-primary">
+                <th>Date Opération</th>
+                <th>Cpt auxiliaire </th>
+                <th>Libelle</th>
+                <th>Echéance</th>
+                <th>Mode</th>
+                <th>Montant</th>
+        
+            </thead>
+            <tbody>
+                <tr *ngFor='let reglement of listReglementc'>
+                    <td>{{reglement.dateoperation}}</td>
+                    <td>{{reglement.idtier}}</td>
+                    <td>{{reglement.nomtier}}</td>
+                    <td>{{reglement.dateeche}}</td>
+                    <td>{{reglement.mode}}</td>
+                    <td>{{reglement.montant}}</td>
+                   
+                  </tr>
+                  <p style="color: red;"><b>Montant Total : {{totalm}}</b>  </p>
+                  <p ><b>Montant Total Chec : {{totalmch}}</b> </p>
+                  <p ><b>Montant Total Traite : {{totalmt}}</b> </p>
+                  <p ><b>Montant Total Essepesse : {{totalme}}</b> </p>
+                  <p ><b>Montant Total Carte : {{totalmcart}}</b> </p>
+
+                    </tbody>
+                    </table>
+                       
+                    <div  >
+                        <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+                    </div>     
+     
+  </div>
+
+</div>

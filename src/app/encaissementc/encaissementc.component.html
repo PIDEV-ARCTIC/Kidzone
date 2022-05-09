@@ -1,0 +1,32 @@
+<b><h1 mat-dialog-title style="color: rgb(66, 30, 228);" >Encaissement Client </h1></b>
+<div class="card-body">
+    <div class=table-responsive>
+        <table class="table">
+            <thead class=" text-primary">
+                <th>Date Opération</th>
+                <th>Cpt auxiliaire </th>
+                <th>Libelle</th>
+                <th>Echéance</th>
+                <th>Montant</th>
+        
+            </thead>
+            <tbody>
+                <tr *ngFor='let reglement of listencaissementc'>
+                    <td>{{reglement.dateoperation}}</td>
+                    <td>{{reglement.idtier}}</td>
+                    <td>{{reglement.nomtier}}</td>
+                    <td>{{reglement.dateeche}}</td>
+                    <td>{{reglement.montant}}</td>
+                   
+                  </tr>
+                  
+
+                    </tbody>
+                    </table>
+                    <div mat-dialog-action>
+                        <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+                    </div>          
+
+  </div>
+
+</div>

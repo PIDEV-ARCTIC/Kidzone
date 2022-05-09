@@ -1,24 +1,37 @@
 <h1 mat-dialog-title>Effectuée un réglement </h1>
 <form >
   <div mat-dialog-content>
-     
-    <label id="example-radio-group-label">Mode</label>
+    <mat-form-field appearance="outline">
+      <mat-label>Cpt auxiliaire </mat-label>
+      <input  type="number"  [(ngModel)]="reglement.idtier"matInput placeholder="Placeholder" [ngModelOptions]="{standalone : true}">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Nom auxiliaire </mat-label>
+      <input  type="text"  [(ngModel)]="reglement.nomtier"matInput placeholder="Placeholder" [ngModelOptions]="{standalone : true}">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Mail </mat-label>
+      <input  type="email"  [(ngModel)]="reglement.mail"matInput placeholder="Placeholder" [ngModelOptions]="{standalone : true}">
+    </mat-form-field>
+     <mat-form-field appearance="outline">
+            <mat-label>Date Operation</mat-label>
+              <input  [(ngModel)]="reglement.dateoperation"  [ngModelOptions]="{standalone : true}"matInput [matDatepicker]="picker1">
+              <mat-hint>YYYY/MM/DD</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+   <b><label id="example-radio-group-label">Type</label></b> 
     <mat-radio-group
       aria-labelledby="example-radio-group-label"
       class="example-radio-group"
-      [(ngModel)]="reglement.mode"  [ngModelOptions]="{standalone : true}">
-      <mat-radio-button class="example-radio-button" *ngFor="let mode of reglementlist" [value]="mode">
-        {{mode}}
+      [(ngModel)]="reglement.type"  [ngModelOptions]="{standalone : true}">
+      <mat-radio-button class="example-radio-button" *ngFor="let type of typelist" [value]="type">
+        {{type}}
       </mat-radio-button>
     </mat-radio-group>
+    
    
-          <mat-form-field appearance="outline">
-            <mat-label>Date Operation</mat-label>
-              <input  [(ngModel)]="reglement.dateoperation"  [ngModelOptions]="{standalone : true}"matInput [matDatepicker]="picker">
-              <mat-hint>YYYY/MM/DD</mat-hint>
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+         
             <mat-form-field appearance="outline">
               <mat-label>Echéance</mat-label>
               <input  [(ngModel)]="reglement.dateeche"  [ngModelOptions]="{standalone : true}"matInput [matDatepicker]="picker" >
@@ -26,7 +39,7 @@
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
-            <label id="example-radio-group-label">Sens Opération</label>
+           <b> <label id="example-radio-group-label">Sens Opération</label></b>
     <mat-radio-group
       aria-labelledby="example-radio-group-label"
       class="example-radio-group"
@@ -39,23 +52,17 @@
               <mat-label>Montant </mat-label>
               <input type="number"  [(ngModel)]="reglement.montant"matInput placeholder="Placeholder" [ngModelOptions]="{standalone : true}">
             </mat-form-field> 
-            <label id="example-radio-group-label">Type</label>
+           
+            <b><label id="example-radio-group-label">Mode</label></b>
             <mat-radio-group
               aria-labelledby="example-radio-group-label"
               class="example-radio-group"
-              [(ngModel)]="reglement.type"  [ngModelOptions]="{standalone : true}">
-              <mat-radio-button class="example-radio-button" *ngFor="let type of typelist" [value]="type">
-                {{type}}
+              [(ngModel)]="reglement.mode"  [ngModelOptions]="{standalone : true}">
+              <mat-radio-button class="example-radio-button" *ngFor="let mode of reglementlist" [value]="mode">
+                {{mode}}
               </mat-radio-button>
-            </mat-radio-group>
-          <mat-form-field appearance="outline">
-            <mat-label>Cpt auxiliaire </mat-label>
-            <input  type="number"  [(ngModel)]="reglement.idtier"matInput placeholder="Placeholder" [ngModelOptions]="{standalone : true}">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Mail </mat-label>
-            <input  type="email"  [(ngModel)]="reglement.mail"matInput placeholder="Placeholder" [ngModelOptions]="{standalone : true}">
-          </mat-form-field>
+            </mat-radio-group>   
+         
   </div>
 </form>
 

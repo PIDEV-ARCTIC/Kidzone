@@ -25,6 +25,40 @@ export class ReglementService {
   FindIdR(idreglement : any){
     return  this.httpClient.get(`${this.API_URL}/Findreglement/${idreglement}`)
   }
- 
+  EtatCaisse(){
+    return this.httpClient.get(`${this.API_URL}/EtatC`)
 
+  }
+  EtatCaisseDet(){
+    return this.httpClient.get(`${this.API_URL}/EtatCD`)
+
+  }
+  EtatCaisseDetchec(){
+    return this.httpClient.get(`${this.API_URL}/EtatCDCH`)
+
+  }
+  EtatCaisseDetcarte(){
+    return this.httpClient.get(`${this.API_URL}/EtatCDcart`)
+
+  }
+  EtatCaisseDetTraite(){
+    return this.httpClient.get(`${this.API_URL}/EtatCDt`)
+
+  }
+  EtatCaisseDetEss(){
+    return this.httpClient.get(`${this.API_URL}/EtatCDEss`)
+
+  }
+  EcheanceFournisseur(){
+    return this.httpClient.get(`${this.API_URL}/Echf`)
+  }
+  EcheanceEnfant(){
+    return this.httpClient.get(`${this.API_URL}/Echc`)
+  }
+  Stat1(){
+    return this.httpClient.get(`${this.API_URL}/stat1`)
+  }
+  Stat2(){
+    return this.httpClient.get(`${this.API_URL}/stat2`)
+  }
 }

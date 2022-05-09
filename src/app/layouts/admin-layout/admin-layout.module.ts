@@ -14,7 +14,7 @@ import { MapsComponent }            from '../../pages/maps/maps.component';
 import { NotificationsComponent }   from '../../pages/notifications/notifications.component';
 import { UpgradeComponent }         from '../../pages/upgrade/upgrade.component';
 import {MatButtonModule} from '@angular/material/button';
-//import {MatIconModule} from '@angular/material/icon';
+import {PaiementComponent} from 'app/paiement/paiement.component';
 //import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatDialogModule} from '@angular/material/dialog';
 import { FdialogComponent } from '../../fdialog/fdialog.component';
@@ -35,7 +35,11 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core'
 import { RdialogComponent } from 'app/rdialog/rdialog.component';
-import { PaiementComponent } from 'app/paiement/paiement.component';
+import { EtatcaisseComponent } from 'app/etatcaisse/etatcaisse.component';
+import { EncaissementfComponent } from 'app/encaissementf/encaissementf.component';
+import { EncaissementcComponent } from 'app/encaissementc/encaissementc.component';
+import { StatarwaComponent } from 'app/statarwa/statarwa.component';
+
 //import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
@@ -75,7 +79,10 @@ import { PaiementComponent } from 'app/paiement/paiement.component';
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
-    
+    EtatcaisseComponent,
+    EncaissementfComponent,
+    EncaissementcComponent,
+    StatarwaComponent
   ]
 })
 

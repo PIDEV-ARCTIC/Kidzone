@@ -9,4 +9,4 @@ import { SidebarComponent } from './sidebar.component';
     exports: [ SidebarComponent ]
 })
 
-export class SidebarModule {}
+export class SidebarModule {    }
