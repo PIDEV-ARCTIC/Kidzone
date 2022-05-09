@@ -35,8 +35,8 @@ public class controllerUtilisateur {
 	@Autowired
 	serviceUtilisateur su;
 
-	@Autowired
-	repositoryUtilisateur repo;
+	@Autowired  
+	repositoryUtilisateur repo;  
 	@Secured({ "ROLE_ADMIN", "ROLE_RESPONSABLE" })
 	@GetMapping("/userList")
 	private List<Utilisateur> getAllUtilisateur(){
