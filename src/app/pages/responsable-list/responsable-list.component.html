@@ -1,0 +1,289 @@
+<form>
+    <div class="input-group no-border">
+        <input type="text" class="form-control" placeholder="Search for responsables..." (keyup)="search($event)"/>
+        <div class="input-group-append">
+        <div class="input-group-text">
+          <i class="nc-icon nc-zoom-split"></i>
+        </div>
+      </div>
+    </div>
+  </form>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarColor02"
+    aria-controls="navbarColor02"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+         <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Responsable <span class="sr-only">(current)</span></a>
+      </li>
+   </ul>
+  </button>
+  <!-- Retrieve all Responsable -->
+  <div class="container" id="main-container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="text-primary">
+                <th>login</th>
+                <th>Email</th>
+                <th>Num Telephone</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let responsable of responsables">
+                  <td>{{ responsable.login }}</td>
+                  <td>{{ responsable.email }}</td>
+                  <td>{{ responsable.telEmployee? responsable.telEmployee : "Empty" }}</td>
+                  <td>
+                    {{ responsable.telEmployee }}
+                    <div class="float-right btn-group btn-group-sm">
+                      <a
+                        (click)="onOpenModal(responsable, 'edit')"
+                        class="btn btn-primary tooltips"
+                        data-placement="top"
+                        data-original-title="Edit"
+                        ><i class="fa fa-pencil"></i>
+                      </a>
+                      <a
+                        (click)="onOpenModal(responsable, 'delete')"
+                        class="btn btn-secondary tooltips"
+                        data-placement="top"
+                        data-original-title="Delete"
+                        ><i class="fa fa-times"></i
+                      ></a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Add responsable -->
+  <div
+    class="modal fade"
+    id="addResponsableModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="addResponsableModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addResponsableModalLabel">Add Responsable</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form
+            #addForm="ngForm"
+            (ngSubmit)="onAddResponsable(addForm)"
+            ng-submit="submit()"
+          >
+            <div class="form-group">
+              <label for="login">Name</label>
+              <input
+                type="text"
+                ngModel
+                name="login"
+                class="form-control"
+                id="login"
+                placeholder="login"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                ngModel
+                name="email"
+                class="form-control"
+                id="email"
+                placeholder="email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="telEmployee">Telephone</label>
+              <input
+                type="text"
+                ngModel
+                name="telEmployee"
+                class="form-control"
+                id="telEmployee"
+                placeholder="Num Telephone"
+                required
+              />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                id="add-responsable-form"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                [disabled]="addForm.invalid"
+                type="submit"
+                class="btn btn-primary"
+              >
+                Save changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Edit Modal -->
+  <div
+    class="modal fade"
+    id="updateResponsableModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="responsableEditModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateResponsableModalLabel">
+            Edit Responsable {{ editResponsable?.login }}
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #editForm="ngForm">
+            <input type="hidden" ngModel="{{editResponsable?.idUtilisateur}}" name="IdUtilisateur" class="form-control" id="IdUtilisateur" placeholder="Email">
+            <div class="form-group">
+              <label for="login">Name</label>
+              <input
+                type="text"
+                ngModel="{{editResponsable?.login}}"
+                name="login"
+                class="form-control"
+                id="login"
+                placeholder="Nom Responsable"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="mail">Email Address</label>
+              <input
+                type="email"
+                ngModel="{{editResponsable?.email}}"
+                name="email"
+                class="form-control"
+                id="email"
+                placeholder="Email Responsable"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="telephone">Telephone</label>
+              <input
+                type="text"
+                ngModel="{{editResponsable?.telEmployee}}"
+                name="telephone"
+                class="form-control"
+                id="telephone"
+                placeholder="Num Telephone"
+                
+              />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                id=""
+                data-dismiss="modal"
+                class="btn btn-secondary"
+              >
+                Close
+              </button>
+              <button
+                (click)="onUpdateResponsable(editForm.value)"
+                data-dismiss="modal"
+                class="btn btn-primary"
+              >
+                Save changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Delete Modal -->
+  <div
+    class="modal fade"
+    id="deleteResponsableModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="deleteModelLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModelLabel">Delete Responsable</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Are you sure you want to delete responsable
+            {{ deleteResponsable?.login }}?
+          </p>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              No
+            </button>
+            <button
+              (click)="onDeleteResponsable(deleteResponsable?.idUtilisateur)"
+              class="btn btn-danger"
+              data-dismiss="modal"
+            >
+              Yes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  

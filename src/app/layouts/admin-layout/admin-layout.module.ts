@@ -15,8 +15,9 @@ import { NotificationsComponent }   from '../../pages/notifications/notification
 import { UpgradeComponent }         from '../../pages/upgrade/upgrade.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LoginComponent } from 'app/pages/login/login.component';
+import { LoginComponent } from 'app/login/login.component';
 import { EmployeeListComponent } from 'app/pages/employee-list/employee-list.component';
+import { ResponsableListComponent } from 'app/pages/responsable-list/responsable-list.component';
 
 
 @NgModule({
@@ -35,8 +36,8 @@ import { EmployeeListComponent } from 'app/pages/employee-list/employee-list.com
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
-    LoginComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    ResponsableListComponent
   ]
 })
 

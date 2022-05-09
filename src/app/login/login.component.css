@@ -16,6 +16,7 @@
 	 margin-left: 200px;
 	 transform-origin: -200px 50%;
 	 transition-delay: 0s;
+	 
 }
  .container:hover .center, .container:active .center {
 	 opacity: 1;

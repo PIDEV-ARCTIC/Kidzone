@@ -1,8 +1,11 @@
 import { Routes } from "@angular/router";
-import { LoginComponent } from "app/pages/login/login.component";
 import { EmployeeListComponent } from "app/pages/employee-list/employee-list.component";
+import { ResponsableListComponent } from "app/pages/responsable-list/responsable-list.component";
+import { AdminComponent } from "app/services/admin/admin.component";
 
 export const AdminLayoutRoutes: Routes = [
-  { path: "login", component: LoginComponent },
+  
   { path: "employee", component: EmployeeListComponent },
+  { path: "responsable", component: ResponsableListComponent },
+  { path: "admin", component: AdminComponent },
 ];

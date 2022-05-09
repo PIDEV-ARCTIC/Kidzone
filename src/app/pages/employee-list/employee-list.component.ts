@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Employee } from "app/models/Employee";
 import { EmployeeService } from "app/services/employee.service";
+import { UserService } from "app/services/user.service";
 @Component({
   selector: "app-employee-list",
   templateUrl: "./employee-list.component.html",
@@ -12,21 +13,42 @@ export class EmployeeListComponent implements OnInit {
   public employees: Employee[];
   public editEmployee: Employee;
   public deleteEmployee: Employee;
-  constructor(private employeeService: EmployeeService) {}
+  public userList: any[] = [];
+  constructor(
+    private employeeService: EmployeeService,
+    private userService: UserService
+  ) {}
   ngOnInit() {
     this.getEmployees();
   }
   /////retrieve all employees//////
   getEmployees(): void {
-    this.employeeService.getEmployees().subscribe(
+    this.userService.userList().subscribe(
       (response: Employee[]) => {
         this.employees = response;
-        console.log(this.employees);
+        console.log(response);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     );
+  }
+  public search($event) {
+    const { value } = $event.target;
+    if (value !== "") {
+      this.employees = this.employees.filter(function (item : Employee) {
+        if (
+          item?.email?.includes(value) ||
+          item?.login?.includes(value) ||
+          item?.telEmployee == value
+        )
+          return item;
+      });
+      return ;
+    }
+    else {
+      this.getEmployees();
+    }
   }
   //////add Employee///////
   public onAddEmloyee(addForm: NgForm): void {
@@ -45,21 +67,21 @@ export class EmployeeListComponent implements OnInit {
   }
 
   public onOpenModal(employee: Employee, mode: string): void {
-    const container = document.getElementById('main-container');
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.style.display = 'none';
-    button.setAttribute('data-toggle', 'modal');
-    if (mode === 'add') {
-      button.setAttribute('data-target', '#addEmployeeModal');
+    const container = document.getElementById("main-container");
+    const button = document.createElement("button");
+    button.type = "button";
+    button.style.display = "none";
+    button.setAttribute("data-toggle", "modal");
+    if (mode === "add") {
+      button.setAttribute("data-target", "#addEmployeeModal");
     }
-    if (mode === 'edit') {
+    if (mode === "edit") {
       this.editEmployee = employee;
-      button.setAttribute('data-target', '#updateEmployeeModal');
+      button.setAttribute("data-target", "#updateEmployeeModal");
     }
-    if (mode === 'delete') {
+    if (mode === "delete") {
       this.deleteEmployee = employee;
-      button.setAttribute('data-target', '#deleteEmployeeModal');
+      button.setAttribute("data-target", "#deleteEmployeeModal");
     }
     container.appendChild(button);
     button.click();
@@ -88,6 +110,4 @@ export class EmployeeListComponent implements OnInit {
       }
     );
   }
-  
-
 }
