@@ -25,6 +25,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { StatComponent } from './evenement/stat/stat.component';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { StatabsenceComponent } from './absence/statabsence/statabsence.component';
+import { HomeComponent } from "./home/home.component";
+import { FrontNavBarComponent } from "./front-nav-bar/front-nav-bar.component";
 
 
 
@@ -41,6 +43,9 @@ import { StatabsenceComponent } from './absence/statabsence/statabsence.componen
     ListeabsenceComponent,
     StatComponent,
     StatabsenceComponent,
+    HomeComponent,
+    FrontNavBarComponent,
+
 
   ],
   imports: [
@@ -50,9 +55,27 @@ import { StatabsenceComponent } from './absence/statabsence/statabsence.componen
     Ng2SearchPipeModule,
     NgxPaginationModule,
     Ng2OrderModule,
-    RouterModule.forRoot(AppRoutes,{
-      useHash: true
-    }),
+    RouterModule.forRoot([
+      {path: 'evenement', component: ListeeventComponent },
+      {path: 'home', component: HomeComponent},    
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  }, {
+    path: '',
+    component: AdminLayoutComponent,
+    children: [
+        {
+      path: '',
+      loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+}]},
+  {
+    path: '**',
+    redirectTo: 'dashboard'
+  },
+
+    ]),
     SidebarModule,
     NavbarModule,
     ToastrModule.forRoot({
