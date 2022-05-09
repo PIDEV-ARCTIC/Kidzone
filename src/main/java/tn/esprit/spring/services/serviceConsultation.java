@@ -18,7 +18,7 @@ public class serviceConsultation implements DAOservices<Consultation>{
 		return rc.save(s);
 
 	}
-
+/*
 	@Override
 	public Consultation update(Consultation s, Long id) {
 		Consultation consultationExist= rc.findById(id).orElseThrow(null);
@@ -27,7 +27,7 @@ public class serviceConsultation implements DAOservices<Consultation>{
 		rc.save(consultationExist);
 		return consultationExist;
 	}
-
+*/
 //	@Override
 //	public List<Consultation> getall() {
 //		return rc.findAll();
@@ -49,11 +49,19 @@ public class serviceConsultation implements DAOservices<Consultation>{
 	public List<Consultation> getall() {
 		return rc.findAll();	}
 
-	@Override
-	public List<Consultation> getall(String keyword) {
+	/*@Override
+	public Employee update(Employee s) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+*/
+	@Override
+	public Consultation update(Consultation s) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 
 

@@ -31,7 +31,7 @@ public class Jardin {
 	@Column(name="Description")
 	private int description;
 	@OneToMany(mappedBy="jardin")
-	List<Employee> employee;
+	List<Utilisateur> employee;
 	/////////////////////getters and setters/////////
 	public Long getIdjardin() {
 		return idjardin;
@@ -81,16 +81,16 @@ public class Jardin {
 	public void setDescription(int description) {
 		this.description = description;
 	}
-	public List<Employee> getEmployee() {
+	public List<Utilisateur> getEmployee() {
 		return employee;
 	}
-	public void setEmployee(List<Employee> employee) {
+	public void setEmployee(List<Utilisateur> employee) {
 		this.employee = employee;
 	}
 	//////////////////////
 	/////constructors////
 	public Jardin(Long idjardin, String nomjardin, String adressejardin, String logo, String emailjardin, String numtel,
-			int tarif, int description, List<Employee> employee) {
+			int tarif, int description, List<Utilisateur> employee) {
 		super();
 		this.idjardin = idjardin;
 		this.nomjardin = nomjardin;

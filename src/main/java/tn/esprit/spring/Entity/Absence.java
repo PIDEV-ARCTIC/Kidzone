@@ -27,7 +27,7 @@ public class Absence {
 	@Column(name="CauseAbsence")
 	private String cause;
 	@ManyToOne
-	Employee employee;
+	Utilisateur employee;
 	/////////////getters and setters/////
 	public Long getIdabsence() {
 		return idabsence;
@@ -53,15 +53,15 @@ public class Absence {
 	public void setCause(String cause) {
 		this.cause = cause;
 	}
-	public Employee getEmployee() {
+	public Utilisateur getEmployee() {
 		return employee;
 	}
-	public void setEmployee(Employee employee) {
+	public void setEmployee(Utilisateur employee) {
 		this.employee = employee;
 	}
 	////////////////////////////////
 	////////////////constructors////
-	public Absence(Long idabsence, Date datedebut, String periode, String cause, Employee employee) {
+	public Absence(Long idabsence, Date datedebut, String periode, String cause, Utilisateur employee) {
 		super();
 		this.idabsence = idabsence;
 		this.datedebut = datedebut;

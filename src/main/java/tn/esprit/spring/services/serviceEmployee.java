@@ -8,6 +8,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -15,15 +17,19 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import tn.esprit.spring.Entity.Employee;
-import tn.esprit.spring.repositories.repositoryEmployee;
-
 @Service
-public class serviceEmployee implements DAOservices<Employee>{
-
+@Transactional
+public class serviceEmployee /*implements DAOservices<Employee> */{
+/*
 	private Path foundFile;
 	@Autowired
-	repositoryEmployee re;
+	private final repositoryEmployee re;
+
+	@Autowired
+	public serviceEmployee(repositoryEmployee re) {
+		this.re = re;
+	}
+
 	@Override
 	public Employee add(Employee s) {
 
@@ -31,17 +37,10 @@ public class serviceEmployee implements DAOservices<Employee>{
 	}
 
 	@Override
-	public Employee update(Employee s, Long id) {
-		Employee employeeExist = re.findById(id).orElseThrow(null);
-		employeeExist.setMail(s.getMail());
-		employeeExist.setNomEmployee(s.getNomEmployee());
-		employeeExist.setPrenomEmployee(s.getPrenomEmployee());
-		employeeExist.setTelEmployee(s.getTelEmployee());
-		re.save(employeeExist);
-		return employeeExist;
+	public List<Employee> getall() {
+
+		return re.findAll();
 	}
-
-
 
 	@Override
 	public Employee getByid(Long id) {
@@ -54,51 +53,40 @@ public class serviceEmployee implements DAOservices<Employee>{
 		return null;
 	}
 
-	@Override
-	public List<Employee> getall(String keyword) {
-		if(keyword != null){
-			return re.findAll(keyword);
-
-		}
-		return re.findAll();
-	}
-
-	@Override
-	public List<Employee> getall() {
-		return null;
-	}
-
-	public Resource getFile(String filecode) throws IOException
-	{
+	public Resource getFile(String filecode) throws IOException {
 		Path uploadDirectory = Paths.get("Files-upload");
-		Files.list(uploadDirectory).forEach(file -> 
-		{
-			if( file.getFileName().toString().startsWith(filecode))
-			{
+		Files.list(uploadDirectory).forEach(file -> {
+			if (file.getFileName().toString().startsWith(filecode)) {
 				foundFile = file;
-				return ;
+				return;/////////////////////////////////////////
 			}
 		});
-		if (foundFile != null )
-		{
+		if (foundFile != null) {
 			return (Resource) new UrlResource(foundFile.toUri());
 		}
 		return null;
 	}
-	public 	String saveFile(String fileName, MultipartFile multipartFile 	) throws IOException
-	{
-		Path uploadDirectory= Paths.get("Files-upload");
+
+	public String saveFile(String fileName, MultipartFile multipartFile) throws IOException {
+		Path uploadDirectory = Paths.get("Files-upload");
 		String fileCode = RandomStringUtils.randomAlphanumeric(8);
 
-		try (InputStream inputStream = multipartFile.getInputStream())
-		{
-			Path filePath = uploadDirectory.resolve(fileCode + "-" 	+ fileName);
+		try (InputStream inputStream = multipartFile.getInputStream()) {
+			Path filePath = uploadDirectory.resolve(fileCode + "-" + fileName);
 			Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-		}
-		catch (IOException ioe)
-		{ throw new IOException("Error saving file: " + fileName, ioe);
+		} catch (IOException ioe) {
+			throw new IOException("Error saving file: " + fileName, ioe);
 
 		}
-		return fileCode ;
+		return fileCode;
 	}
+
+
+
+	@Override
+	public Employee update(Employee s) {
+		re.save(s);
+		return s;
+	}
+*/
 }

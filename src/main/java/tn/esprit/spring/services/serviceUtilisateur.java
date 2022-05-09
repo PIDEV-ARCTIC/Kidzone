@@ -10,49 +10,36 @@ import tn.esprit.spring.Entity.Utilisateur;
 import tn.esprit.spring.repositories.repositoryUtilisateur;
 
 @Service
-public class serviceUtilisateur implements DAOservices<Utilisateur>{
+public class serviceUtilisateur{
 
 	@Autowired
 	repositoryUtilisateur ru;
-	@Override
+
 	public Utilisateur add(Utilisateur s) {
-		return 		ru.save(s);
+		return 	ru.save(s);
 
 	}
 
-	@Override
-	public Utilisateur update(Utilisateur s, Long id) {
-		Utilisateur utilisateurexist =ru.findById(id).orElseThrow(null);
-		utilisateurexist.setLogin(s.getLogin());
-		utilisateurexist.setMdp(s.getMdp());
-		utilisateurexist.setType(s.getType());
-		ru.save(utilisateurexist);
-		return utilisateurexist;
+	public Utilisateur update(Utilisateur s) {
+		ru.save(s);
+		return s;
 	}
 
-	@Override
 	public List<Utilisateur> getall() {
-		
+
 		return ru.findAll();
 	}
 
-	@Override
-	public Utilisateur getByid(Long id) {
-		Optional<Utilisateur> utilisateur= ru.findById(id);
-		return utilisateur.get();
+	public Utilisateur renderUser(Long id) {
+		return ru.findById(id).orElse(null);
 	}
-
-	@Override
 	public Utilisateur delete(Long id) {
 		ru.deleteById(id);
 		return ru.getById(id);
 	}
+	
 
-	@Override
-	public List<Utilisateur> getall(String keyword) {
-		return null;
-////
-	}
+
 }
 
 

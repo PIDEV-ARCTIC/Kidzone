@@ -24,7 +24,7 @@ public class Cours {
 	@Column(name="Matière")
 	private String matiere;
 	@ManyToMany
-	List<Employee> employee;
+	List<Utilisateur> employee;
 	//////////////////getters and setters///////////
 	public Long getIdcours() {
 		return idcours;
@@ -44,15 +44,15 @@ public class Cours {
 	public void setMatiere(String matiere) {
 		this.matiere = matiere;
 	}
-	public List<Employee> getEmployee() {
+	public List<Utilisateur> getEmployee() {
 		return employee;
 	}
-	public void setEmployee(List<Employee> employee) {
+	public void setEmployee(List<Utilisateur> employee) {
 		this.employee = employee;
 	}
 	/////////////////////////////
 	///////constructors//////////
-	public Cours(Long idcours, Date datedebutcours, String matiere, List<Employee> employee) {
+	public Cours(Long idcours, Date datedebutcours, String matiere, List<Utilisateur> employee) {
 		super();
 		this.idcours = idcours;
 		this.datedebutcours = datedebutcours;

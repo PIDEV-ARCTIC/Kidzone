@@ -45,6 +45,6 @@ public class controllerConsultation
 	@PutMapping("{id}")
 	private Consultation updateConsultation(@RequestBody Consultation s,@PathVariable Long id)
 	{
-		return serviceConsultation.update(s, id);
+		return null; //serviceConsultation.update(s, id);
 	}
 }

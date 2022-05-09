@@ -25,7 +25,7 @@ public class Reglement {
 	@Column(name="Montant")
 	private int montant;
 	@ManyToOne
-	Employee employee;
+	Utilisateur employee;
 	///////////getters and setters ////////////
 	public Long getIdreglement() {
 		return idreglement;
@@ -57,16 +57,16 @@ public class Reglement {
 	public void setMontant(int montant) {
 		this.montant = montant;
 	}
-	public Employee getEmployee() {
+	public Utilisateur getEmployee() {
 		return employee;
 	}
-	public void setEmployee(Employee employee) {
+	public void setEmployee(Utilisateur employee) {
 		this.employee = employee;
 	}
 	//////////////////////////////////
 	/////////constructos///////////////
 	public Reglement(Long idreglement, String mode, Date dateoperation, String sensoperation, int montant,
-			Employee employee) {
+			Utilisateur employee) {
 		super();
 		this.idreglement = idreglement;
 		this.mode = mode;
