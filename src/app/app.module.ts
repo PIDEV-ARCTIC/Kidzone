@@ -40,6 +40,7 @@ import { InscriptionFrontComponent } from './inscription-front/inscription-front
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { FrontNavBarComponent } from './front-nav-bar/front-nav-bar.component';
 import { HomeComponent } from './home/home.component';
+import { Inscription } from "./model/inscription";
 
 
 
@@ -105,7 +106,7 @@ import { HomeComponent } from './home/home.component';
     MatSortModule,
     
   ],
-  providers: [BusService],
+  providers: [BusService,Inscription],
   //providers: [{provide: APP_BASE_HREF , useValue: '/'}],
   bootstrap: [AppComponent],
   entryComponents:[BusComponent]

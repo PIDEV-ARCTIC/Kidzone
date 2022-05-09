@@ -5,7 +5,12 @@ export class Inscription  {
     dateoperation : any;
     montant:any;
     typepaiement : any;
+
+    get Typepaiement(): any {
+        return this.typepaiement;
+    }
+
     activite : any;
-    description:any;
-    bus:Bus 
+    bus:any;
+    enfant:any;
 }

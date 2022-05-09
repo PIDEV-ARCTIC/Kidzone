@@ -25,7 +25,7 @@ export class InscriptionComponent implements OnInit {
    closeResult! : string;
 
   //displayedColumns: string[] = ['idbus', 'heuredepart', 'destination', 'nbrplaces','prenomChauffeur','nomChauffeur','photoChauffeur','action'];
-  displayedColumns: string[] = ['idinscription', 'dateoperation','ttt', 'montant', 'typepaiement','activite','description','action'];
+  displayedColumns: string[] = ['idinscription', 'dateoperation','ttt', 'montant', 'typepaiement','activite','action'];
   dataSource: MatTableDataSource<any>;
   
  

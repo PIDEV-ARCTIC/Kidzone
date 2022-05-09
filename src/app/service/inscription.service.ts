@@ -11,11 +11,13 @@ export class InscriptionService {
   
   constructor(private httpClient: HttpClient) { }
 
+  //inscription: Inscription = new Inscription();
+
   getAllInscriptions() {
     return this.httpClient.get(`${this.API_URL}/GetInscriptions`)
   }
-  AddInscription(idinscription : any) {
-    return this.httpClient.post(`${this.API_URL}/Addinscription`, Inscription)
+  AddInscription(Inscription : any) {
+    return this.httpClient.post(`${this.API_URL}/AddInscription`, Inscription)
   }
   editInscription(Inscription : any){
     return this.httpClient.put(`${this.API_URL}/UpdateInscription`, Inscription)
