@@ -20,13 +20,7 @@
       <div class="px-3">
 
         <form (ngSubmit)="onUpload()" novalidate enctype="multipart/form-data">
-          <div class="form-actions top clearfix">
-            <div class="buttons-group float-right">
-              <button type="button" class="btn btn-raised btn-info mr-1">Action 1</button>
-              <button type="button" class="btn btn-raised btn-danger mr-1">Action 2</button>
-              <button type="button" class="btn btn-raised btn-success">Action 3</button>
-            </div>
-          </div>
+     
 
           <div class="row justify-content-md-center">
             <div class="col-md-6">
@@ -50,7 +44,7 @@
 
                       <div class="container row">
                         <div class="col-md-12">
-                          <label for="eventRegInput3">Upload Image</label>
+                          <label for="eventRegInput3">Upload Image <label  class="required-star" > * </label></label>
                         </div>
                       </div>
 
@@ -74,7 +68,7 @@
                 
                 <div class="row">
                   <div class="form-group col-12 mb-2">
-                    <label for="pet-select">Type</label>
+                    <label for="pet-select">Type <label  class="required-star" > * </label> </label>
                     <select [(ngModel)]='evenement.type' name="type" id="eventRegInput3" class='form-control'>
                       <option value="Sport">Sport</option>
                       <option value="Gaming">Gaming</option>

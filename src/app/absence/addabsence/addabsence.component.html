@@ -20,20 +20,14 @@
           <div class="px-3">
     
             <form class="form">
-              <div class="form-actions top clearfix">
-                <div class="buttons-group float-right">
-                  <button type="button" class="btn btn-raised btn-info mr-1">Action 1</button>
-                  <button type="button" class="btn btn-raised btn-danger mr-1">Action 2</button>
-                  <button type="button" class="btn btn-raised btn-success">Action 3</button>
-                </div>
-              </div>
+        
     
               <div class="row justify-content-md-center">
                 <div class="col-md-6">
                   <div class="form-body">
                     <div class="row">
                       <div class="form-group col-12 mb-2">
-                        <label for="eventRegInput1">date debut</label>
+                        <label for="eventRegInput1">Date Debut <label  class="required-star" > * </label></label>
                         <input type="date" [(ngModel)]="absence.datedebut" id="eventRegInput1" class="form-control" placeholder="write here" name="datedebut">
                       </div>
                     </div>
@@ -42,13 +36,13 @@
     
                     <div class="row">
                       <div class="form-group col-12 mb-2">
-                        <label for="eventRegInput2">periode</label>
+                        <label for="eventRegInput2">Periode <label  class="required-star" > * </label></label>
                         <input type="number" [(ngModel)]="absence.periode" id="eventRegInput2" class="form-control" placeholder="write here" name="periode">
                       </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-12 mb-2">
-                          <label for="eventRegInput3">cause</label>
+                          <label for="eventRegInput3">Cause<label  class="required-star" > * </label></label>
                           <input type="email" [(ngModel)]="absence.cause" id="eventRegInput3" class="form-control" placeholder="write here" name="cause">
                         </div>
                       </div>

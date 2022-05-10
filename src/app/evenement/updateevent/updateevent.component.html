@@ -20,40 +20,58 @@
       <div class="px-3">
 
         <form class="form">
-          <div class="form-actions top clearfix">
-            <div class="buttons-group float-right">
-              <button type="button" class="btn btn-raised btn-info mr-1">Action 1</button>
-              <button type="button" class="btn btn-raised btn-danger mr-1">Action 2</button>
-              <button type="button" class="btn btn-raised btn-success">Action 3</button>
-            </div>
-          </div>
+   
 
           <div class="row justify-content-md-center">
             <div class="col-md-6">
               <div class="form-body">
                 <div class="row">
                   <div class="form-group col-12 mb-2">
-                    <label for="eventRegInput1">Description</label>
+                    <label for="eventRegInput1">Description <label  class="required-star" > * </label></label>
                     <input type="text" [(ngModel)]="evenement.description" id="eventRegInput1" class="form-control" placeholder="write here" name="description">
                   </div>
                 </div>
 
 
 
-                <div class="row">
-                  <div class="form-group col-12 mb-2">
-                    <label for="eventRegInput2">Image</label>
-                    <input type="email" [(ngModel)]="evenement.image" id="eventRegInput2" class="form-control" placeholder="Image" name="image">
+                <div class="row justify-content-md-center">
+                  <div class="col-md-6">
+                    <div class="form-body">
+
+                      <div class="container row">
+                        <div class="col-md-12">
+                          <label for="eventRegInput3">Upload Image <label  class="required-star" > * </label></label>
+                        </div>
+                      </div>
+
+                    
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="imagen" #imagenInputFile
+                            (change)="onFileChange($event)" accept="image/png, image/jpeg, image/gif">
+                            <label class="custom-file-label" for="imagen">Choose image</label>
+                        </div>
+                        <div *ngIf="imagen" class="mt-5">
+                            <h5>Image preview:</h5>
+                            <div>
+                                <img class="image-thumbnail" style="max-width: 100px" [src]="imagenMin">
+                            </div>
+                        </div>
+            
+                    </div>
                   </div>
                 </div>
                      
                 <div class="row">
                   <div class="form-group col-12 mb-2">
-                    <label for="pet-select">Type</label>
+                    <label for="pet-select">Type <label  class="required-star" > * </label></label>
                     <select [(ngModel)]='evenement.type' name="type" id="eventRegInput3" class='form-control'>
                       <option value="Sport">Sport</option>
                       <option value="Gaming">Gaming</option>
                       <option value="Music">Music</option>
+                      <option value="Culture">Culture</option>
+                      <option value="Festival">Festival</option>
+                      <option value="IT">IT</option>
+                      <option value="Film">Film</option>
                       </select>
                   </div>
                 </div>

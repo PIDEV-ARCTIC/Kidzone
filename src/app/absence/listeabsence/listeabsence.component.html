@@ -31,7 +31,7 @@
                 <th class="text-center">Action</th>
               </thead>
               <tbody>
-                <tr *ngFor="let c of ListAbsence| paginate: { itemsPerPage: 2, currentPage: p}| orderBy : key : reverse">
+                <tr *ngFor="let c of ListAbsence| paginate: { itemsPerPage: 5, currentPage: p}| orderBy : key : reverse">
                   <td>
                     {{c.idabsence}}
                   </td>

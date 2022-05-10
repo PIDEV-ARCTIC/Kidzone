@@ -1,0 +1,11 @@
+.required-star{
+    color:red ;
+  }
+.textarea-wrapper {
+    position:relative;
+ }
+ .remaning {
+ position:absolute;
+ bottom: 10px;
+ right:10px;
+ }
