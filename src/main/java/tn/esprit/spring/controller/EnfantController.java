@@ -10,7 +10,8 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.MediaType;
-
+import org.springframework.web.multipart.MultipartFile;
+//import org.springframework.http.MediaType;
 import org.aspectj.lang.annotation.RequiredTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,7 +43,9 @@ public class EnfantController {
      
 	@Autowired
 	private EnfantService EnfantService;
-	
+	@Autowired
+	private EmailSenderService senderService;
+	private static String Path_Directory = "C:\\Users\\Store Phone\\Desktop\\Project-KidZone-farah\\imgenfant\\";
 	private static String UPLOAD_DIR = "uploads";
 	//Generate QRCode
 	@GetMapping("/genrateAndDownloadQRCode/{idenfant}")
@@ -72,6 +75,7 @@ public class EnfantController {
 		return EnfantService.GetEnfantbyName(nomprenomenfant);
 	}*/
 	
+	/*
 	@PostMapping("/EnfantAjouter")
 	@ResponseBody
 	public Enfant addEnfant(@RequestBody Enfant Enfant,
@@ -82,10 +86,10 @@ public class EnfantController {
 		String path_product = request2.getServletContext().getRealPath("") + UPLOAD_DIR + File.separator + fileName_image_product;
 		saveFile(file_image_product.getInputStream(), path_product);
 		Enfant.setPhoto(fileName_image_product);*/
-		String imageQRCodeName = "QRCode"+Enfant.getNomenfant()+".png";
+	/*	String imageQRCodeName = "QRCode"+Enfant.getNomenfant()+".png";
 		EnfantService.genrateAndDownloadQRCode2(Enfant.getNomenfant(), 200, 200, "./src/main/webapp/QRCodeGenerator/"+imageQRCodeName);
 		return EnfantService.ajouterEnfant(Enfant.getNomenfant(),Enfant.getPrenomenfant(),Enfant.getAdresseEnfant(),Enfant.getAge(),Enfant.getClasse(),Enfant.getMail(),Enfant.getNomprenomparent(),Enfant.getNumtel(),Enfant.getPhoto(), imageQRCodeName,Enfant.getGender(),Enfant.getJardin());
-	}
+	}*/
 	private void saveFile(InputStream inputStream, String path){
 		try{
 			OutputStream outputStream = new FileOutputStream(new File(path));
@@ -100,6 +104,28 @@ public class EnfantController {
 			e.printStackTrace();
 		}
 	}
+		@PostMapping("/addEnfant/{idjardin}")
+		@ResponseBody
+		public Enfant addProduit(@RequestBody Enfant Enfant,
+				HttpServletRequest request,
+				HttpServletRequest request2,@PathVariable("idjardin") long idjardin) throws Exception
+		{		
+			String imageQRCodeName = "QRCode"+Enfant.getNomenfant()+".png";
+		EnfantService.genrateAndDownloadQRCode2(Enfant.getNomenfant(), 200, 200, "./src/main/webapp/QRCodeGenerator/"+imageQRCodeName);
+		 this.senderService.sendEmail("farah.benmahmoud@esprit.tn","Incription","welcome"+Enfant.getJardin()+"Veillezz Inscrire votre enfant"+Enfant.getNomenfant()+Enfant.getPrenomenfant());;
+		Enfant Enfant1 = EnfantService.ajouterEnfant(Enfant.getNomenfant(),
+				Enfant.getPrenomenfant()
+				,Enfant.getAdresseEnfant(),
+				Enfant.getAge(),
+				Enfant.getClasse(),
+                Enfant.getPhoto(),
+                Enfant.getNomprenomparent(),
+                Enfant.getNumtel(),Enfant.getGender(),
+				Enfant.getMail(),
+				imageQRCodeName,
+				idjardin);
+	    return Enfant1;
+		}
 	@DeleteMapping("/EnfantSupp/{idenfant}")
 	public void deleteEnfant(@PathVariable long idenfant) {
 		EnfantService.deleteEnfant(idenfant);}
@@ -108,4 +134,17 @@ public class EnfantController {
 	public Enfant UpdateEnfant(@RequestBody Enfant Enfant){
 		return EnfantService.UpdateEnfant(Enfant);
 	}
+	
+	@PostMapping("/addphoto")
+	@ResponseBody
+	public 	Enfant a(@RequestParam("photo") MultipartFile file_image_product,
+			HttpServletRequest request,
+			HttpServletRequest request2) throws Exception{
+		
+		String fileName_image_product = file_image_product.getOriginalFilename();
+		String path_product = request2.getServletContext().getRealPath("") + UPLOAD_DIR + File.separator + fileName_image_product;
+		saveFile(file_image_product.getInputStream(), path_product);
+		return EnfantService.ajouterphoto(fileName_image_product);
+}
+	
 }

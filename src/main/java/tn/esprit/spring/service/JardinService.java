@@ -26,17 +26,18 @@ public class JardinService  {
 	public List <Jardin> GetJardin(){
 		return jardinRepository.findAll();
 	}
-public List <Enfant> count (long idjardin){
-		
-		List<Enfant> inscriptions = enfantService.GetEnfant();
-		List<Enfant> inscriptionBus = new ArrayList<>();
-		
-		 for (Enfant inscri : inscriptions) {
-		        if (inscri.getJardin().getIdjardin()==idjardin) {
-		            inscriptionBus.add(inscri);
+	public List <Enfant> bbb(long idjardin){
+        List<Enfant> s = enfantService.GetEnfant();
+		List<Enfant> enf = new ArrayList<>();
+		 for (Enfant in : s) {
+			// System.out.print(inscri.getJardin().getIdjardin());
+		       if (in.getJardin().getIdjardin()==idjardin) {
+		        	
+		            enf.add(in);
 		        }
 		 }
-		        return inscriptionBus;
+		
+		        return enf;
 	}
      public List <Enfant> GetEnfantsBus(Long idjardin){
 		
@@ -89,6 +90,9 @@ public List <Enfant> count (long idjardin){
 		existingJardin.setTarif(jardinEnfant.getTarif());
 		return jardinRepository.save(jardinEnfant);
 	}
+	public List<Long> CAJardinEnfant(){
+		return jardinRepository.CA();
+		}
 	
 	
 }

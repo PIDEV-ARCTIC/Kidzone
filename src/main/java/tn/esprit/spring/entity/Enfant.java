@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 //import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 //import javax.persistence.JoinColumn;
 
@@ -45,19 +46,35 @@ public class Enfant implements Serializable{
 	@JsonIgnore
 	@Column(name = "qrCodeImage")
 	private String qrCodeImageEnfant;
-	
 	@ManyToOne
 	//@JoinTable(name = "enfant_Jardin",joinColumns = @JoinColumn(name = "idenfant_enfant"),inverseJoinColumns = @JoinColumn(name = "idjardin_jardin"))
 	Jardin Jardin;
+	@JsonIgnore
+	@OneToOne(mappedBy="enfant")
+	private Inscription inscription;
 	
 	public Enfant() {
 		super();
 	}
     
-	
 
-
-
+public Enfant(String nomenfant, String prenomenfant, String adresseEnfant, String age, String classe, String photo,
+			String nomprenomparent, String numtel, String gender, String mail, String qrCodeImageEnfant,
+			tn.esprit.spring.entity.Jardin jardin) {
+		super();
+		this.nomenfant = nomenfant;
+		this.prenomenfant = prenomenfant;
+		this.age = age;
+		this.classe = classe;
+		this.photo = photo;
+		this.gender = gender;
+		this.nomprenomparent = nomprenomparent;
+		this.numtel = numtel;
+		this.mail = mail;
+		this.adresseEnfant = adresseEnfant;
+		this.qrCodeImageEnfant = qrCodeImageEnfant;
+		Jardin = jardin;
+	}
 
 
 

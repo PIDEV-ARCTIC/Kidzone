@@ -3,6 +3,8 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.List;
@@ -23,6 +25,8 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeWriter;
 
+import tn.esprit.spring.entity.Jardin;
+import tn.esprit.spring.repository.JardinRepository;
 import tn.esprit.spring.entity.Enfant;
 import tn.esprit.spring.repository.EnfantRepository;
 //import tn.esprit.spring.service.*;
@@ -38,6 +42,8 @@ public class EnfantService  {
 
 	@Autowired
 	EnfantRepository EnfantRepository;
+	@Autowired
+	JardinRepository JardinRepository;
 	
 	public List <Enfant> GetEnfant(){
 		return EnfantRepository.findAll();
@@ -113,8 +119,9 @@ public class EnfantService  {
 			String gender,
 			String mail,
 			String qrCodeImageEnfant,
-			tn.esprit.spring.entity.Jardin jardin){
+			long idjardin){
 		
+		Jardin jardin = JardinRepository.findByIdjardin(idjardin);
 		Enfant p = new Enfant();
 		p.setNomenfant(nomenfant);
 		p.setPrenomenfant(prenomenfant);
@@ -124,14 +131,37 @@ public class EnfantService  {
 		p.setPhoto(photo);
 		p.setNomprenomparent(nomprenomparent);
 		p.setNumtel(numtel);
+		p.setGender(gender);
 		p.setMail(mail);
 		p.setQrCodeImageEnfant(qrCodeImageEnfant);
 		p.setJardin(jardin);
-		p.setGender(gender);
+		
+		return EnfantRepository.save(p);
+	}
+	public Enfant ajouterphoto( 
+			String photo){
+		
+		Enfant p = new Enfant();
+	
+		p.setPhoto(photo);
 		
 		return EnfantRepository.save(p);
 	}
 	
+	private void saveFile(InputStream inputStream, String path){
+		try{
+			OutputStream outputStream = new FileOutputStream(new File(path));
+			int read = 0;
+			byte [] bytes = new byte[1024];
+			while((read = inputStream.read(bytes)) != 1){
+				outputStream.write(bytes, 0, read);
+			}
+			outputStream.flush();
+			outputStream.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public byte[] genrateAndDownloadQRCode2(String text, int width, int height, String filePath) throws Exception{
 
 		QRCodeWriter qrCodeWriter = new QRCodeWriter();

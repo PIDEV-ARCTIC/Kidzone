@@ -37,7 +37,7 @@ public class Jardin implements Serializable{
 	@Column(name="Telephone")
 	private String numtel;
 	@Column(name="tarifs")
-	private int tarif;
+	private Long tarif;
 	@Column(name="Description")
 	private String description;
 	@JsonIgnore
@@ -56,7 +56,7 @@ public class Jardin implements Serializable{
 	
 	
 	public Jardin(Long idjardin, String nomjardin, String adressejardin, String logo, String emailjardin, String numtel,
-			int tarif, String description, Set<Enfant> enfant) {
+			Long tarif, String description, Set<Enfant> enfant) {
 		super();
 		this.idjardin = idjardin;
 		this.nomjardin = nomjardin;
@@ -69,7 +69,7 @@ public class Jardin implements Serializable{
 		this.enfant = enfant;
 	}
 	public Jardin(Long idjardin, String nomjardin, String adressejardin, String logo, String emailjardin, String numtel,
-			int tarif, String description) {
+			Long tarif, String description) {
 		super();
 		this.idjardin = idjardin;
 		this.nomjardin = nomjardin;
@@ -81,7 +81,7 @@ public class Jardin implements Serializable{
 		this.description = description;
 	}
 	
-	public Jardin(String nomjardin, String adressejardin, String logo, String emailjardin, String numtel, int tarif,
+	public Jardin(String nomjardin, String adressejardin, String logo, String emailjardin, String numtel, Long tarif,
 			String description) {
 		super();
 		this.nomjardin = nomjardin;
@@ -130,10 +130,11 @@ public class Jardin implements Serializable{
 	public void setNumtel(String numtel) {
 		this.numtel = numtel;
 	}
-	public int getTarif() {
+
+	public Long getTarif() {
 		return tarif;
 	}
-	public void setTarif(int tarif) {
+	public void setTarif(Long tarif) {
 		this.tarif = tarif;
 	}
 	public String getDescription() {
