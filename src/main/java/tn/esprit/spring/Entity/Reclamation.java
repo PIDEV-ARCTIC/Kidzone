@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,7 +36,11 @@ public class Reclamation {
 	private String description;
 	@Column(name="Nom")
 	private String nom;
+	@Column(name="mail")
+	private String mail;
+	
+	@JsonIgnore
 	@ManyToOne
 	Utilisateur user ;
-	//idutilisateur clé étrangère à ajouter 
+	
 }

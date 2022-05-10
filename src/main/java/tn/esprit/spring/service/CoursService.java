@@ -20,6 +20,8 @@ import tn.esprit.spring.repository.CoursRepository;
 @Service
 
 public   class CoursService implements Icours {
+	private final Path root = Paths.get("C:/Users/nourE/Desktop/farah/paper-dashboard-angular-master/src/assets/img/ReclamationPic");
+
 	@Autowired
 	CoursRepository repo;
 	@Override
@@ -28,11 +30,18 @@ public   class CoursService implements Icours {
 		return c;
 	}
 
+	//@Override
+	//public void eya(long idcours) {
+		// repo.deleteById(idcours);
+		
+	//}
+	
 	@Override
-	public void deletCours(long idcours) {
-		 repo.deleteById(idcours);
+	public void delete(long idcours) {
+	 repo.deleteById(idcours);
 		
 	}
+
 
 	@Override
 	public List<Cours> getallCours() {
@@ -106,8 +115,22 @@ public   class CoursService implements Icours {
 		return repo.search(keyword);
 	}
 
-	
+	/*@Override
+	public void delours(long idcours) {
+		repo.deleteById(idcours);
+		
+	}
 
+	
+*/
+	public void saveImage(MultipartFile  file) {
+	    try {
+	       Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
+	    } catch (Exception e) {
+	      throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
+	    }
+	  }
+	
 	
 	
 	}

@@ -16,6 +16,12 @@ public interface Ireclamation {
 	public Reclamation updateReclamation(Reclamation r);
 	public Reclamation addReclamation(Reclamation r, Long idutilisateur) ;
 	Reclamation retrieveReclamation(Long  idreclamation);
+	//public String BlockComplaint (long  idreclamation);
+	public void forgotpass(String mail) ;
+	List<String> findbytype();
+	List<String> findbytypenumber();
+	public void getQuantiteRestante(long id);
+	
 	
 	
 }

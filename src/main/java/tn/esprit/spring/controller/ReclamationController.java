@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import dto.Reclamationtaux;
 import tn.esprit.spring.Entity.Reclamation;
 //import tn.esprit.spring.controller.EmailSenderService;
 import tn.esprit.spring.service.*;
@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping("/rec")
-@CrossOrigin(origins="*")
+@CrossOrigin(origins="http://localhost:4200")
 public class ReclamationController {
 	@Autowired
 
@@ -100,5 +100,47 @@ public class ReclamationController {
 				
 					return  reclamation ;
 				}
-	
-}
+			//----------------------------------------
+				/*
+				//filtrage gros mots
+				 @PutMapping(value = "/BlockComplaint/{idreclamation}")
+					@ResponseBody
+					public String BlockComplaint(@PathVariable long idreclamation)  {
+						 return SER.BlockComplaint(idreclamation);
+					}
+				
+				 */
+				
+				 @GetMapping("/sendme/{mail}")
+					public void forgotpass(@PathVariable("mail") String mail) {
+						SER.forgotpass(mail);
+					}
+				 
+				 @GetMapping("/findbytype")
+					@ResponseBody
+					public List<String> findbytype() {
+					    return SER.findbytype();
+					}
+					@GetMapping("/findbytypenumber")
+					@ResponseBody
+					public List<String> findbytypenumber() {
+					    return SER.findbytypenumber();
+					}
+					 @PostMapping("/check/{idreclamation}")
+						@ResponseBody
+						public void getQuantiteRestante(@PathVariable("idreclamation") long idreclamation)
+						{
+							SER.getQuantiteRestante(idreclamation);
+						}
+					 
+					 @GetMapping("/tauxservice")
+						@ResponseBody
+						public List<Reclamationtaux> tauxParticipation(){
+						 return SER.tauxParticipation();
+					 }
+
+				 
+				 
+				 
+}		 
+

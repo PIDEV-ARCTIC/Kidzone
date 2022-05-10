@@ -1,6 +1,7 @@
 package tn.esprit.spring.Entity;
 
 public enum type {
-	nour ,ahmed,yahya
+	  
+	OnService,OnEntreprise, OnEmployee
 
 }
