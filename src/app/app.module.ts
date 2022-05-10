@@ -10,11 +10,14 @@ import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routing';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { EmployeeService } from "./services/employee.service";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LoginComponent } from "./login/login.component";
 import { AdminComponent } from './services/admin/admin.component';
+import { HomeComponent } from './home/home.component';
+import { AuthInterceptor } from "./services/auth-Interceptor";
+import { FrontNavBarComponent } from './front-nav-bar/front-nav-bar.component';
 
 
 
@@ -25,6 +28,8 @@ import { AdminComponent } from './services/admin/admin.component';
     LoginComponent,
     AdminLayoutComponent,
     AdminComponent,
+    HomeComponent,
+    FrontNavBarComponent,
     
 
   ],
@@ -43,7 +48,14 @@ import { AdminComponent } from './services/admin/admin.component';
     FooterModule,
     FixedPluginModule
   ],
-  providers: [EmployeeService],
+  providers: [EmployeeService,
+  {
+    provide:HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }
+  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

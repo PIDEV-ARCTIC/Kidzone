@@ -13,22 +13,22 @@ export class EmployeeService {
 
   public getEmployees(): Observable<Employee[]>
 { 
-  return this.http.get<Employee[]>("http://localhost:8081/api/employee/all");
+  return this.http.get<Employee[]>("http://localhost:8081/api/utilisateur/userList");
 
 }
 
  public addEmployee(employee: Employee):Observable<Employee>
  {
-   return this.http.post<Employee>("http://localhost:8081/api/employee/add", employee);
+   return this.http.post<Employee>("http://localhost:8081/api/utilisateur/addUser", employee);
  }
 
  public updateEmployee(employee: Employee):Observable<Employee>
  {
-   return this.http.put<Employee>("http://localhost:8081/api/employee/update", employee);
+   return this.http.put<Employee>("http://localhost:8081/api/utilisateur/update", employee);
  }
 
  public deleteEmployee(idEmployee: number):Observable<void>
  {
-   return this.http.delete<void>(`http://localhost:8081/api/employee/delete/${idEmployee}`);
+   return this.http.delete<void>(`http://localhost:8081/api/utilisateur/delete/${idEmployee}`);
  }
 }
