@@ -38,7 +38,7 @@ export class UpdateeventComponent implements OnInit {
         });
     }
     updateEvent(){
-      this.e.updateEvent(this.evenement).subscribe(()=>this.router.navigateByUrl("/table"));
+      this.e.updateEvent(this.evenement).subscribe(()=>this.router.navigateByUrl("/listeevent"));
     }
   
   }

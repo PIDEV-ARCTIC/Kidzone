@@ -16,7 +16,7 @@
     <div class="card-body">
       <div class="px-3">
 
-        <form class="form">
+        <form class="form" (ngSubmit)="addEvent()" >
           <div class="form-actions top clearfix">
             <div class="buttons-group float-right">
               <button type="button" class="btn btn-raised btn-info mr-1">Action 1</button>
@@ -30,17 +30,22 @@
               <div class="form-body">
                 <div class="row">
                   <div class="form-group col-12 mb-2">
-                    <label for="eventRegInput1">Description</label>
-                    <input type="text" [(ngModel)]="evenement.description" id="eventRegInput1" class="form-control" placeholder="write here" name="description">
+                    <label for="eventRegInput1">Description<label  class="required-star" > * </label> </label>
+                    <div class="textarea-wrapper">
+                    <textarea  type="text" pInputTextArea [(ngModel)]="value" (ngModelChange)="valueChangeDescription(value)" maxlength="100" required [(ngModel)]="evenement.description" id="eventRegInput1" 
+                    class="form-control" placeholder="write here" name="description"></textarea>
+                    <span class="remaning">{{remainingText}}/100</span>
                   </div>
                 </div>
+              </div>
+
 
 
 
                 <div class="row">
                   <div class="form-group col-12 mb-2">
                     <label for="eventRegInput2">Image</label>
-                    <input type="email" [(ngModel)]="evenement.image" id="eventRegInput2" class="form-control" placeholder="Image" name="image">
+                    <input required type="text" [(ngModel)]="evenement.image" id="eventRegInput2" class="form-control" placeholder="Image" name="image">
                   </div>
                 </div>
 
@@ -76,9 +81,8 @@
               <button type="button" class="btn btn-raised btn-warning mr-1">
                 <i class="ft-x"></i> Cancel
               </button>
-              <button type="button" class="btn btn-raised btn-primary mr-1" (click)="addEvent()">
-                <i class="fa fa-check-square-o"></i> Save
-              </button>
+              <input type="submit" value="save" class="btn btn-raised btn-primary mr-1" >
+               
             </div>
 
           </div>
