@@ -56,11 +56,25 @@ public class Inscription implements Serializable {
 	//Bus bus;
 	/*@ManyToOne
 	Enfant enfant;*/
+	
 	@OneToOne
 	private Enfant enfant;
 
 
 	
+	public Inscription(Long idinscription, Date dateoperation, int montant, Boolean typepaiement, Boolean activite,
+			String description, Enfant enfant) {
+		super();
+		this.idinscription = idinscription;
+		this.dateoperation = dateoperation;
+		this.montant = montant;
+		this.typepaiement = typepaiement;
+		this.activite = activite;
+		this.description = description;
+		this.enfant = enfant;
+	}
+
+
 	public Inscription(Date dateoperation, Enfant enfant) {
 		super();
 		this.dateoperation = dateoperation;

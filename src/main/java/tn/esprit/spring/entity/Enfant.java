@@ -58,6 +58,27 @@ public class Enfant implements Serializable{
 	}
     
 
+public Enfant(Long idenfant, String nomenfant, String prenomenfant, String age, String classe, String photo,
+			String gender, String nomprenomparent, String numtel, String mail, String adresseEnfant,
+			String qrCodeImageEnfant, tn.esprit.spring.entity.Jardin jardin, Inscription inscription) {
+		super();
+		this.idenfant = idenfant;
+		this.nomenfant = nomenfant;
+		this.prenomenfant = prenomenfant;
+		this.age = age;
+		this.classe = classe;
+		this.photo = photo;
+		this.gender = gender;
+		this.nomprenomparent = nomprenomparent;
+		this.numtel = numtel;
+		this.mail = mail;
+		this.adresseEnfant = adresseEnfant;
+		this.qrCodeImageEnfant = qrCodeImageEnfant;
+		Jardin = jardin;
+		this.inscription = inscription;
+	}
+
+
 public Enfant(String nomenfant, String prenomenfant, String adresseEnfant, String age, String classe, String photo,
 			String nomprenomparent, String numtel, String gender, String mail, String qrCodeImageEnfant,
 			tn.esprit.spring.entity.Jardin jardin) {

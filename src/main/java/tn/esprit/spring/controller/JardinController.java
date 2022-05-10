@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import tn.esprit.spring.entity.Enfant;
+import tn.esprit.spring.entity.Inscription;
 import tn.esprit.spring.entity.Jardin;
 import tn.esprit.spring.service.EmailSenderService;
 //import tn.esprit.spring.repository.JardinRepository;
@@ -94,8 +95,27 @@ public class JardinController {
 	public void RecJardinEnfant(@RequestBody Jardin jardinEnfant){
 	 this.senderService.sendEmail("farah.benmahmoud@esprit.tn","Reclamation2","problemefarah "+"amal");;
 	}
-	@GetMapping("/CA")
-	public List<Long> CA(){
-		return jardinService.CAJardinEnfant();
+	@GetMapping("/CA/{idjardin}")
+	public List<Long> CA( @PathVariable("idjardin") long idjardin){
+		return jardinService.CAJardin(idjardin);
 	}
+	@GetMapping("/aa/{idjardin}")
+	public List<Inscription> a(@PathVariable long idjardin){
+		
+		return jardinService.a(idjardin);
+		 
+	}
+	/*@GetMapping("/CA2")
+	public List<Long> CA2(){
+		return jardinService.CA2();
+	}*/
+	/*@PostMapping(path = "/uploadPhoto/{idjardin}")
+    public void uploadPhoto(@RequestParam("file") MultipartFile file, @PathVariable("idjardin") int idjardin) throws Exception{
+        Jardin p=jardinService.GetJardinbyid(idJardin);
+//        System.out.println(p.getNameprod());
+//        System.out.println(file.getOriginalFilename());
+        p.setLogo(file.getOriginalFilename());
+        Files.write(Paths.get(Path_Directory+p.getImageFileNameProduct()),file.getBytes());
+        service.saveProduct(p);}*/
 }
+
