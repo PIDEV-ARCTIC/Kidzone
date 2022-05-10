@@ -68,30 +68,13 @@ public class Employee {
 		super();
 		this.idemployee = idemployee;
 	}
-	public Set<Reglement> getReglements() {
-		return reglements;
-	}
-	public void setReglements(Set<Reglement> reglements) {
-		this.reglements = reglements;
-	}
-	public Employee(Long idemployee, String nomemployee, String prenomemployee, String mail, String telemployee,
-			Set<Reglement> reglements) {
-		super();
-		this.idemployee = idemployee;
-		this.nomemployee = nomemployee;
-		this.prenomemployee = prenomemployee;
-		this.mail = mail;
-		this.telemployee = telemployee;
-		this.reglements = reglements;
-	}
+
 	
 	public Employee() {
 		super();
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="employees")
-	private Set<Reglement> reglements;
-	
+
 	
 	
 }

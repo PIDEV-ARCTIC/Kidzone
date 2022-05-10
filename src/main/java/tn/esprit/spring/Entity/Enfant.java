@@ -106,10 +106,9 @@ public class Enfant {
 		super();
 		this.idenfant = idenfant;
 	}
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="enfants")
-	private Set<Reglement> reglements;
+
 	public Enfant(Long idenfant, String nomenfant, String prenomenfant, String age, String classe, String photo,
-			String nomparent, String prenomparent, String numtel, String mail, Set<Reglement> reglements) {
+			String nomparent, String prenomparent, String numtel, String mail) {
 		super();
 		this.idenfant = idenfant;
 		this.nomenfant = nomenfant;
@@ -121,14 +120,9 @@ public class Enfant {
 		this.prenomparent = prenomparent;
 		this.numtel = numtel;
 		this.mail = mail;
-		this.reglements = reglements;
+		
 	}
-	public Set<Reglement> getReglements() {
-		return reglements;
-	}
-	public void setReglements(Set<Reglement> reglements) {
-		this.reglements = reglements;
-	}
+	
 	public Enfant() {
 		super();
 	}

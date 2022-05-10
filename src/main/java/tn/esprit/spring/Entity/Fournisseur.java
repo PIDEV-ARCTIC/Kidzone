@@ -81,20 +81,8 @@ public class Fournisseur {
 		this.idfournisseur = idfournisseur;
 	}
 	
-	public Fournisseur(Long idfournisseur, String nomfournisseur, String prenomfournisseur, String mailfournisseur,
-			String telfournisseur, String domaine, Set<Reglement> reglements) {
-		super();
-		this.idfournisseur = idfournisseur;
-		this.nomfournisseur = nomfournisseur;
-		this.prenomfournisseur = prenomfournisseur;
-		this.mailfournisseur = mailfournisseur;
-		this.telfournisseur = telfournisseur;
-		this.domaine = domaine;
-		this.reglements = reglements;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="fournisseurs")
-	private Set<Reglement> reglements;
+	
+	
 	
 	
 }

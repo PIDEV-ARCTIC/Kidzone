@@ -1,5 +1,7 @@
 package tn.esprit.spring.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+
 import java.io.IOException;
 import java.sql.Date;
 import java.text.DateFormat;
@@ -7,9 +9,11 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Properties;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,8 +31,9 @@ import tn.esprit.spring.service.SmsService;
 import tn.esprit.spring.repository.ReglementRepository;
 import tn.esprit.spring.service.EmailSenderService;
 import tn.esprit.spring.service.FournisseurService;
-import tn.esprit.spring.service.PdfGeneratorService;
+//import tn.esprit.spring.service.PdfGeneratorService;
 import tn.esprit.spring.service.ReglementService;
+@CrossOrigin(origins = "*")
 
 @RestController
 @RequestMapping("/reglement")
@@ -38,8 +43,8 @@ public class ReglementRestController {
 	private EmailSenderService senderService;
 	@Autowired
    private ReglementService reglementService;
-	@Autowired
-	   private PdfGeneratorService pdfservice;
+	//@Autowired
+	 //  private PdfGeneratorService pdfservice;
 	@Autowired
 	   private FournisseurService fournisseurService;
 	
@@ -59,46 +64,22 @@ public class ReglementRestController {
 	    }
 
 	@PostMapping("/ajouterr")
-	public Reglement addReglement(@RequestBody Reglement c,HttpServletResponse response) throws IOException  {
+	public Reglement addReglement(@RequestBody Reglement c,HttpServletResponse response) throws MessagingException  {
 		Properties props = new Properties();
 		props.put("mail.smtp.ssl.enable", "true");
 		
 		reglementService.addReglement(c);
-		long id= c.getFournisseurs().getIdfournisseur();
-		System.out.print(id);
+	
 		//if(c.getFournisseurs()!= null){
-			this.senderService.sendEmail(FindfournisseurmailById(id),"payment slip","you have paid "+c.getMontant());
-		//	}
-			/*else if(c.getFournisseurs()!=null){
-				this.senderService.sendEmail(reglementService.FindMailF(c.getIdreglement()),"payment slip","i have paid u "+c.getMontant());
-
-			}
-			else 
-			senderService.sendEmail(fournisseurService.(c.getIdreglement()),"payment slip","i have paid your salary "+c.getMontant());*/
-		
-				response.setContentType("application/pdf");
-			      //  DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd:hh:mm:ss");
-			        //String currentDateTime = dateFormatter.format(new get());
-
-			       // String headerKey = "Content-Disposition";
-			       // String headerValue = "attachment; filename=pdf_" +  ".pdf";
-			       // response.setHeader(headerKey, headerValue);
-
-			        this.pdfservice.export(response,c);
+		this.senderService.email(c,c.getMail(),"[Validation de reglement]","Bonjour Mr/Mme "
+				+ c.getIdtier() + "\n" + 
+				"Vous venez de payer " + c.getMontant() + " " +"en mode "+c.getMode()+"\n" +"Vous trouverez ci-dessous l'engagement suivi du réglement interne de notre jardin d'enfant." + "\n"+
+						"veuillez la signer et la renvoyer sur ce mail." + "\n" 
+						+ "Cordialement.");
+			
 		      return c;
 	}
-	/*@GetMapping("/pdf/generate")
-    public void generatePDF(HttpServletResponse response,Reglement r) throws IOException {
-		response.setContentType("application/pdf");
-      //  DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd:hh:mm:ss");
-        //String currentDateTime = dateFormatter.format(new get());
 
-       // String headerKey = "Content-Disposition";
-       // String headerValue = "attachment; filename=pdf_" +  ".pdf";
-       // response.setHeader(headerKey, headerValue);
-
-        this.pdfservice.export(response,r);
-	}*/
 	@DeleteMapping("/supprimr/{id}")
 	public void deleteReglement (@PathVariable long id) {
 		reglementService.deleteReglement(id);
@@ -116,26 +97,79 @@ return reglementService.FindReglement(id);
 }
 @PutMapping("/UpdateReglement")
 public Reglement Updatereglement(@RequestBody Reglement r){
+	System.out.print(r);
 	return reglementService.UpdateReglement(r);
+	
 }
 
 
-	/*@PostMapping(value="/modifc")
-	public Compte updateCompte(Compte c) {
-		compteRepository.save(c);
-		return c;
-	}
 	
-	@PostMapping(value="/rechc")
-	public Compte findById(long id) {
-	
-		
-		return compteRepository.findById(id).get();
-	}*/
 @GetMapping("/Findfournisseurmail/{id}")
 public String FindfournisseurmailById(@PathVariable long id){
 
 return fournisseurService.FindMailF(id);
 
+}
+@GetMapping("/EtatC")
+public List<Reglement> EtatC( ){
+
+//String typef="fournisseur";
+return reglementService.EtatDeCaisse();
+}
+
+@GetMapping("/EtatCD")
+public int EtatCD( ){
+
+//String typef="fournisseur";
+return reglementService.EtatDeCaisseDet();
+}
+
+@GetMapping("/EtatCDt")
+public int EtatCDT( ){
+
+//String typef="fournisseur";
+return reglementService.EtatDeCaisseDett();
+}
+@GetMapping("/EtatCDCH")
+public int EtatCDch( ){
+
+//String typef="fournisseur";
+return reglementService.EtatDeCaisseChec();
+}
+@GetMapping("/EtatCDcart")
+public int EtatCDcart( ){
+
+//String typef="fournisseur";
+return reglementService.EtatDeCaisseDetCart();
+}
+@GetMapping("/EtatCDEss")
+public int EtatCDEss( ){
+
+//String typef="fournisseur";
+return reglementService.EtatDeCaisseESS();
+}
+@GetMapping("/Echf")
+public List<Reglement> EchF( ){
+
+return reglementService.Echfourn();
+}
+@GetMapping("/stat1")
+public List<String> Statistique1( ){
+
+return reglementService.Stat1();
+}
+@GetMapping("/stat2")
+public List<Long> Statistique2( ){
+
+return reglementService.Stat2();
+}
+
+@GetMapping("/Echc")
+public List<Reglement> Echc( ){
+return reglementService.Echanf();
+}
+@GetMapping("/Alert")
+public String Alert( ){
+return reglementService.Alert();
 }
 }
