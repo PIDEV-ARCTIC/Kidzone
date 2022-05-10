@@ -58,7 +58,7 @@ typelist= ["fournisseur","enfant","employées"]
       montant : null,
       type:null,
       idtier:null,
-      nomtier:null,
+      nomTier:null,
       mail:null
     }
   }

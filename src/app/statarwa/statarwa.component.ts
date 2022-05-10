@@ -22,6 +22,7 @@ export class StatarwaComponent implements OnInit {
   listReglementc : any; 
   liststat1:any;
   liststat2:any;
+  alert:any;
   totalmef:any;
    totalm : any;
    totalmch:any;
@@ -42,6 +43,9 @@ typelist= ["fournisseur","enfant","employées"]
   }
 
   ngOnInit(): void {
+   
+   console.log(this.bs.Alerta().subscribe(res => this.alert= res));
+
     this.getAllReglements();
     this.EtatCaisse();
     this.EtatCaisseDet();
@@ -100,10 +104,18 @@ typelist= ["fournisseur","enfant","employées"]
      
     });
   }
+ /* Alerta(){
+    console.log("hello");
+  this.bs.Alerta().subscribe(res => this.alert= res);
+
+    console.log(alert);
+  }*/
  getAllReglements(){
     this.bs.getAllReglements().subscribe(res => this.listReglement = res)
   }
   Stat1(){
+
+
     this.bs.Stat1().subscribe(res => this.liststat1 = res)
   }
   Stat2(){

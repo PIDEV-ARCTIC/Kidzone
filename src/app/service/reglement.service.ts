@@ -61,4 +61,7 @@ export class ReglementService {
   Stat2(){
     return this.httpClient.get(`${this.API_URL}/stat2`)
   }
+  Alerta(){
+    return this.httpClient.get(`${this.API_URL}/Alert`, {responseType: 'text'})
+  }
 }
