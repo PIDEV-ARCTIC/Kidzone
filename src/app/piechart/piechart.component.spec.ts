@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddCoursfrontComponent } from './add-coursfront.component';
+import { PiechartComponent } from './piechart.component';
 
-describe('AddCoursfrontComponent', () => {
-  let component: AddCoursfrontComponent;
-  let fixture: ComponentFixture<AddCoursfrontComponent>;
+describe('PiechartComponent', () => {
+  let component: PiechartComponent;
+  let fixture: ComponentFixture<PiechartComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddCoursfrontComponent ]
+      declarations: [ PiechartComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddCoursfrontComponent);
+    fixture = TestBed.createComponent(PiechartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

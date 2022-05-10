@@ -5,7 +5,7 @@
 
 
 
-<button style="margin-left: 85%;" mat-raised-button color="warn" (click)="openDialog()">Add courses</button>
+<button style="margin-left: 85%;" mat-raised-button color="warn" (click)="openDialog()">Ajouter un cours</button>
 
 <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
 
@@ -17,19 +17,19 @@
             <table class="table">
               <thead class=" text-primary">
                 <th>
-                    matiere
+                    Matiére
                 </th>
                 <th>
                     Description
                 </th>
                 <th>
-                classe
+                Fichier
                 </th>
                 <th>
-                  Edit
+                  Modifier
                   </th>
                   <th>
-                    Delete
+                    Supprimer
                     </th>
                 
               </thead>
@@ -47,16 +47,16 @@
                       </td>
                     <td>
                     <button mat-icon-button (click)="open(mymodal)"  type="button" color="primary">
-                        <mat-icon>edit</mat-icon>
+                        <mat-icon>Modifier</mat-icon>
                     </button></td>
                     <td>
                     <button mat-icon-button color="warn" (click)="deletecours(cours.idcours)" type="button">
-                      <mat-icon>delete</mat-icon>
+                      <mat-icon>Supprimer</mat-icon>
                   </button></td>
                    
                       <ng-template #mymodal let-modal>
                         <div class="modal-header">
-                            <h4 class="modal-title" id="modal-basic-title">Edit</h4>
+                            <h4 class="modal-title" id="modal-basic-title">Modifier</h4>
                             <button type="button" class="close" aria-label="Close"
                                 (click)="modal.dismiss('Cross click')">
                                 <span aria-hidden="true" (click)="cancel()">×</span>
@@ -70,7 +70,7 @@
                                 <input type="text" [(ngModel)]="cours.idcours" [ngModelOptions]="{standalone : true}" hidden/>
 
                                 <div class="row" class="col-md-5">
-                                    <label>nom matiere</label>
+                                    <label>Nom de la matiére</label>
                                     <input type="text" [(ngModel)]="cours.matiere" [ngModelOptions]="{standalone : true}" />
                                 </div>
                                 <div class="row" class="col-md-5">
@@ -85,8 +85,8 @@
                             <div class="modal-footer">
         
                                 <button type="button" class="btn btn-info"
-                                    (click)="modal.close('Save click')" (click)="cancel()">Cancel</button>
-                                <button class="btn btn-success"(click)="updatecours(cours)" (click)="modal.close('Save click')">Validate</button>
+                                    (click)="modal.close('Save click')" (click)="cancel()">Fermer</button>
+                                <button class="btn btn-success"(click)="updatecours(cours)" (click)="modal.close('Save click')">Valider</button>
                             </div>
                         </form>
                     </div>

@@ -4,6 +4,7 @@ export class reclamation {
         typereclamation : any;
         description : any;
         nom : any ;
-        Blocked : any ;
+        mail : any;
+       
     
 }

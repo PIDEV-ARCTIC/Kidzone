@@ -1,40 +1,50 @@
-<h1 mat-dialog-litle>Add courses</h1>
-<div class="row justify-content-md-center">
-                <div class="col-md-6">
-                  <div class="form-body">
-                    <div class="row">
-                      <div class="form-group col-12 mb-2">
-                        <label for="eventRegInput1">matiere</label>
-                        <input type="text" [(ngModel)]="cours.matiere" id="eventRegInput1" class="form-control" placeholder="write here" name="matiere">
-                      </div>
-                    </div>
 
-                    
-                            <div class="row">
-                              <div class="form-group col-12 mb-2">
-                                <label for="eventRegInput1">Description</label>
-                                <input type="text" [(ngModel)]="cours.description" id="eventRegInput1" class="form-control" placeholder="write here" name="description">
-                              </div>
-                            </div>
-    
-    
-                    <div class="row">
-                      <div class="form-group col-12 mb-2">
-                        <label for="eventRegInput2">file</label>
-                        <input type="email" [(ngModel)]="cours.file" id="eventRegInput2" class="form-control" placeholder="file" name="file">
+  <h1 mat-dialog-litle>Ajout de cours </h1>
+  <div class="row justify-content-md-center">
+                  <div class="col-md-6">
+                    <div class="form-body">
+                      <div class="row">
+                        <div class="form-group col-12 mb-2">
+                          
+                          <label >Matiére</label>
+                          <input type="text"  [(ngModel)]="cours.matiere"  class="form-control" placeholder="write here" name="matiere" required>
+                          <p>hh -{{cours.matiere}}</p>
+                        </div>
                       </div>
+  
+                      
+                              <div class="row">
+                                <div class="form-group col-12 mb-2">
+                                  <label >Description</label>
+                                  <input type="text"  [(ngModel)]="cours.description"  class="form-control" placeholder="write here" name="description" required>
+                                </div>
+                              
+                              </div>
+      
+      
+                      
+                      <div   class="form-group">
+                        <label >Choisir une image</label>
+                        <input type="file"
+                    
+                        class="form-control" formControlName="file"
+                               accept="images/"
+                    
+                               (change)="uploadFiles($event)">
+                        <img [src]="imgURL" height="200" *ngIf="imgURL">
+                      </div>
+                    
+      
+              
+                 
+                      
+      
+                      
                     </div>
-    
-            
-               
-                    
-    
-                    
                   </div>
                 </div>
-              </div>
-<div mat-dialog-action [align]="'end'">
-    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-    <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="createcours(cours)">Save</button>
-
-</div>
+  <div mat-dialog-action [align]="'end'">
+      <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+      <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="createcours(cours)">Enregistrer</button>
+  
+  </div>

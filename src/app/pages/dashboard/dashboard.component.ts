@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import Chart from 'chart.js';
+//import Chart from 'chart.js';
 
 
 @Component({
@@ -8,9 +8,9 @@ import Chart from 'chart.js';
     templateUrl: 'dashboard.component.html'
 })
 
-export class DashboardComponent implements OnInit{
+export class DashboardComponent {
 
-  public canvas : any;
+  /*public canvas : any;
   public ctx;
   public chartColor;
   public chartEmail;
@@ -205,5 +205,5 @@ export class DashboardComponent implements OnInit{
         data: speedData,
         options: chartOptions
       });
-    }
+    }*/
 }

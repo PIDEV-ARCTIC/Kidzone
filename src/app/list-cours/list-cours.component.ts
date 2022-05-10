@@ -50,6 +50,7 @@ export class ListCoursComponent implements OnInit {
       this.toastr.info("votre cours a été enregistrée avec succès !!", "Cour");
 
     }
+ 
    
       addcours(cours: any){
         this.bs.createcours(cours).subscribe(() => {

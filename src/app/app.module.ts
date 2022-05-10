@@ -26,10 +26,14 @@ import { HomeComponent } from "./home/home.component";
 import { ListCourfontComponent } from './list-courfont/list-courfont.component';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { AddCoursfrontComponent } from './add-coursfront/add-coursfront.component';
 import { StatReclamationComponent } from './stat-reclamation/stat-reclamation.component';
 //import { JardinComponent } from './services/jardin/jardin.component';
 import {GoogleChartsModule} from "angular-google-charts";
+import { AddreclamationComponent } from './addreclamation/addreclamation.component';
+import { PiechartComponent } from './piechart/piechart.component';
+import {AccumulationChartModule , PieSeriesService, AccumulationDataLabelService,AccumulationLegendService,AccumulationTooltipService} from '@syncfusion/ej2-angular-charts';
+
+
 
 @NgModule({
   declarations: [
@@ -38,8 +42,15 @@ import {GoogleChartsModule} from "angular-google-charts";
     FrontNavBarComponent ,
     HomeComponent,
     ListCourfontComponent,
-    AddCoursfrontComponent,
-    StatReclamationComponent
+  
+   
+    StatReclamationComponent,
+  
+   
+    AddreclamationComponent,
+  
+   
+    PiechartComponent
     //ListReclamationComponent,
     //ListCoursComponent,
     //CreateCoursComponent,
@@ -56,12 +67,14 @@ import {GoogleChartsModule} from "angular-google-charts";
     GoogleChartsModule,
     FormsModule,
     ReactiveFormsModule,
+    AccumulationChartModule,
     RouterModule.forRoot(AppRoutes,{
       useHash: true
     }),
     RouterModule.forRoot([
       //{path: 'inscription-front', component: InscriptionFrontComponent},
       {path: 'ListCourfont', component: ListCourfontComponent},
+      {path: 'addreclamation', component: AddreclamationComponent},
       
       {path: 'home', component: HomeComponent},    
   {
@@ -102,7 +115,8 @@ import {GoogleChartsModule} from "angular-google-charts";
     ),
 
   ],
-  providers: [],
+  providers: [
+    PieSeriesService,AccumulationDataLabelService,AccumulationLegendService,AccumulationTooltipService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

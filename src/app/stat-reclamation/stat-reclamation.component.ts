@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ChartType, GoogleChartComponent} from 'angular-google-charts';
+import { Chart, BarElement, BarController, CategoryScale, Decimation, Filler, Legend, Title, Tooltip, registerables } from 'chart.js';
+
+
 import { reclamation } from 'app/model/reclamation';
 import { reclamationService } from 'app/service/reclamationService';
 @Component({
@@ -8,43 +10,67 @@ import { reclamationService } from 'app/service/reclamationService';
   styleUrls: ['./stat-reclamation.component.css']
 })
 export class StatReclamationComponent implements OnInit {
-  listereclamation:any;
-  cloture:number=0;
-  noncloture:number=0;
-  nom = 'Statistique Reclamation';
-  typereclamation = 'PieChart' as ChartType;
-  columnNames = ['Cloturé', 'En cours de traitement'] ;
-  options = {   is3D: true};
-  dataRec=[] as any;
-
-  width = 0;
-  height = 0;
-  constructor(public s : reclamationService) { }
+  title : "charDemo";
+  listereclamationtype: any[];
+  listreclamationNumber: any[];
+  constructor(public _service : reclamationService) { 
+    Chart.register(BarElement, BarController, CategoryScale, Decimation, Filler, Legend, Title, Tooltip);
+    Chart.register(...registerables);
+  }
 
   ngOnInit(): void {
 
-    let resp=this.s.getListReclamation().subscribe((data)=>
-    {this.listereclamation=data
+    this._service.getfindbytype().subscribe(res => {
+      this.listereclamationtype = res;
+      console.log(this.listereclamationtype);
 
-      for( let a of this.listereclamation )
-      {if(a.cloture){
-        this.cloture+=1;
-      }else this.noncloture+=1;
+      
+    this._service.getfindbytypenumbre().subscribe(res1 => {
+      this.listreclamationNumber = res1;
+      
+      const myChart = new Chart("myChart", {
+      type: 'bar',
+      data: {
+          labels:  this.listereclamationtype,
+          datasets: [{
+              label: '# RECLAMATION NUMBER',
+              data: this.listreclamationNumber,
+            
+              backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(25, 41, 136)',
+                'rgb(111, 6, 1)',
+                'rgb(123, 1, 13)',
+                'rgb(33, 41, 13)',
+                'rgb(99, 41, 13)',
 
+
+              ],
+             
+              borderWidth: 1
+              
+          }
+        ]
+      },
+      options: {
+          scales: {
+              y: {
+                max : 10,
+                min : 0,
+                  beginAtZero: true,
+              }
+          }
       }
+  });
+});
+    })
+    
 
-      this.dataRec = [
-        ['Cloture' , this.cloture],
-        ['En cours de traitement', this.noncloture],
-
-      ];
-    });
   }
+
 
 }
 
 
 
-
- 
 

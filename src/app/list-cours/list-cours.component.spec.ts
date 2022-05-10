@@ -21,5 +21,5 @@ describe('ListCoursComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
+  }); 
 });

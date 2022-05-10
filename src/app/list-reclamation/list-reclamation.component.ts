@@ -18,7 +18,10 @@ export class ListReclamationComponent implements OnInit {
   listereclamation:any ;
   reclamation!: reclamation;
   form : boolean = false;
+mail : any ;
   closeResult! : string;
+  formm : any =[] ;
+  msg : any ;
  
 
   constructor(private toastr:ToastrService,private ref: ChangeDetectorRef,private bs : reclamationService, private modalService: NgbModal,private dialog: MatDialog) { }
@@ -26,22 +29,38 @@ export class ListReclamationComponent implements OnInit {
 
 
     this.bs.getListReclamation().subscribe(res =>{this.listereclamation = res;
-     
-     
     })
   }
   ngOnInit(): void {
     this.getreclamation();
-    this.reclamation={
-      idreclamation: null,
-      typereclamation : null,
-      description : null,
-      nom : null,
-      Blocked : null,
-     
-    }
+ 
   }
   
+  getQuantiteRestante() {
+
+   return this.bs.mail().subscribe();
+  }
+  /*
+  forgotPassword() {
+    this.mail = this.formm.mail;
+    this.bs.forgotPassword(this.mail).subscribe(
+      data => {
+        console.log(data)
+        this.toastr.success('Hello world!', 'Toastr fun!');
+        this.msg = 'Mail Sended Succesfully';
+        this.formm = " ";
+      },
+      error => {
+        console.log(error)
+        this.msg = 'cannot found user with this email';
+        this.formm = " ";
+      });
+
+    }
+    */
+        
+  
+
   open(content: any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;

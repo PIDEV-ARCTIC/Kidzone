@@ -12,6 +12,7 @@ import { JardinComponent }           from '../../jardin/jardin.component';
 import { ListCoursComponent } from 'app/list-cours/list-cours.component';
 import { ListReclamationComponent } from 'app/list-reclamation/list-reclamation.component';
 import { StatReclamationComponent } from 'app/stat-reclamation/stat-reclamation.component';
+import { PiechartComponent } from 'app/piechart/piechart.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -25,5 +26,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },
     { path: 'notifications',  component: NotificationsComponent },
-    { path: 'upgrade',        component: UpgradeComponent }
+    { path: 'upgrade',        component: UpgradeComponent },
+    { path: 'Piechart',        component: PiechartComponent }
+
 ];
