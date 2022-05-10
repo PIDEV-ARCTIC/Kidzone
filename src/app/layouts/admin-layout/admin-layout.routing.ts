@@ -36,8 +36,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'chart',    component: StatComponent },
     { path: 'listeevent',    component: ListeeventComponent },
     { path: 'statabsence',    component: StatabsenceComponent },
-    { path: 'listeeventfront',    component: ListeeventsComponent },
-
 
 
 

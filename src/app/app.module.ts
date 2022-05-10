@@ -27,6 +27,7 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
 import { StatabsenceComponent } from './absence/statabsence/statabsence.component';
 import { HomeComponent } from "./home/home.component";
 import { FrontNavBarComponent } from "./front-nav-bar/front-nav-bar.component";
+import { ListeeventsComponent } from "./listeeventfront/listeevents/listeevent.component";
 
 
 
@@ -45,6 +46,7 @@ import { FrontNavBarComponent } from "./front-nav-bar/front-nav-bar.component";
     StatabsenceComponent,
     HomeComponent,
     FrontNavBarComponent,
+    ListeeventsComponent,
 
 
   ],
@@ -57,10 +59,11 @@ import { FrontNavBarComponent } from "./front-nav-bar/front-nav-bar.component";
     Ng2OrderModule,
     RouterModule.forRoot([
       {path: 'evenement', component: ListeeventComponent },
-      {path: 'home', component: HomeComponent},    
+      {path: 'home', component: HomeComponent},
+      {path: 'listefrontevent', component: ListeeventsComponent} ,    
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'home',
     pathMatch: 'full',
   }, {
     path: '',
@@ -72,7 +75,7 @@ import { FrontNavBarComponent } from "./front-nav-bar/front-nav-bar.component";
 }]},
   {
     path: '**',
-    redirectTo: 'dashboard'
+    redirectTo: 'home'
   },
 
     ]),
