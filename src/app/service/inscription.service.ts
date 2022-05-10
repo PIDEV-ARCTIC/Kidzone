@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient} from '@angular/common/http';
 import { Inscription } from '../model/inscription';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,16 @@ export class InscriptionService {
   }
   getInscriptionsCSV(){
     return  this.httpClient.get(`${this.API_URL}/GetInscriptionsCSV`)
+  }
+  getTaux(){
+    return  this.httpClient.get(`${this.API_URL}/Taux`)
+  }
+
+  getRapport(){
+    return  this.httpClient.get<number[]>(`${this.API_URL}/RapportYear`)
+  }
+
+  getMontant(){
+    return  this.httpClient.get(`${this.API_URL}/Montants`)
   }
 }

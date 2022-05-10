@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { InscriptionService } from 'app/service/inscription.service';
 import Chart from 'chart.js';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -15,89 +18,18 @@ export class DashboardComponent implements OnInit{
   public chartColor;
   public chartEmail;
   public chartHours;
+  myGridOptions: any;
 
+  constructor(private service:InscriptionService,private httpClient: HttpClient){}
     ngOnInit(){
-      this.chartColor = "#FFFFFF";
+      
+      
+        
 
-      this.canvas = document.getElementById("chartHours");
-      this.ctx = this.canvas.getContext("2d");
+            
 
-      this.chartHours = new Chart(this.ctx, {
-        type: 'line',
-
-        data: {
-          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
-          datasets: [{
-              borderColor: "#6bd098",
-              backgroundColor: "#6bd098",
-              pointRadius: 0,
-              pointHoverRadius: 0,
-              borderWidth: 3,
-              data: [300, 310, 316, 322, 330, 326, 333, 345, 338, 354]
-            },
-            {
-              borderColor: "#f17e5d",
-              backgroundColor: "#f17e5d",
-              pointRadius: 0,
-              pointHoverRadius: 0,
-              borderWidth: 3,
-              data: [320, 340, 365, 360, 370, 385, 390, 384, 408, 420]
-            },
-            {
-              borderColor: "#fcc468",
-              backgroundColor: "#fcc468",
-              pointRadius: 0,
-              pointHoverRadius: 0,
-              borderWidth: 3,
-              data: [370, 394, 415, 409, 425, 445, 460, 450, 478, 484]
-            }
-          ]
-        },
-        options: {
-          legend: {
-            display: false
-          },
-
-          tooltips: {
-            enabled: false
-          },
-
-          scales: {
-            yAxes: [{
-
-              ticks: {
-                fontColor: "#9f9f9f",
-                beginAtZero: false,
-                maxTicksLimit: 5,
-                //padding: 20
-              },
-              gridLines: {
-                drawBorder: false,
-                zeroLineColor: "#ccc",
-                color: 'rgba(255,255,255,0.05)'
-              }
-
-            }],
-
-            xAxes: [{
-              barPercentage: 1.6,
-              gridLines: {
-                drawBorder: false,
-                color: 'rgba(255,255,255,0.1)',
-                zeroLineColor: "transparent",
-                display: false,
-              },
-              ticks: {
-                padding: 20,
-                fontColor: "#9f9f9f"
-              }
-            }]
-          },
-        }
-      });
-
-
-      this.canvas = document.getElementById("chartEmail");
+///////
+      /*this.canvas = document.getElementById("chartEmail");
       this.ctx = this.canvas.getContext("2d");
       this.chartEmail = new Chart(this.ctx, {
         type: 'pie',
@@ -161,35 +93,43 @@ export class DashboardComponent implements OnInit{
             }]
           },
         }
-      });
-
+      });*/
+////
       var speedCanvas = document.getElementById("speedChart");
-
+      
+      let TT: Array<number>
+      let ts: Array<number>
+      //this.service.getTaux().subscribe(res => {console.log(ts = res as number[])})
+      //console.log(this.service.getTab().subscribe(res => {ts = res as number[]}));
+      //TT=this.getTS()
+      console.log(this.getTableauTaux())
+      console.log(this.getTableauMontant())
+      //ts=this.service.getTaux().subscribe(res => {this.myGridOptions.rowData = res as Number[]})
       var dataFirst = {
-        data: [0, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70],
+        data : this.getTableauTaux() ,
         fill: false,
         borderColor: '#fbc658',
         backgroundColor: 'transparent',
-        pointBorderColor: '#fbc658',
+        pointBorderColor: '#51CACF',
+        pointRadius: 4,
+        pointHoverRadius: 4,
+        pointBorderWidth: 8,
+      };
+      var dataSecond = {
+        data : this.getTableauMontant() ,
+        fill: false,
+        borderColor: '#0867F0',
+        backgroundColor: 'transparent',
+        pointBorderColor: '#67CC47',
         pointRadius: 4,
         pointHoverRadius: 4,
         pointBorderWidth: 8,
       };
 
-      var dataSecond = {
-        data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
-        fill: false,
-        borderColor: '#51CACF',
-        backgroundColor: 'transparent',
-        pointBorderColor: '#51CACF',
-        pointRadius: 4,
-        pointHoverRadius: 4,
-        pointBorderWidth: 8
-      };
-
       var speedData = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [dataFirst, dataSecond]
+        labels: this.getTableauRapports(),
+        //labels: ["2020/2019", "2021/2020", "2022/2021"],
+        datasets: [dataFirst,dataSecond]
       };
 
       var chartOptions = {
@@ -206,4 +146,28 @@ export class DashboardComponent implements OnInit{
         options: chartOptions
       });
     }
+
+    getTableauTaux(): number[]{
+      let tab: Array<number>
+      this.service.getTaux().subscribe(res => {
+        tab = res as number[],
+        localStorage.setItem('Value',JSON.stringify(tab))})
+        return JSON.parse(localStorage.getItem("Value"));
+      };
+
+      getTableauMontant(): number[]{
+        let tab: Array<number>
+        this.service.getMontant().subscribe(res => {
+          tab = res as number[],
+          localStorage.setItem('Montants',JSON.stringify(tab))})
+          return JSON.parse(localStorage.getItem("Montants"));
+        };
+
+      getTableauRapports(): String[]{
+        let tab: Array<number>
+        this.service.getRapport().subscribe(res => {
+          tab = res as number[],
+          localStorage.setItem('Rapport',JSON.stringify(tab))})
+          return JSON.parse(localStorage.getItem("Rapport"));
+        };
 }

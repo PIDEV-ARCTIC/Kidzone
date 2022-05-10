@@ -22,6 +22,7 @@ export class InscriptionFrontComponent implements OnInit {
   
   dataSource: MatTableDataSource<any>;
   
+  submitted = false;
  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -30,12 +31,12 @@ export class InscriptionFrontComponent implements OnInit {
 
   ngOnInit(): void {
     this.inscriptionForm = this.formBuilder.group({
-      dateoperation : [''],
-      montant: [0],
-      typepaiement : [''],
-      activite : [''],  
-      bus: [null],
-      enfant: ['']
+      dateoperation : ['',Validators.required],
+      montant: [0,Validators.required],
+      typepaiement : ['',Validators.required],
+      activite : ['',Validators.required],  
+      bus: [97,Validators.required],
+      enfant: ['',Validators.required]
     });
     console.log(this.getAllBus());
   }
@@ -75,5 +76,16 @@ getAllBus(){
       alert("Erreur d'affichage de données");
     }
   })  
+}
+onSubmit() {
+  this.submitted = true;
+
+  // stop here if form is invalid
+  if (this.inscriptionForm.invalid) {
+      return;
+  }
+
+  // display form values on success
+  alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.inscriptionForm.value, null, 4));
 }
 }

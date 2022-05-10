@@ -41,10 +41,7 @@ import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { FrontNavBarComponent } from './front-nav-bar/front-nav-bar.component';
 import { HomeComponent } from './home/home.component';
 import { Inscription } from "./model/inscription";
-
-
-
-
+import { DialoginfoinscriComponent } from './dialoginfoinscri/dialoginfoinscri.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +55,7 @@ import { Inscription } from "./model/inscription";
     InscriptionFrontComponent,
     FrontNavBarComponent,
     HomeComponent,
+    DialoginfoinscriComponent,
  
   ],
   imports: [

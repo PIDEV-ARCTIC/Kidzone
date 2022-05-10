@@ -24,13 +24,13 @@
             <mat-label>Nom chauffeur</mat-label>
             <input formControlName ="nomChauffeur" matInput placeholder="Placeholder">
         </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Photo chauffeur</mat-label>
-            <input formControlName ="photoChauffeur" matInput placeholder="Placeholder" >
+        <mat-form-field appearance="outline" hidden>
+            <mat-label hidden>Photo chauffeur</mat-label>
+            <input formControlName ="photoChauffeur" matInput placeholder="Placeholder" hidden >
         </mat-form-field>
     </form>
 </div>
 <div mat-dialog-action [align]="'end'">
-    <button mat-stroked-button color="warn" mat-dialog-close>Fermer</button>
-    <button mat-stroked-button color="primary" style="margin-left:8px" (click)="onEditBus()">Modifier</button>
+    <button mat-stroked-button color="warn" mat-dialog-close><mat-icon>clear</mat-icon></button>
+    <button mat-stroked-button color="primary" style="margin-left:8px" (click)="onEditBus()"><mat-icon>add</mat-icon></button>
 </div>

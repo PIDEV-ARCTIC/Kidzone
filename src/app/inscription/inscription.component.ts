@@ -11,6 +11,8 @@ import { DialogEditBusComponent } from 'app/dialog-edit-bus/dialog-edit-bus.comp
 import { DialoginfoBusComponent } from 'app/dialoginfo-bus/dialoginfo-bus.component';
 import { Inscription } from 'app/model/inscription';
 import { saveAs } from 'file-saver';
+import { DialoginfoinscriComponent } from 'app/dialoginfoinscri/dialoginfoinscri.component';
+import { Enfant } from 'app/model/enfant';
 
 
 @Component({
@@ -25,7 +27,7 @@ export class InscriptionComponent implements OnInit {
    closeResult! : string;
 
   //displayedColumns: string[] = ['idbus', 'heuredepart', 'destination', 'nbrplaces','prenomChauffeur','nomChauffeur','photoChauffeur','action'];
-  displayedColumns: string[] = ['idinscription', 'dateoperation','ttt', 'montant', 'typepaiement','activite','action'];
+  displayedColumns: string[] = ['idinscription', 'dateoperation','ttt', 'montant', 'typepaiement','activite','enfant','action'];
   dataSource: MatTableDataSource<any>;
   
  
@@ -70,9 +72,23 @@ export class InscriptionComponent implements OnInit {
       error:(err)=>{
         alert("Erreur d'affichage de données");
       }
-    })  
+    })
   }
+  openInfoInscriDialog( enfant : Enfant ) {
+    const dialogRef = this.dialog.open(DialoginfoinscriComponent,{
+      width: '50%',
+      height:'50%',
+    });
+    localStorage.setItem("idenfant",enfant.idenfant.toString());
+    localStorage.setItem("nomenfant",enfant.prenomenfant);
+    localStorage.setItem("nomparent",enfant.nomparent);
+    localStorage.setItem("prenomparent",enfant.prenomparent);
+    localStorage.setItem("age",enfant.age.toString());
+    localStorage.setItem("num",enfant.numtel);
+    localStorage.setItem("classe",enfant.classe);
+    localStorage.setItem("email",enfant.emailparent);
 
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -99,17 +115,14 @@ export class InscriptionComponent implements OnInit {
     }
 
     InscriptionCSV(){
-      
-      this.inscriptionService.getInscriptionsCSV().subscribe((ResponseMessage:any)=>{
+      alert('fichier exporté');
+      /*this.inscriptionService.getInscriptionsCSV().subscribe((ResponseMessage:any)=>{
         let file = new Blob([ResponseMessage],{type :'text/csv'});
         //var fileURL = URL.createObjectURL(file);
-        saveAs(file, "myFile.csv");
-      })
-    }
-
-    InscriptionCSV1(){
-      this.inscriptionService.getInscriptionsCSV().subscribe();
-      alert("test");
+        saveAs(file, "inscriptions.csv");
+        
+      })*/
+      this.inscriptionService.getInscriptionsCSV().subscribe((res) => console.log(res))
     }
 
     /*editBus(row :any){
