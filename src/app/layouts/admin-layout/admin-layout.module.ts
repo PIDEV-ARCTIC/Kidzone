@@ -29,6 +29,8 @@ import {DataSource} from '@angular/cdk/table';
 import { MatFileUploadModule } from 'angular-material-fileupload';
 import { JdialoguppComponent } from '../../jdialogupp/jdialogupp.component';
 //import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { STATJardinComponent } from '../../statjardin/statjardin.component';
 
 @NgModule({
   imports: [
@@ -48,7 +50,8 @@ import { JdialoguppComponent } from '../../jdialogupp/jdialogupp.component';
     MatPaginatorModule,
     MatSortModule,
     CdkTableModule,
-    MatFileUploadModule
+    MatFileUploadModule,
+    NgxQRCodeModule
    // MaterialFileInputModule
   ],
   declarations: [
@@ -62,7 +65,8 @@ import { JdialoguppComponent } from '../../jdialogupp/jdialogupp.component';
     MapsComponent,
     NotificationsComponent,
     JdialoguppComponent,
-    JdialogComponent
+    JdialogComponent,
+    STATJardinComponent
   ],
   providers: [
     

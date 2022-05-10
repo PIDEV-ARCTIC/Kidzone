@@ -26,6 +26,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { STATJardinComponent } from './statjardin/statjardin.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     FrontNavBarComponent,
     JardinaffichComponent,
-    EnfantajoutComponent
+    EnfantajoutComponent,
+    //STATJardinComponent
    // JdialoguppComponent,
    // JardinComponent,
    // EnfantComponent,

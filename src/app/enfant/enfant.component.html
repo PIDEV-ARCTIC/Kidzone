@@ -13,102 +13,161 @@
                   Prenom
                 </th>
                 <th>
-                  Logo
+                  Age
                 </th>
                 <th>
-                  Email
+                  Classe
                 </th>
                 <th>
-                  Telephone
+                  Photo
                 </th>
                 <th>
-                  Tarif
+                  Gender
                 </th>
                 <th>
-                  Description
+                  Parent
                 </th>
-                <th class="text-right">
+                <th>
+                  Telephone Parent
+                </th>
+                <th>
+                  Mail Parent
+                </th>
+                <th>
+                  Adresse Parent
+                </th>
+                <th>
+                  QRcode Enfant
+                </th>
+                <th>
+                  Jardin Enfant
+                </th>
+                <th>
                   Action
                 </th>
               </thead>
               <tbody>
-                <tr *ngFor='let Jardin of listJardin'>
+                <tr *ngFor='let Enfant of listEnfant'>
                   <td>
-                    {{Jardin.nomjardin}}
+                    {{Enfant.nomenfant}}
                   </td>
                   <td>
-                    {{Jardin.adressejardin}}
+                    {{Enfant.prenomenfant}}
                   </td>
                   <td>
-                    {{Jardin.logo}}
+                    {{Enfant.age}}
                   </td>
                   <td>
-                    {{Jardin.emailjardin}}
+                    {{Enfant.classe}}
                   </td>
                   <td>
-                    {{Jardin.numtel}}
+                    {{Enfant.photo}}
                   </td>
                   <td>
-                    {{Jardin.tarif}}
+                    {{Enfant.gender}}
                   </td>
-                  {{Jardin.description}}
+                  <td>
+                    {{Enfant.nomprenomparent}}
+                  </td>
+                  <td>
+                    {{Enfant.numtel}}
+                  </td>
+                  <td>
+                    {{Enfant.mail}}
+                  </td>
+                  <td>
+                    {{Enfant.adresseEnfant}}
+                  </td>
+                  <td>
+                    <ngx-qrcode
+                    [elementType]="elementType"
+                    [errorCorrectionLevel]="correctionLevel"
+                    [value]="'Nom :'+Enfant.nomenfant +', Prenom :'+Enfant.prenomenfant+' Classe :'+Enfant.classe +'}'" 
+                    cssClass="bshadow"></ngx-qrcode>
+                  </td>
+                  <td>
+                    {{Enfant.jardin.nomjardin}}
+                  </td>
+                 
                   <td>
                     <button mat-icon-button (click)="open(mymodal)"  type="button" color="primary">
                         <mat-icon>edit</mat-icon>
                     </button>
                     <ng-template #mymodal let-modal>
                       
-                      <h1 mat-dialog-litle  id="modal-basic-title">Edit Jardin D'Enfant</h1>
+                      <h1 mat-dialog-litle  id="modal-basic-title">Edit Enfant</h1>
                      
-                      <form >
-                      <div mat-dialog-content>
-   
-    <mat-form-field appearance="outline">
-        <mat-label>Nom Jardin Enfant</mat-label>
-        <input [(ngModel)]="Jardin.nomjardin" matInput placeholder="nom du jardin"  [ngModelOptions]="{standalone : true}" > 
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Adresse Jardin Enfant</mat-label>
-        <input [(ngModel)]="Jardin.adressejardin" matInput placeholder="adresse jardin" [ngModelOptions]="{standalone : true}">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Logo Jardin Enfant</mat-label>
-        <input [(ngModel)]="Jardin.logo" matInput placeholder="logo" [ngModelOptions]="{standalone : true}">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Email Jardin Enfant</mat-label>
-        <input [(ngModel)]="Jardin.emailjardin" matInput placeholder="Votre Email" [ngModelOptions]="{standalone : true}"> 
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Telephone Jardin Enfant</mat-label>
-        <input [(ngModel)]="Jardin.numtel" matInput placeholder="num Tel" [ngModelOptions]="{standalone : true}">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Tarif Jardin Enfant</mat-label>
-        <input type="number" [(ngModel)]="Jardin.tarif" matInput placeholder="tarif" [ngModelOptions]="{standalone : true}">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Description Jardin Enfant</mat-label>
-        <textarea [(ngModel)]="Jardin.description" matInput placeholder="description" [ngModelOptions]="{standalone : true}"></textarea>
-    </mat-form-field>
-  </div>
-   </form>
+                      <form>
+                        <div mat-dialog-content>
+                           
+                          <mat-form-field appearance="outline">
+                              <mat-label>Nom Enfant</mat-label>
+                              <input [(ngModel)]="Enfant.nomenfant" matInput   [ngModelOptions]="{standalone : true}" > 
+                          </mat-form-field>
+                          <mat-form-field appearance="outline">
+                              <mat-label>Prenom Enfant</mat-label>
+                              <input [(ngModel)]="Enfant.prenomenfant" matInput   [ngModelOptions]="{standalone : true}" > 
+                          </mat-form-field>
+                          <mat-form-field appearance="outline">
+                              <mat-label>Adresse Enfant</mat-label>
+                              <input [(ngModel)]="Enfant.adresseEnfant" matInput  [ngModelOptions]="{standalone : true}" > 
+                          </mat-form-field>
+                          <mat-form-field appearance="outline">
+                              <mat-label>Age Enfant</mat-label>
+                              <input type="number" [(ngModel)]="Enfant.age" matInput  [ngModelOptions]="{standalone : true}" > 
+                          </mat-form-field>
+                          <mat-form-field appearance="outline">
+                              <mat-label>Classe Enfant</mat-label>
+                              <input [(ngModel)]="Enfant.classe" matInput   [ngModelOptions]="{standalone : true}" > 
+                          </mat-form-field>
+                          <mat-form-field appearance="outline">
+                              <mat-label>Photo Enfant</mat-label>
+                              <input matInput [(ngModel)]="Enfant.photo" [ngModelOptions]="{standalone : true}" > 
+                            
+                          </mat-form-field>
+                          <mat-form-field appearance="outline">
+                              <mat-label>Parent Enfant</mat-label>
+                              <input matInput [(ngModel)]="Enfant.nomprenomparent" [ngModelOptions]="{standalone : true}" > 
+                            
+                          </mat-form-field>
+                          <mat-form-field appearance="outline">
+                              <mat-label>Telephone Enfant</mat-label>
+                              <input matInput type="number" [(ngModel)]="Enfant.numtel" [ngModelOptions]="{standalone : true}" > 
+                            
+                          </mat-form-field>
+                          <mat-form-field appearance="outline">
+                              <mat-label>Mail Parent</mat-label>
+                              <input matInput [(ngModel)]="Enfant.mail" [ngModelOptions]="{standalone : true}" > 
+                            
+                          </mat-form-field>
+                          <label id="example-radio-group-label">Mode</label>
+                          <mat-radio-group
+                            aria-labelledby="example-radio-group-label"
+                            class="example-radio-group"
+                            [(ngModel)]="Enfant.gender"  [ngModelOptions]="{standalone : true}">
+                            <mat-radio-button class="example-radio-button" *ngFor="let gender of reglementlist" [value]="gender">
+                              {{gender}}
+                            </mat-radio-button>
+                          </mat-radio-group>
+                                
+                        </div>
+                      </form>
+                      
+                  
   
 
                <div mat-dialog-action [align]="'end'">
                 <button type="button" mat-raised-button color="warn" aria-label="Close"
                 (click)="modal.dismiss('Cross click')" aria-hidden="true" (click)="cancel()">Close</button>
                
-                   <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="editJardin(Jardin)">Update</button>
+                   <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="editEnfant(Enfant)">Update</button>
  
                 </div>
                     </ng-template>
-                    <button mat-icon-button color="warn" (click)="deleteJardin(Jardin.idjardin)" type="button">
+                    <button mat-icon-button color="warn" (click)="deleteEnfant(Enfant.idenfant)" type="button">
                       <mat-icon>delete</mat-icon>
                   </button>
-                  <button mat-icon-button (click)="openinfo(Jardin.idjardin)"  type="button" color="warn">
-                    <mat-icon>info</mat-icon>
-                </button>
+                 
                   </td>
                   
                 </tr>

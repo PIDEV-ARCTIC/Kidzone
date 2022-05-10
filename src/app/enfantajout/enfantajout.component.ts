@@ -61,5 +61,7 @@ export class EnfantajoutComponent implements OnInit {
     deleteEnfant(idEnfant : any){
       this.bs.deleteEnfant(idEnfant).subscribe(() => this.getAllEnfant())
     }
+    
+  
 
 }

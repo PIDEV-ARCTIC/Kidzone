@@ -30,6 +30,9 @@ export class JardinService {
     return  this.httpClient.get(`${this.API_URL}/JardinAffichEnfant/${idJardin}`)
   }
   
+  Stat() {
+    return this.httpClient.get(`${this.API_URL}/CA`)
+  }
 
   
  /* FindNameF(nomjardin : any){
