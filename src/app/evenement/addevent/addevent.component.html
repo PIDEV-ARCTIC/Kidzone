@@ -32,7 +32,7 @@
                   <div class="form-group col-12 mb-2">
                     <label for="eventRegInput1">Description<label  class="required-star" > * </label> </label>
                     <div class="textarea-wrapper">
-                    <textarea  type="text" pInputTextArea [(ngModel)]="value" (ngModelChange)="valueChangeDescription(value)" maxlength="100" required [(ngModel)]="evenement.description" id="eventRegInput1" 
+                    <textarea  type="text" pInputTextArea [(ngModel)]="value" (ngModelChange)="valueChange(value)" maxlength="100" required [(ngModel)]="evenement.description" id="eventRegInput1" 
                     class="form-control" placeholder="write here" name="description"></textarea>
                     <span class="remaning">{{remainingText}}/100</span>
                   </div>

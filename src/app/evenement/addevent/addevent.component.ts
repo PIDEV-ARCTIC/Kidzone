@@ -24,14 +24,8 @@ export class AddeventComponent implements OnInit {
     this.e.addEvent(this.evenement).subscribe(()=>this._router.navigateByUrl("/listeevent"));
     console.log(this.evenement.description);
   }
-  valueChangeDescription(value) {
+  valueChange(value) {
     this.remainingText = 100 - value.length;
-    if (value.length >0 ){
-      this.description_erreur=false
-        }else {
-          this.description_erreur=true
-        }
-    console.log(value.length);
    }
 
   ngOnInit(): void {

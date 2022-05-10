@@ -1,12 +1,14 @@
 <div class="row">
     <div class="col-md-12">
       <div class="card">
-        <div class="card-header">
-          <button type="button" class="btn btn-primary"(click)="sendMail()">Download List PDF</button>
-
-        </div>
+       
         <div class="card-body">
           <div class="table-responsive">
+            <div class="btn-addd">
+              <button type="button" class="btn btn-primary"(click)="sendMail()">Download List PDF</button>
+
+              <button class="btn btn-warning" routerLink="/addabsence">Add</button>
+            </div>
             <input type="text" placeholder="Search absence by cause" class="form-control round" [(ngModel)]="cause" (ngModelChange)="search()" />
 
             <table class="table">
@@ -40,8 +42,6 @@
                     {{c.cause}}
                   </td>
                   <td class="text-center">
-                    <button class="btn btn-warning" routerLink="/addabsence">Add</button>
-
                     <button class="btn btn-info" (click)="updateAbsence(c.idabsence)">Update</button>
                     <button class="btn btn-danger" (click)="deleteAbsence(c.idabsence)">Delete</button>
 

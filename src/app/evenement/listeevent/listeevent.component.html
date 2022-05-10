@@ -5,6 +5,10 @@
       </div>
       <div class="card-body">
         <div class="table-responsive">
+          <div class="btn-add">
+
+          <button class="btn btn-warning" routerLink="/addevent">Add</button>
+        </div>
           <input type="text" placeholder="Search event by description" class="form-control round" [(ngModel)]="description" (ngModelChange)="search()" />
 
           <table class="table">
@@ -39,7 +43,6 @@
                   {{c.description}}
                 </td>
                 <td class="text-right">
-                  <button class="btn btn-warning" routerLink="/addevent">Add</button>
 
                   <button class="btn btn-info" (click)="updateEvent(c.idevenement)">Update</button>
                   <button class="btn btn-danger" (click)="deleteEvent(c.idevenement)">Delete</button>
