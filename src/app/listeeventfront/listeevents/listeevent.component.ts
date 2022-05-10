@@ -9,7 +9,7 @@ import { NullTemplateVisitor } from '@angular/compiler';
   templateUrl: './listeevent.component.html',
   styleUrls: ['./listeevent.component.css']
 })
-export class ListeeventComponent implements OnInit {
+export class ListeeventsComponent implements OnInit {
 
   focus: any;
   focus1: any;
