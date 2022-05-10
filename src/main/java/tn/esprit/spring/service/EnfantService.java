@@ -180,6 +180,20 @@ public class EnfantService  {
 		return byteArrayOutputStream.toByteArray();
 
 	}
+	public String FindMailParent(long idenfant){
+		 return EnfantRepository.findById(idenfant).get().getMail();
+	}
+	
+	public String FindNameParent(long idenfant){
+		 return EnfantRepository.findById(idenfant).get().getNomprenomparent();
+	}
+	
+	public String FindNameChild(long idenfant){
+		 return EnfantRepository.findById(idenfant).get().getNomenfant();
+	}
+	public String FindSurNameChild(long idenfant){
+		 return EnfantRepository.findById(idenfant).get().getPrenomenfant();
+	}
 	
 
 	

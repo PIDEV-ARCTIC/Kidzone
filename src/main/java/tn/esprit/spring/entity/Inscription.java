@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.beust.jcommander.internal.Nullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -43,54 +42,37 @@ public class Inscription implements Serializable {
 	@Column(name="Montant")
 	private int montant;
 	@Column(name="TypePaiement")
-	private Boolean typepaiement;
+	private String typepaiement;
 	@Column(name="Activité")
-	private Boolean activite;
-	@Column(name="Description")
-	private String description;
+	private String activite;
 	
 	
-//	@ManyToOne (fetch=FetchType.EAGER)
-	//@JoinColumn(name = "bus_idbus", nullable = true)
-	//@JsonIgnore
-	//Bus bus;
-	/*@ManyToOne
-	Enfant enfant;*/
+	@ManyToOne (fetch=FetchType.EAGER)
+	@JoinColumn(name = "bus_idbus", nullable = true)
+	Bus bus;
 	
 	@OneToOne
 	private Enfant enfant;
 
 
-	
-	public Inscription(Long idinscription, Date dateoperation, int montant, Boolean typepaiement, Boolean activite,
-			String description, Enfant enfant) {
+	public Inscription(Long idinscription, Date dateoperation, int montant, String typepaiement, String activite, Bus bus, Enfant enfant) {
 		super();
 		this.idinscription = idinscription;
 		this.dateoperation = dateoperation;
 		this.montant = montant;
 		this.typepaiement = typepaiement;
 		this.activite = activite;
-		this.description = description;
+		this.bus = bus;
 		this.enfant = enfant;
 	}
 
-
-	public Inscription(Date dateoperation, Enfant enfant) {
-		super();
-		this.dateoperation = dateoperation;
-		this.enfant = enfant;
-	}
-
-
-	public Inscription(Long idinscription, Date dateoperation, int montant, Boolean typepaiement, Boolean activite,
-			String description) {
+	public Inscription(Long idinscription, Date dateoperation, int montant, String typepaiement, String activite) {
 		super();
 		this.idinscription = idinscription;
 		this.dateoperation = dateoperation;
 		this.montant = montant;
 		this.typepaiement = typepaiement;
 		this.activite = activite;
-		this.description = description;
 	}
 
 
@@ -100,12 +82,6 @@ public class Inscription implements Serializable {
 	}
 	
 	
-
-	public Inscription(Date dateoperation) {
-		super();
-		this.dateoperation = dateoperation;
-	}
-
 
 	public Inscription() {
 		super();
@@ -119,13 +95,7 @@ public class Inscription implements Serializable {
 		this.idinscription = idinscription;
 	}
 
-	public String getDescription() {
-		return description;
-	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
 
 	public Date getDateoperation() {
 		return dateoperation;
@@ -143,23 +113,29 @@ public class Inscription implements Serializable {
 		this.montant = montant;
 	}
 
-	public Boolean getTypepaiement() {
+	public String getTypepaiement() {
 		return typepaiement;
 	}
 
-	public void setTypepaiement(Boolean typepaiement) {
+	public void setTypepaiement(String typepaiement) {
 		this.typepaiement = typepaiement;
 	}
 
-	public Boolean getActivite() {
+	public String getActivite() {
 		return activite;
 	}
 
-	public void setActivite(Boolean activite) {
+	public void setActivite(String activite) {
 		this.activite = activite;
 	}
 
-	
+	public Bus getBus() {
+		return bus;
+	}
+
+	public void setBus(Bus bus) {
+		this.bus = bus;
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
