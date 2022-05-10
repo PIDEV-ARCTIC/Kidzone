@@ -6,12 +6,16 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,17 +37,55 @@ public class Inscription implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idinscription;
-	@Column(name="Description")
-	private String description;
 	@Column(name="DateOperation")
 	private Date dateoperation;
+	@Column(name="Montant")
+	private int montant;
 	@Column(name="TypePaiement")
 	private String typepaiement;
 	@Column(name="Activité")
 	private String activite;
 	
-	@ManyToOne
+	
+	@ManyToOne (fetch=FetchType.EAGER)
+	@JoinColumn(name = "bus_idbus", nullable = true)
 	Bus bus;
+	
+	@OneToOne
+	private Enfant enfant;
+
+
+	public Inscription(Long idinscription, Date dateoperation, int montant, String typepaiement, String activite, Bus bus, Enfant enfant) {
+		super();
+		this.idinscription = idinscription;
+		this.dateoperation = dateoperation;
+		this.montant = montant;
+		this.typepaiement = typepaiement;
+		this.activite = activite;
+		this.bus = bus;
+		this.enfant = enfant;
+	}
+
+	public Inscription(Long idinscription, Date dateoperation, int montant, String typepaiement, String activite) {
+		super();
+		this.idinscription = idinscription;
+		this.dateoperation = dateoperation;
+		this.montant = montant;
+		this.typepaiement = typepaiement;
+		this.activite = activite;
+	}
+
+
+	public Inscription(Long idinscription) {
+		super();
+		this.idinscription = idinscription;
+	}
+	
+	
+
+	public Inscription() {
+		super();
+	}
 
 	public Long getIdinscription() {
 		return idinscription;
@@ -53,13 +95,7 @@ public class Inscription implements Serializable {
 		this.idinscription = idinscription;
 	}
 
-	public String getDescription() {
-		return description;
-	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
 
 	public Date getDateoperation() {
 		return dateoperation;
@@ -67,6 +103,14 @@ public class Inscription implements Serializable {
 
 	public void setDateoperation(Date dateoperation) {
 		this.dateoperation = dateoperation;
+	}
+
+	public int getMontant() {
+		return montant;
+	}
+
+	public void setMontant(int montant) {
+		this.montant = montant;
 	}
 
 	public String getTypepaiement() {
@@ -97,38 +141,14 @@ public class Inscription implements Serializable {
 		return serialVersionUID;
 	}
 
-	public Inscription(Long idinscription, String description, Date dateoperation, String typepaiement, String activite,
-			Bus bus) {
-		super();
-		this.idinscription = idinscription;
-		this.description = description;
-		this.dateoperation = dateoperation;
-		this.typepaiement = typepaiement;
-		this.activite = activite;
-		this.bus = bus;
-	}
-	
-
-	public Inscription(Long idinscription) {
-		super();
-		this.idinscription = idinscription;
+	public Enfant getEnfant() {
+		return enfant;
 	}
 
-	public Inscription() {
-		super();
+	public void setEnfant(Enfant enfant) {
+		this.enfant = enfant;
 	}
 
-	
-	
-	/*@ManyToOne
-	Bus Bus;*/
-	/*@ManyToOne(cascade = CascadeType.ALL)
-	Enfant enfant;
-	@OneToOne
-	private Reglement reglement;*/
-
-	
-	
 	
 	
 }
