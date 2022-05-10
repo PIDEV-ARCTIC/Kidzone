@@ -19,7 +19,7 @@
     <div class="card-body">
       <div class="px-3">
 
-        <form (ngSubmit)="onUpload()" novalidate enctype="multipart/form-data">
+        <form #f="ngForm" (ngSubmit)="onUpload()" novalidate enctype="multipart/form-data">
      
 
           <div class="row justify-content-md-center">
@@ -29,14 +29,21 @@
                   <div class="form-group col-12 mb-2">
                     <label for="eventRegInput1">Description<label  class="required-star" > * </label> </label>
                     <div class="textarea-wrapper">
-                    <textarea  type="text" pInputTextArea [(ngModel)]="value" (ngModelChange)="valueChange(value)" maxlength="100" required [(ngModel)]="evenement.description" id="eventRegInput1" 
+                    
+                    <textarea #m="ngModel" required maxlength="100" type="text" pInputTextArea [(ngModel)]="value" (ngModelChange)="valueChange(value)" maxlength="100" required [(ngModel)]="evenement.description" id="eventRegInput1" 
+                  
                     class="form-control" placeholder="write here" name="description"></textarea>
                     <span class="remaning">{{remainingText}}/100</span>
+
+                    <div class="alert alert-danger" *ngIf="m.invalid && m.touched">  
+                      <div *ngIf="m.errors.required">Description is a required field </div>
+                      
+                <div *ngIf="m.errors.maxlength">Description maximum length is equal to 100  </div>
+
+                    </div>
                   </div>
                 </div>
               </div>
-
-
 
                 <div class="row justify-content-md-center">
                   <div class="col-md-6">
@@ -69,7 +76,7 @@
                 <div class="row">
                   <div class="form-group col-12 mb-2">
                     <label for="pet-select">Type <label  class="required-star" > * </label> </label>
-                    <select [(ngModel)]='evenement.type' name="type" id="eventRegInput3" class='form-control'>
+                    <select #t="ngModel" required [(ngModel)]='evenement.type' name="type" id="eventRegInput3" class='form-control'>
                       <option value="Sport">Sport</option>
                       <option value="Gaming">Gaming</option>
                       <option value="Music">Music</option>
@@ -79,7 +86,11 @@
                       <option value="Film">Film</option>
 
                       </select>
-                  </div>
+                      <div class="alert alert-danger" *ngIf="t.invalid && t.touched">  
+                        <div *ngIf="t.errors.required">type is a required field </div>
+                          
+                      </div>
+                    </div>
                 </div>
 
                 <div class="form-actions clearfix">
@@ -87,7 +98,7 @@
                     <button type="button" class="btn btn-raised btn-warning mr-1">
                       <i class="ft-x"></i> Cancel
                     </button>
-                    <input type="submit" value="save" class="btn btn-raised btn-primary mr-1" >
+                    <input type="submit" value="save" class="btn btn-raised btn-primary mr-1" [disabled]="f.invalid">
                      
                   </div>
       

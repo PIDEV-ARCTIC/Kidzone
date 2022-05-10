@@ -19,7 +19,7 @@
         <div class="card-body">
           <div class="px-3">
     
-            <form class="form">
+            <form #f="ngForm" class="form">
         
     
               <div class="row justify-content-md-center">
@@ -28,7 +28,12 @@
                     <div class="row">
                       <div class="form-group col-12 mb-2">
                         <label for="eventRegInput1">Date Debut <label  class="required-star" > * </label></label>
-                        <input type="date" [(ngModel)]="absence.datedebut" id="eventRegInput1" class="form-control" placeholder="write here" name="datedebut">
+                        <input #d="ngModel" required type="date" [(ngModel)]="absence.datedebut" id="eventRegInput1" class="form-control" placeholder="write here" name="datedebut">
+                      
+                        <div class="alert alert-danger" *ngIf="d.invalid && d.touched">  
+                          <div *ngIf="d.errors.required">Date is a required field </div>
+                     
+                        </div>
                       </div>
                     </div>
     
@@ -37,14 +42,20 @@
                     <div class="row">
                       <div class="form-group col-12 mb-2">
                         <label for="eventRegInput2">Periode <label  class="required-star" > * </label></label>
-                        <input type="number" [(ngModel)]="absence.periode" id="eventRegInput2" class="form-control" placeholder="write here" name="periode">
+                        <input #p="ngModel" required pattern="[0-9][0-9][0-9][0-9]" type="number" [(ngModel)]="absence.periode" id="eventRegInput2" class="form-control" placeholder="write here" name="periode">
+                        <div class="alert alert-danger" *ngIf="p.invalid && p.touched">  
+                          <div *ngIf="p.errors.required">Periode is a required field </div>
+                      </div>
                       </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-12 mb-2">
                           <label for="eventRegInput3">Cause<label  class="required-star" > * </label></label>
-                          <input type="email" [(ngModel)]="absence.cause" id="eventRegInput3" class="form-control" placeholder="write here" name="cause">
+                          <textarea #c="ngModel" required [(ngModel)]="absence.cause" id="eventRegInput3" class="form-control" placeholder="write here" name="cause"></textarea>
+                          <div class="alert alert-danger" *ngIf="c.invalid && c.touched">  
+                            <div *ngIf="c.errors.required">Cause is a required field </div>
                         </div>
+                      </div>
                       </div>
             
                
@@ -60,7 +71,7 @@
                   <button type="button" class="btn btn-raised btn-warning mr-1">
                     <i class="ft-x"></i> Cancel
                   </button>
-                  <button type="button" class="btn btn-raised btn-primary mr-1" (click)="addAbsence()">
+                  <button type="button" class="btn btn-raised btn-primary mr-1" (click)="addAbsence()" [disabled]="f.invalid" >
                     <i class="fa fa-check-square-o"></i> Save
                   </button>
                 </div>
