@@ -19,7 +19,7 @@
     <div class="card-body">
       <div class="px-3">
 
-        <form class="form" (ngSubmit)="addEvent()" >
+        <form (ngSubmit)="onUpload()" novalidate enctype="multipart/form-data">
           <div class="form-actions top clearfix">
             <div class="buttons-group float-right">
               <button type="button" class="btn btn-raised btn-info mr-1">Action 1</button>
@@ -44,14 +44,34 @@
 
 
 
+                <div class="row justify-content-md-center">
+                  <div class="col-md-6">
+                    <div class="form-body">
 
-                <div class="row">
-                  <div class="form-group col-12 mb-2">
-                    <label for="eventRegInput2">Image</label>
-                    <input required type="text" [(ngModel)]="evenement.image" id="eventRegInput2" class="form-control" placeholder="Image" name="image">
+                      <div class="container row">
+                        <div class="col-md-12">
+                          <label for="eventRegInput3">Upload Image</label>
+                        </div>
+                      </div>
+
+                    
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="imagen" #imagenInputFile
+                            (change)="onFileChange($event)" accept="image/png, image/jpeg, image/gif">
+                            <label class="custom-file-label" for="imagen">Choose image</label>
+                        </div>
+                        <div *ngIf="imagen" class="mt-5">
+                            <h5>Image preview:</h5>
+                            <div>
+                                <img class="image-thumbnail" style="max-width: 100px" [src]="imagenMin">
+                            </div>
+                        </div>
+            
+                    </div>
                   </div>
                 </div>
 
+                
                 <div class="row">
                   <div class="form-group col-12 mb-2">
                     <label for="pet-select">Type</label>
@@ -68,29 +88,29 @@
                   </div>
                 </div>
 
-
-
-
-           
-                
+                <div class="form-actions clearfix">
+                  <div class="buttons-group float-left">
+                    <button type="button" class="btn btn-raised btn-warning mr-1">
+                      <i class="ft-x"></i> Cancel
+                    </button>
+                    <input type="submit" value="save" class="btn btn-raised btn-primary mr-1" >
+                     
+                  </div>
+      
+                </div>
+            
+        
 
                 
               </div>
             </div>
           </div>
 
-          <div class="form-actions clearfix">
-            <div class="buttons-group float-left">
-              <button type="button" class="btn btn-raised btn-warning mr-1">
-                <i class="ft-x"></i> Cancel
-              </button>
-              <input type="submit" value="save" class="btn btn-raised btn-primary mr-1" >
-               
-            </div>
-
-          </div>
+       
         </form>
-
+        <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+          <p style="font-size: 50px; color: white">Uploading the image...</p>
+      </ngx-spinner>l
       </div>
     </div>
   </div>

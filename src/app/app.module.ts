@@ -9,7 +9,6 @@ import { NavbarModule} from './shared/navbar/navbar.module';
 import { FixedPluginModule} from './shared/fixedplugin/fixedplugin.module';
 
 import { AppComponent } from './app.component';
-import { AppRoutes } from './app.routing';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AddeventComponent } from './evenement/addevent/addevent.component';
@@ -28,6 +27,8 @@ import { StatabsenceComponent } from './absence/statabsence/statabsence.componen
 import { HomeComponent } from "./home/home.component";
 import { FrontNavBarComponent } from "./front-nav-bar/front-nav-bar.component";
 import { ListeeventsComponent } from "./listeeventfront/listeevents/listeevent.component";
+import { NgxSpinnerModule } from 'ngx-spinner';
+import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -56,6 +57,8 @@ import { ListeeventsComponent } from "./listeeventfront/listeevents/listeevent.c
     FormsModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
+    NgxSpinnerModule,
+    NgbModalModule,
     Ng2OrderModule,
     RouterModule.forRoot([
       {path: 'evenement', component: ListeeventComponent },
