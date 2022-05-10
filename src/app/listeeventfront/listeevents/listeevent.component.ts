@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { evenementService } from 'app/service/evenementService';
-import { ModalDismissReasons, NgbModal, NgbModalModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { Evenement } from 'app/model/evenement';
-import { NullTemplateVisitor } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-listeevent',
@@ -11,23 +9,13 @@ import { NullTemplateVisitor } from '@angular/compiler';
 })
 export class ListeeventsComponent implements OnInit {
 
-  focus: any;
-  focus1: any;
   listEvent : any; 
-  evenement: Evenement;
-  form : boolean = false;
-  constructor(private _service:evenementService, private modalService: NgbModal, ) { }
+  constructor(private _service:evenementService ) { }
 
 
   ngOnInit(): void {
     this.getEvent();
-    this.evenement={
-   
-      idevenement: null,
-      description: null,
-      image:null,
-      type:null,
-    }
+    
   }
 
   getEvent(){
@@ -35,4 +23,5 @@ export class ListeeventsComponent implements OnInit {
     this.listEvent=res});
   
   }
+  
 }

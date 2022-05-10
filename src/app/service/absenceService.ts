@@ -38,7 +38,7 @@ export class absenceService {
             return this._http.get<string[]>(this.baseUrl+"/pdfgenerate");
         }  
         getfindbyperiode() : Observable<string[]>{
-            return this._http.get<string[]>(this.baseUrl+"/getfindbyperiode");
+            return this._http.get<string[]>(this.baseUrl+"/absenceByPeriode");
         }
 
     
