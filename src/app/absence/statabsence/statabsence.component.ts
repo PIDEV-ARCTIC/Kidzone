@@ -32,7 +32,7 @@ ngOnInit(): void {
     const myChart = new Chart("myChart", {
     type: 'polarArea',
     data: {
-        labels:  ["hedi", "nassim ","aymen"],
+        labels:  ["hedi", "nassim ","aymen","youssef"],
         datasets: [{
             label: '# Absence NUMBER',
             data: this.listeabsenceperiode,
