@@ -1,0 +1,121 @@
+<button mat-raised-button color="warn" (click)="openDialog()">Effectuée réglement</button>
+
+<button mat-icon-button color="warn" (click)="getAllReglements()"><mat-icon aria-hidden="false" aria-label="fa-refresh">fa-refresh</mat-icon></button>
+
+
+<div class="card-body">
+    <div class=table-responsive>
+        <table class="table">
+            <thead class=" text-primary">
+                <th>Tiér </th>
+                <th>Mail</th>
+                <th>Mode</th>
+                <th>Type</th>
+                <th>Date Opération</th>
+                <th>Sens Opération</th>
+                <th>Montant</th>
+        
+            </thead>
+            <tbody>
+                <tr *ngFor='let reglement of listReglement'>
+                    <td>{{reglement.idtier}}</td>
+                    <td>{{reglement.mail}}</td>
+                    <td>{{reglement.mode}}</td>
+                    <td>{{reglement.type}}</td>
+                    <td>{{reglement.dateoperation}}</td>
+                    <td>{{reglement.sensoperation}}</td>
+                    <td>{{reglement.montant}}</td>
+                    <td>
+                        <button  mat-icon-button type="button" color="primary"
+                                (click)="open(mymodal)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                    <ng-template #mymodal let-modal>
+                        <div class="modal-header">
+                            <h1 mat-dialog-title>Modification d'un réglement</h1>
+                            <button type="button" class="close" aria-label="Close"
+                                (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true" (click)="cancel()">×</span>
+
+                            </button>
+
+                        </div>
+                       
+
+                        <form >
+                            <div mat-dialog-content>
+                               
+                              <label id="example-radio-group-label">Mode</label>
+                              <mat-radio-group
+                                aria-labelledby="example-radio-group-label"
+                                class="example-radio-group"
+                                [(ngModel)]="reglement.mode"  [ngModelOptions]="{standalone : true}">
+                                <mat-radio-button class="example-radio-button" *ngFor="let mode of reglementlist" [value]="mode">
+                                  {{mode}}
+                                </mat-radio-button>
+                              </mat-radio-group>
+                             
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Date Opération</mat-label>
+                                        <input  [(ngModel)]="reglement.dateoperation"  [ngModelOptions]="{standalone : true}"matInput [matDatepicker]="picker" value="2020-06-14">
+                                        <mat-hint>YYYY/MM/DD</mat-hint>
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                      </mat-form-field>
+                                      <mat-form-field appearance="outline">
+                                        <mat-label>Echéance</mat-label>
+                                        <input  [(ngModel)]="reglement.dateeche"  [ngModelOptions]="{standalone : true}"matInput [matDatepicker]="picker" value="2020-06-14">
+                                        <mat-hint>YYYY/MM/DD</mat-hint>
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                      </mat-form-field>
+                                      <label id="example-radio-group-label">Sens Opération</label>
+                              <mat-radio-group
+                                aria-labelledby="example-radio-group-label"
+                                class="example-radio-group"
+                                [(ngModel)]="reglement.sensoperation"  [ngModelOptions]="{standalone : true}">
+                                <mat-radio-button class="example-radio-button" *ngFor="let sensoperation of senslist" [value]="sensoperation">
+                                  {{sensoperation}}
+                                </mat-radio-button>
+                              </mat-radio-group>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Montant </mat-label>
+                                        <input type="number"   [(ngModel)]="reglement.montant"matInput placeholder="Placeholder" [ngModelOptions]="{standalone : true}">
+                                      </mat-form-field> 
+                                      <label id="example-radio-group-label">Type</label>
+                                      <mat-radio-group
+                                        aria-labelledby="example-radio-group-label"
+                                        class="example-radio-group"
+                                        [(ngModel)]="reglement.type"  [ngModelOptions]="{standalone : true}">
+                                        <mat-radio-button class="example-radio-button" *ngFor="let type of typelist" [value]="type">
+                                          {{type}}
+                                        </mat-radio-button>
+                                      </mat-radio-group>
+                                    <mat-form-field appearance="outline">
+                                      <mat-label>Cpt auxiliaire </mat-label>
+                                      <input type="number"   [(ngModel)]="reglement.idtier"matInput placeholder="Placeholder" [ngModelOptions]="{standalone : true}">
+                                    </mat-form-field>
+                                    <mat-form-field appearance="outline">
+                                      <mat-label>Mail </mat-label>
+                                      <input  type="email"  [(ngModel)]="reglement.mail"matInput placeholder="Placeholder" [ngModelOptions]="{standalone : true}">
+                                    </mat-form-field>
+                            </div>
+                          </form>
+                        <div mat-dialog-action [aligne]="'end'">
+                            <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+                            <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="editReglement(reglement) " mat-dialog-close>Save</button>
+                        </div>
+                        
+                    </ng-template>
+                    <button type="button"mat-icon-button color="warn"
+                                (click)="deleteReglement(reglement.idreglement)"><mat-icon>
+                                    delete
+                                </mat-icon></button>
+                    
+                </td>
+                  </tr>
+                    </tbody>
+                    </table>
+  </div>
+
+</div>
