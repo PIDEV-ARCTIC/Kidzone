@@ -11,18 +11,39 @@ import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
 import { JardinComponent }           from '../../jardin/jardin.component';
 
 import { EnfantComponent }           from '../../enfant/enfant.component';
-import { STATJardinComponent } from '../../statjardin/statjardin.component';
+import { BusComponent } from 'app/bus/bus.component';
+import { InscriptionComponent } from 'app/inscription/inscription.component';
+//import { STATJardinComponent } from '../../statjardin/statjardin.component';
+import { AddeventComponent } from 'app/evenement/addevent/addevent.component';
+import { UpdateeventComponent } from 'app/evenement/updateevent/updateevent.component';
+import { ListeabsenceComponent } from 'app/absence/listeabsence/listeabsence.component';
+import { AddabsenceComponent } from 'app/absence/addabsence/addabsence.component';
+import { UpdateabsenceComponent } from 'app/absence/updateabsence/updateabsence.component';
+import { StatComponent } from 'app/evenement/stat/stat.component';
+import { ListeeventComponent } from 'app/evenement/listeevent/listeevent.component';
+import { StatabsenceComponent } from 'app/absence/statabsence/statabsence.component';
+import { ListeeventsComponent } from 'app/listeeventfront/listeevents/listeevent.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'enfant',         component: EnfantComponent },
     { path: 'jardin',         component: JardinComponent },
-    { path: 'StatJardin',         component: STATJardinComponent },
+    //{ path: 'StatJardin',         component: STATJardinComponent },
     { path: 'user',           component: UserComponent },
     { path: 'table',          component: TableComponent },
     { path: 'typography',     component: TypographyComponent },
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },
     { path: 'notifications',  component: NotificationsComponent },
-    { path: 'upgrade',        component: UpgradeComponent }
+    { path: 'upgrade',        component: UpgradeComponent },
+    { path: 'Bus',            component: BusComponent},
+    { path: 'Inscription',    component: InscriptionComponent},
+    { path: 'addevent',       component: AddeventComponent },
+    { path: 'updateEvent/:idevenement',    component: UpdateeventComponent },
+    { path: 'listeabsence',    component: ListeabsenceComponent },
+    { path: 'addabsence',    component: AddabsenceComponent },
+    { path: 'updateabsence/:idabsence',    component: UpdateabsenceComponent },
+    { path: 'chart',    component: StatComponent },
+    { path: 'listeevent',    component: ListeeventComponent },
+    { path: 'statabsence',    component: StatabsenceComponent },
 ];

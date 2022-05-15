@@ -4,8 +4,10 @@ import { HttpClient } from '@angular/common/http';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { EnfantService } from '../service/enfant.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import annyang from 'annyang';
+//import {AnnyangService} from './common/annyang.service';
 import {MatDialogRef,MatDialog,MatDialogModule,MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 @Component({
   selector: 'app-enfantajout',
   templateUrl: './enfantajout.component.html',
@@ -17,6 +19,10 @@ export class EnfantajoutComponent implements OnInit {
   Enfant!: enfant;
   form : boolean = false;
   reglementlist= ["Fille","Garcon"]
+  voiceText: string;
+  ngZone: any;
+  voiceActiveSectionSuccess: boolean;
+  voiceActiveSectionError: boolean;
  constructor(private bs : EnfantService,private dialog: MatDialog, private modalService: NgbModal) { }
  /*openDialog() {
   this.dialog.open(EnfantajoutComponent, {
@@ -61,7 +67,23 @@ export class EnfantajoutComponent implements OnInit {
     deleteEnfant(idEnfant : any){
       this.bs.deleteEnfant(idEnfant).subscribe(() => this.getAllEnfant())
     }
-    
-  
-
+    image: any;
+    initializeVoiceRecognitionCallback(): void {
+      annyang.addCallback('error', (err: any) => {
+        if (err.error === 'network') {
+          this.voiceText = 'Internet is require';
+          annyang.abort();
+          this.ngZone.run(() => (this.voiceActiveSectionSuccess = true));
+        } else if (this.voiceText === undefined) {
+          this.ngZone.run(() => (this.voiceActiveSectionError = true));
+          annyang.abort();
+        }
+      });
+      annyang.addCallback('soundstart',(res:any)=>{
+        if(this.voiceText == undefined){
+          this.ngZone.run(()=>(this.voiceActiveSectionError = true))
+          annyang.abort();
+        }
+      })
+    }
 }

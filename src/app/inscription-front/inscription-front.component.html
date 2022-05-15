@@ -1,0 +1,104 @@
+<header>
+  <app-front-nav-bar></app-front-nav-bar>
+</header>
+<body>
+  <section class="section section-shaped section-lg">
+    <div id="intro" class="row" style="
+          background-image: url('/assets/assets1/images/img_13.jpg'); background-size: cover; background-repeat: no-repeat;"> 
+      <div class="col-md-12" style="padding-top: 10%;" >
+            <form  [formGroup]="inscriptionForm" style="background-color: rgba(104, 106, 106, 0.48) ;" > 
+                
+                <label for="enfant">Identifiant enfant :</label>
+                <input type="text"  type="number" class="form-control" formControlName="enfant">
+                
+                <label for="activite">Type de pension</label>
+                <select id="activite" formControlName="activite">
+                  
+                    <option value="Avec_déjeuner">Avec déjeuner </option>
+                    <option value="Sans_déjeuner">Sans déjeuner</option>
+                    <option value="Déjeuner_chargé_par_le_parent">Déjeuner chargé par le parent</option>
+                  
+                </select>
+                
+                <input type="checkbox" id="check" (click)="toggle()" value="interest_development" name="user_interest"><label class="light" for="development" >Accorder un transport pour mon enfant</label><br>
+                <ng-container *ngIf="show">
+                    
+                    <table mat-table [dataSource]="dataSource" matSort align="center">
+            
+                
+                      <ng-container matColumnDef="idbus">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Identifiant </th>
+                        <td mat-cell *matCellDef="let row"> {{row.idbus}} </td>
+                      </ng-container>
+                  
+                      
+                      <ng-container matColumnDef="heuredepart">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Heure de départ </th>
+                        <td mat-cell *matCellDef="let row"> {{row.heuredepart}} </td>
+                      </ng-container>
+                  
+                     
+                      <ng-container matColumnDef="destination">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Destination </th>
+                        <td mat-cell *matCellDef="let row"> {{row.destination}} </td>
+                      </ng-container>
+                      
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                      <!-- Row shown when there is no matching data. -->
+                      <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">Pas de bus disponible en ce moment</td>
+                      </tr>
+                    </table>
+                    <label for="bus">Numéro de bus : </label>
+                    <input type="number" id="busInput" formControlName="bus">
+                </ng-container>
+                <label>Type de paiement :</label>
+                <input type="radio" value="Paiement_en_ligne" formControlName="typepaiement"><label for="under_13" class="light" >Paiement en ligne</label><br>
+                <input type="radio"  value="Paiement_direct" formControlName="typepaiement"><label for="over_13" class="light" >Paiement direct</label>
+
+                <label for="montant">Montant à payer :</label>
+                <input type="number" formControlName="montant">
+
+
+                <label for="dateoperation">Date d'opération :</label>
+                <input type="date" formControlName="dateoperation">
+
+                <button  (click)="onAddInscription()" >Valider mon inscription</button>
+              
+            </form>
+          
+          <!--<button (click)="toggle()" id="bt">
+            {{buttonName}}
+          </button>
+          
+          <ng-container *ngIf="show">
+            <div style="margin: 0 auto;text-align: left;">
+                <div>
+                    <label>Name:</label>
+                    <div><input id="tbname" name="yourname" /></div>
+                </div>
+                <div>
+                    <label>Email Address:</label>
+                    <div><input name="email" id="email" /></div></div>
+                <div>
+                    <label>Additional Information (optional):</label>
+                    <div><textarea rows="5" cols="46"></textarea></div>
+                </div>
+            </div>
+          </ng-container>-->
+      </div>
+    </div>
+  </section>
+</body>
+
+
+
+
+
+
+
+
+
+
+

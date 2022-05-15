@@ -8,6 +8,7 @@ import { JdialoguppComponent } from 'app/jdialogupp/jdialogupp.component';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import { ToastrService } from 'ngx-toastr';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-jardin',
@@ -69,6 +70,21 @@ export class JardinComponent implements OnInit{
          )
       }
     }
+    /*
+    getTrainings(){
+      this.TrainingHttp.getTrainings().subscribe(
+        (data:TrainingModel[]) => { this.trainings = data;
+          let n = data.length;
+          for(let i=0;i<=this.trainings.length;i++){
+            this.trainings[i].affiche = '../../assets/img/'+this.trainings[i].affiche.substring(12,this.trainings[i].affiche.length);
+  
+            //console.log(this.trainings[i].affiche.substring(11,this.trainings[i].affiche.length));
+        };
+        
+         // this.trainings.affiche
+          console.log(this.trainings)}
+      );
+    }*/
  
     getAllJardin(){
       this.bs.getAllJardin().subscribe(res =>{this.listJardin = res;
@@ -125,6 +141,15 @@ export class JardinComponent implements OnInit{
         }
       });
     }
-
+    
+/*image : any;
+initializeVoiceRecognitionCallback():void{
+  annyang.addCallback('error',(err:any)=>{
+    if(err.error == 'network'){
+      this.voiceText = 'Internet is require':
+      anal
+    }
+  })
+}*/
  
 }

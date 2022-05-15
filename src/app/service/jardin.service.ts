@@ -29,9 +29,12 @@ export class JardinService {
   findByenfanr(idJardin : any){
     return  this.httpClient.get(`${this.API_URL}/JardinAffichEnfant/${idJardin}`)
   }
+  findByadresse(){
+    return  this.httpClient.get(`${this.API_URL}/JardinEnfantAdresse`)
+  }
   
-  Stat() {
-    return this.httpClient.get(`${this.API_URL}/CA`)
+  Stat(idJardin : any) {
+    return this.httpClient.get(`${this.API_URL}/CA/${idJardin}`)
   }
 
   

@@ -26,8 +26,22 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { STATJardinComponent } from './statjardin/statjardin.component';
-
+//import { STATJardinComponent } from './statjardin/statjardin.component';
+import { Inscription } from "./model/inscription";
+import { DialoginfoinscriComponent } from 'app/dialoginfoinscri/dialoginfoinscri.component';
+import { DialogEditBusComponent } from './dialog-edit-bus/dialog-edit-bus.component';
+import { DialoginfoBusComponent } from './dialoginfo-bus/dialoginfo-bus.component';
+import { InscriptionComponent } from "./inscription/inscription.component";
+import { InscriptionFrontComponent } from './inscription-front/inscription-front.component';
+import { BusComponent } from "./bus/bus.component";
+import { DialogAddBusComponent } from "./dialog-add-bus/dialog-add-bus.component";
+import { ListeeventsComponent } from "./listeeventfront/listeevents/listeevent.component";
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ListeeventComponent } from './evenement/listeevent/listeevent.component';
+import { Ng2OrderModule } from 'ng2-order-pipe';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination';
+//import { HttpModule } from '@angular/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +51,11 @@ import { STATJardinComponent } from './statjardin/statjardin.component';
     FrontNavBarComponent,
     JardinaffichComponent,
     EnfantajoutComponent,
+    InscriptionFrontComponent,
+    FrontNavBarComponent,
+   ListeeventsComponent,
+  //  ListeeventComponent,
+    DialoginfoinscriComponent
     //STATJardinComponent
    // JdialoguppComponent,
    // JardinComponent,
@@ -47,6 +66,9 @@ import { STATJardinComponent } from './statjardin/statjardin.component';
   imports: [
     BrowserAnimationsModule,
     RouterModule.forRoot([
+     // {path: 'evenement', component: ListeeventComponent },
+      {path: 'listefrontevent', component: ListeeventsComponent} , 
+      {path: 'inscription-front', component: InscriptionFrontComponent},
       {path: 'Jardin', component: JardinaffichComponent},
       {path: 'Jardin/Enfant', component: EnfantajoutComponent},
       {path: 'home', component: HomeComponent},    
@@ -70,6 +92,11 @@ import { STATJardinComponent } from './statjardin/statjardin.component';
     ]),
     AppRoutingModule,
     HttpClientModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
+    NgxSpinnerModule,
+    Ng2OrderModule,
+    NgxSpinnerModule,
     SidebarModule,
     NavbarModule,
     ToastrModule.forRoot(),
@@ -81,9 +108,13 @@ import { STATJardinComponent } from './statjardin/statjardin.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatRadioModule
+    MatRadioModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-left',
+    })
   ],
-  providers: [],
+  providers: [Inscription],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/*import { Component, OnInit } from '@angular/core';
 import { jardin } from 'app/model/Jardin';
 import { JardinService } from 'app/service/jardin.service';
 import { Chart, BarElement, BarController, CategoryScale, Decimation, Filler, Legend, Title, Tooltip, registerables } from 'chart.js';
@@ -15,14 +15,14 @@ export class STATJardinComponent implements OnInit {
     Chart.register(...registerables); }
 
   ngOnInit(): void {
-    this.bs.Stat().subscribe(res => {this.listJardin = res
+    this.bs.getAllJardin.subscribe(res => {this.listJardin = res
       const myChart = new Chart("myChart", {
         type: 'bar',
         data: {
           labels:  this.liststat1,
             datasets: [{
          
-                label: 'Chiffre Affaire par année',
+                label: 'Chiffre Affaire par Mois',
                 data:['janvier', 'fevrier','mars','avril','mai' ,'juin','juillet','aout','septembre','octobre','novembre','decembre'],
              
                 backgroundColor: [
@@ -51,4 +51,4 @@ export class STATJardinComponent implements OnInit {
       })
     
    }
-}
+}*/

@@ -1,0 +1,63 @@
+
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+       
+        <div class="card-body">
+          <div class="table-responsive">
+            <div class="btn-addd">
+              <button type="button" class="btn btn-primary"(click)="sendMail()">Download List PDF</button>
+
+              <button class="btn btn-warning" routerLink="/addabsence">Add</button>
+            </div>
+            <input type="text" placeholder="Search absence by cause" class="form-control round" [(ngModel)]="cause" (ngModelChange)="search()" />
+
+            <table class="table">
+              <thead  class=" text-primary">
+                <th (click)="sort('idabsence')">
+                  Id <i class="fa fa-sort"></i>
+                </th>
+                <th  (click)="sort('datedebut')">
+                    Date Debut <i class="fa fa-sort"></i>
+                </th>
+                <th (click)="sort('periode')">
+                    Periode <i class="fa fa-sort"></i>
+                </th>
+                <th (click)="sort('cause')">
+                    Cause <i class="fa fa-sort"></i>
+                </th>
+                <th class="text-center">Action</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let c of ListAbsence| paginate: { itemsPerPage: 5, currentPage: p}| orderBy : key : reverse">
+                  <td>
+                    {{c.idabsence}}
+                  </td>
+                  <td>
+                    {{c.datedebut}}
+                  </td>
+                  <td>
+                    {{c.periode}} jours
+                  </td>
+                  <td>
+                    {{c.cause}}
+                  </td>
+                  <td class="text-center">
+                    <button class="btn btn-info" (click)="updateAbsence(c.idabsence)">Update</button>
+                    <button class="btn btn-danger" (click)="deleteAbsence(c.idabsence)">Delete</button>
+
+  
+                  </td>
+                </tr>
+  
+              </tbody>
+            </table>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  

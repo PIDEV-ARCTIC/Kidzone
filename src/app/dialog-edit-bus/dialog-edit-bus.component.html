@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>Modifier Bus</h1>
+<div mat-dialog-content>
+    <form [formGroup]="busForm">
+        <mat-form-field hidden >
+            <input formControlName ="idbus" matInput  readonly="readonly" >
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Heure de départ</mat-label>
+            <input formControlName ="heuredepart" matInput placeholder="Placeholder" type="time">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Destination</mat-label>
+            <input formControlName ="destination" matInput placeholder="Placeholder" >
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre de places</mat-label>
+            <input formControlName ="nbrplaces" matInput placeholder="Placeholder" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Prenom chauffeur</mat-label>
+            <input formControlName ="prenomChauffeur" matInput placeholder="Placeholder">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Nom chauffeur</mat-label>
+            <input formControlName ="nomChauffeur" matInput placeholder="Placeholder">
+        </mat-form-field>
+        <mat-form-field appearance="outline" hidden>
+            <mat-label hidden>Photo chauffeur</mat-label>
+            <input formControlName ="photoChauffeur" matInput placeholder="Placeholder" hidden >
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-action [align]="'end'">
+    <button mat-stroked-button color="warn" mat-dialog-close><mat-icon>clear</mat-icon></button>
+    <button mat-stroked-button color="primary" style="margin-left:8px" (click)="onEditBus()"><mat-icon>add</mat-icon></button>
+</div>

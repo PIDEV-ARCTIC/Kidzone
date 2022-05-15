@@ -30,8 +30,27 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
 import { JdialoguppComponent } from '../../jdialogupp/jdialogupp.component';
 //import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
-import { STATJardinComponent } from '../../statjardin/statjardin.component';
-
+//import { STATJardinComponent } from '../../statjardin/statjardin.component';
+import { BusComponent } from "../../bus/bus.component";
+import { DialogAddBusComponent } from "../../dialog-add-bus/dialog-add-bus.component";
+import { Inscription } from "../../model/inscription";
+import { DialoginfoinscriComponent } from "../../dialoginfoinscri/dialoginfoinscri.component";
+import { DialogEditBusComponent } from "../../dialog-edit-bus/dialog-edit-bus.component";
+import { DialoginfoBusComponent } from "../../dialoginfo-bus/dialoginfo-bus.component";
+import { InscriptionComponent } from "../../inscription/inscription.component";
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ListeeventComponent } from '../../evenement/listeevent/listeevent.component';
+import { Ng2OrderModule } from 'ng2-order-pipe';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { StatabsenceComponent } from '../../absence/statabsence/statabsence.component';
+import { StatComponent } from '../../evenement/stat/stat.component';
+import { AddabsenceComponent } from '../../absence/addabsence/addabsence.component';
+import { UpdateabsenceComponent } from '../../absence/updateabsence/updateabsence.component';
+import { ListeabsenceComponent } from '../../absence/listeabsence/listeabsence.component';
+import { AddeventComponent } from '../../evenement/addevent/addevent.component';
+import { UpdateeventComponent } from '../../evenement/updateevent/updateevent.component';
+import { ToastrModule } from "ngx-toastr";
 @NgModule({
   imports: [
     CommonModule,
@@ -51,7 +70,15 @@ import { STATJardinComponent } from '../../statjardin/statjardin.component';
     MatSortModule,
     CdkTableModule,
     MatFileUploadModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
+    NgxSpinnerModule,
+    Ng2OrderModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-left',
+    }),
    // MaterialFileInputModule
   ],
   declarations: [
@@ -66,12 +93,26 @@ import { STATJardinComponent } from '../../statjardin/statjardin.component';
     NotificationsComponent,
     JdialoguppComponent,
     JdialogComponent,
-    STATJardinComponent
+    BusComponent,
+    InscriptionComponent,
+    DialogAddBusComponent,
+    DialogEditBusComponent,
+    DialoginfoBusComponent,
+    AddeventComponent,
+    UpdateeventComponent,
+    ListeeventComponent,
+    AddabsenceComponent,
+    UpdateabsenceComponent,
+    ListeabsenceComponent,
+    StatComponent,
+    StatabsenceComponent
+   // STATJardinComponent
   ],
   providers: [
     
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MatDialogRef, useValue: {} }
+    
   ]
 })
 
